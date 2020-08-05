@@ -1,0 +1,102 @@
+
+<div class="row text-center">
+
+  <div class="col">
+    <p style="font-size: 30px">Cátalogo de sucursales</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col text-right">
+    <button type="button" class="btn btn-default" (click)="abrir(undefined)">
+      <i class="fa fa-plus"></i>
+    </button>
+  </div>
+</div>
+
+<div class="row" id="c1" style="height: 100%;">
+  <div class="col-12">
+    <table  *ngIf="arreglo.length != 0"  id="tablaSucursales" class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nombre</th>
+          <th>Dirección</th>
+          <th>Activo</th>
+          <th style="width: 200px;text-align: center">Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr *ngFor="let item of arreglo;let indice = index;">
+          <td scope="row">{{indice+1}}</td>
+          <td>{{item.nombre}}</td>
+          <td>{{item.direccion}}</td>
+          <td>{{item.activo}}  </td>
+       
+
+          <td style="text-align: center">
+            <button class="btn btn-default" data-toggle="modal" data-target="#myModal" (click)="abrir(item,indice)">
+              <i class="fa fa-refresh"></i>
+            </button>
+            <button class="btn btn-danger" (click)="eliminar(item.id,indice);">
+              <i class="fa fa-remove"></i>
+            </button>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+    <div *ngIf="arreglo.length == 0" class="alert alert-danger text-center" role="alert">
+      <strong></strong> Sin registros en las tablas
+    </div>
+  </div>
+</div>
+
+
+  <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <form  [formGroup]="myForm" (ngSubmit)="enviarformulario()">
+        <div class="modal-content">
+  
+          <!-- Modal Header -->
+          <div  class="modal-header cabecera">
+            <h4 class="modal-title" id="titulo"></h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+  
+          <!-- Modal body -->
+          <div class="modal-body">
+            <div class="col">
+              <div class="form-area">
+                <br style="clear:both">
+                <input  formControlName="id" type="hidden" >
+                <div class="form-group">
+                  <label  class="letra"><strong>NOMBRE:</strong></label>
+                  <input  formControlName="nombre" type="text" id="nombre" class="form-control text-uppercase"  placeholder="Ingresar nombre sucursal">
+                </div>
+                <div class="form-group">
+                  <label class="letra"><strong>DIRECCION:</strong> </label>
+                  <input  formControlName="direccion" type="text" id="usuario" class="form-control text-uppercase" placeholder="Ingresar dirección">
+                </div>
+                <div class="form-group">
+                  <label class="letra"><strong>SUCURSAL ACTIVA:</strong> </label>
+                  <input  formControlName="activa" type="checkbox" id="activa" class="form-control text-uppercase" >
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button [disabled]="!myForm.valid"  type="submit"  class="btn btn-success pull-right">
+              <i class="fa fa-check"></i> Guardar</button>
+            <button type="button" class="btn" data-dismiss="modal">
+              <i class="fa fa-close"></i>Cerrar</button>
+  
+          </div>
+  
+        </div>
+      </form>
+    </div>
+  </div>

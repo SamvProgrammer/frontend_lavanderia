@@ -1,0 +1,353 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Responsive sidebar template with sliding effect and dropdown menu based on bootstrap 3">
+    <title>Sidebar template</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+        crossorigin="anonymous">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
+
+ 
+</head>
+<body>
+
+  <div class="page-wrapper chiller-theme toggled" >
+    <a style="color: white;" id="show-sidebar" class="btn btn-sm btn-dark" (click)="mostrar();">
+      <i class="fas fa-bars" (click)="mostrar();"></i>
+    </a>
+    <nav id="sidebar" class="sidebar-wrapper">
+      <div class="sidebar-content">
+        <div class="sidebar-brand">
+          <a >Panel de control LAVAMAX</a>
+          <div (click)="cerrar();" id="close-sidebar">
+            <i class="fas fa-times"></i>
+          </div>
+        </div>
+        <div class="sidebar-header">
+          <div class="user-pic">
+            <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+              alt="User picture">
+          </div>
+          <div class="user-info">
+            <span class="user-name">{{usuario}}
+              <strong>{{nombre}}</strong>
+            </span>
+            <span class="user-role">Administrator</span>
+            <span class="user-status">
+              <i class="fa fa-circle"></i>
+              <span>En línea</span>
+            </span>
+          </div>
+        </div>
+        <!-- sidebar-header  -->
+        <div class="sidebar-search">
+          <div>
+            <div class="input-group">
+              <input type="text" class="form-control search-menu" placeholder="Buscar...">
+              <div class="input-group-append">
+                <span class="input-group-text">
+                  <i class="fa fa-search" aria-hidden="true"></i>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- sidebar-search  -->
+        <div class="sidebar-menu">
+          <ul>
+            <li class="header-menu">
+              <span>General</span>
+            </li>
+            <li>
+              <a routerLink="/">
+                <i class="fa fa-home"></i>
+                <span>Inicio</span>
+              </a>
+            </li>
+            <li class="sidebar-dropdown ">
+              <a >
+                <i class="fa fa-building"></i>
+                <span>Empresa</span>
+               <!-- <span class="badge badge-pill badge-warning">New</span>-->
+              </a>
+              <div class="sidebar-submenu" >
+                <ul>
+                  <li>
+                    <a routerLink="/catalogos/sucursales">Sucursales
+                      <!--<span class="badge badge-pill badge-success">Pro</span>-->
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="sidebar-dropdown ">
+              <a >
+                <i class="fa fa-book"></i>
+                <span>Cátalogos</span>
+               <!-- <span class="badge badge-pill badge-warning">New</span>-->
+              </a>
+              <div class="sidebar-submenu" >
+                <ul>
+                  <li>
+                    <a routerLink="/catalogos/usuarios">Productos
+                      <!--<span class="badge badge-pill badge-success">Pro</span>-->
+                    </a>
+                  </li>
+                  <li>
+                    <a routerLink="/catalogos/unidadmedida">Unidades de medida
+                      <!--<span class="badge badge-pill badge-success">Pro</span>-->
+                    </a>
+                  </li>
+                  <li>
+                    <a routerLink="/administracion/usuarios">Clientes
+                      <!--<span class="badge badge-pill badge-success">Pro</span>-->
+                    </a>
+                  </li>
+                  <li>
+                    <a routerLink="/administracion/usuarios">Empleados
+                      <!--<span class="badge badge-pill badge-success">Pro</span>-->
+                    </a>
+                  </li>
+                  <li>
+                    <a routerLink="/administracion/usuarios">Proveedores
+                      <!--<span class="badge badge-pill badge-success">Pro</span>-->
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="sidebar-dropdown ">
+              <a >
+                <i class="fa fa-building"></i>
+                <span>Ventas</span>
+               <!-- <span class="badge badge-pill badge-warning">New</span>-->
+              </a>
+              <div class="sidebar-submenu" >
+                <ul>
+                  <li>
+                    <a routerLink="/empresa/sucursales">Ventas
+                      <!--<span class="badge badge-pill badge-success">Pro</span>-->
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="sidebar-dropdown ">
+              <a >
+                <i class="fa fa-building"></i>
+                <span>Caja registradora</span>
+               <!-- <span class="badge badge-pill badge-warning">New</span>-->
+              </a>
+              <div class="sidebar-submenu" >
+                <ul>
+                  <li>
+                    <a routerLink="/empresa/sucursales">Caja
+                      <!--<span class="badge badge-pill badge-success">Pro</span>-->
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="sidebar-dropdown ">
+              <a >
+                <i class="fa fa-building"></i>
+                <span>Inventarios</span>
+               <!-- <span class="badge badge-pill badge-warning">New</span>-->
+              </a>
+              <div class="sidebar-submenu" >
+                <ul>
+                  <li>
+                    <a routerLink="/empresa/sucursales">Sucursales
+                      <!--<span class="badge badge-pill badge-success">Pro</span>-->
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="sidebar-dropdown ">
+              <a >
+                <i class="fa fa-building"></i>
+                <span>Servicios</span>
+               <!-- <span class="badge badge-pill badge-warning">New</span>-->
+              </a>
+              <div class="sidebar-submenu" >
+                <ul>
+                  <li>
+                    <a routerLink="/empresa/sucursales">Sucursales
+                      <!--<span class="badge badge-pill badge-success">Pro</span>-->
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="sidebar-dropdown ">
+              <a >
+                <i class="fa fa-building"></i>
+                <span>Compras</span>
+               <!-- <span class="badge badge-pill badge-warning">New</span>-->
+              </a>
+              <div class="sidebar-submenu" >
+                <ul>
+                  <li>
+                    <a routerLink="/empresa/sucursales">Compras la proveedor
+                      <!--<span class="badge badge-pill badge-success">Pro</span>-->
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="sidebar-dropdown">
+              <a href="#">
+                <i class="fa fa-shopping-cart"></i>
+                <span>Comercio electrónico</span>
+               <!-- <span class="badge badge-pill badge-danger">3</span>-->
+              </a>
+              <div class="sidebar-submenu">
+                <ul>
+                  <li>
+                    <a href="#">Productos
+  
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">Ordenes</a>
+                  </li>
+                  <li>
+                    <a href="#">Tarjeta de crédito</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <!--
+                 <li class="sidebar-dropdown">
+              <a href="#">
+                <i class="far fa-gem"></i>
+                <span>Components</span>
+              </a>
+              <div class="sidebar-submenu">
+                <ul>
+                  <li>
+                    <a href="#">General</a>
+                  </li>
+                  <li>
+                    <a href="#">Panels</a>
+                  </li>
+                  <li>
+                    <a href="#">Tables</a>
+                  </li>
+                  <li>
+                    <a href="#">Icons</a>
+                  </li>
+                  <li>
+                    <a href="#">Forms</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+
+                 <li class="sidebar-dropdown">
+              <a href="#">
+                <i class="fa fa-chart-line"></i>
+                <span>Charts</span>
+              </a>
+              <div class="sidebar-submenu">
+                <ul>
+                  <li>
+                    <a href="#">Pie chart</a>
+                  </li>
+                  <li>
+                    <a href="#">Line chart</a>
+                  </li>
+                  <li>
+                    <a href="#">Bar chart</a>
+                  </li>
+                  <li>
+                    <a href="#">Histogram</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            -->
+       
+            <li class="sidebar-dropdown">
+              <a href="#">
+                <i class="fa fa-globe"></i>
+                <span>Mapas</span>
+              </a>
+              <div class="sidebar-submenu">
+                <ul>
+                  <li>
+                    <a href="#">Google maps</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="header-menu">
+              <span>Extra</span>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa fa-book"></i>
+                <span>Documentación</span>
+                <span class="badge badge-pill badge-primary">Beta</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa fa-calendar"></i>
+                <span>Calendarios de eventos</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa fa-folder"></i>
+                <span>Ejemplos</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!-- sidebar-menu  -->
+      </div>
+      <!-- sidebar-content  -->
+      <div class="sidebar-footer">
+        <a href="#">
+          <i class="fa fa-bell"></i>
+          <span class="badge badge-pill badge-warning notification">3</span>
+        </a>
+        <a href="#">
+          <i class="fa fa-envelope"></i>
+          <span class="badge badge-pill badge-success notification">7</span>
+        </a>
+        <a href="#">
+          <i class="fa fa-cog"></i>
+          <span class="badge-sonar"></span>
+        </a>
+        <a href="#" (click)="cerrarSesion();">
+          <i class="fa fa-power-off"></i>
+        </a>
+      </div>
+    </nav>
+    <!-- sidebar-wrapper  -->
+    <main class="page-content" style="background-color: rgb(243, 243, 243);height: 100%;" >
+      <div class="container" style="background-color: rgb(255, 255, 255);">
+        <router-outlet ></router-outlet>
+      </div>
+  
+    </main>
+    <!-- page-content" -->
+  </div>
+  <!-- page-wrapper -->
+
+</body>
+
+</html>

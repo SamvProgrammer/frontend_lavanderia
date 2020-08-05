@@ -1,0 +1,27 @@
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img src="../../../assets/img/logo.PNG" id="icon" alt="User Icon" />
+    </div>
+
+    <!-- Login Form -->
+    <form [formGroup]="myForm" (ngSubmit)="enviarformulario()">
+      <input formControlName="usuario" type="text"  id="login" class="fadeIn second" name="login" placeholder="Usuario">
+      <input formControlName="password" type="password" id="password" class="fadeIn third" name="login" placeholder="Contraseña">
+      <input  type="submit"  class="fadeIn fourth classpuntero" value="Ingresar" [disabled]="!myForm.valid">
+    </form>
+
+    <div class="alert alert-danger" *ngIf="visible" role="alert">
+      {{mensaje}}
+    </div>
+
+    <!-- Remind Passowrd -->
+    <div id="formFooter" class="classpuntero">
+      <a class="underlineHover" (click)="mostrarmodal()" >¿Olvido su contraseña?</a>
+    </div>
+
+  </div>
+</div>
