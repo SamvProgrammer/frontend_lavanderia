@@ -1,0 +1,59 @@
+    .miEstilo {
+            border: solid 1px black;
+    height: 150px;
+    width: 150px;
+    margin-left: 25%;
+    }
+      .miEstilo2 {
+            border: solid 1px black;
+    height: 150px;
+    width: 150px;
+    
+    }
+    label {
+    font-size: smaller;
+    }
+    .merma {
+    height:20px;
+    }
+    .almConsumo {
+    height:24px;
+    }
+    .kcalorias {
+    height:24px;
+         width:160px;
+    
+    }
+ 
+    .modal-dialog {
+        width: 98%;
+        height: 92%;
+        padding: 0;
+      }
+      
+      .modal-content {
+        height: 99%;
+      }
+
+      hr {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border: 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+      }
+
+
+      .cabecera{
+        background: #008fc5;
+        color: white;
+    }
+    .titulomodal{
+        font-weight: 600;
+    font-size: medium;
+    }
+
+    .input-group-text{
+        background-color:#afafaf ;
+        color:white;
+    }
+      

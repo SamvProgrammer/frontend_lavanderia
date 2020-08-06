@@ -15,6 +15,7 @@ import { AutenticadoService } from './providers/autenticado.service';
 import { SucursalesService } from './providers/sucursales.service';
 import { UnidadesMedidasService } from './providers/unidades-medidas.service';
 import { ProveedoresService } from './providers/proveedores.service';
+import { CategoriasService } from './providers/categorias.service';
 
 import { PanelControlComponent } from './administracion/panel-control/panel-control.component';
 import { UsuariosComponent } from './administracion/usuarios/usuarios.component';
@@ -22,6 +23,9 @@ import { InicioComponent } from './administracion/inicio/inicio.component';
 import { SucursalesComponent } from './administracion/sucursales/sucursales.component';
 import { UnidadesMedidaComponent } from './administracion/unidades-medida/unidades-medida.component';
 import { ProveedoresComponent } from './administracion/proveedores/proveedores.component';
+import { ProductoComponent } from './administracion/producto/producto.component';
+import { LineasComponent } from './administracion/lineas/lineas.component';
+import { CatcatalogosComponent } from './administracion/catalogos/catcatalogos/catcatalogos.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +36,10 @@ import { ProveedoresComponent } from './administracion/proveedores/proveedores.c
     InicioComponent,
     SucursalesComponent,
     UnidadesMedidaComponent,
-    ProveedoresComponent
+    ProveedoresComponent,
+    ProductoComponent,
+    LineasComponent,
+    CatcatalogosComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +55,8 @@ import { ProveedoresComponent } from './administracion/proveedores/proveedores.c
     {provide:LocationStrategy,useClass:HashLocationStrategy},
     SucursalesService,
     UnidadesMedidasService,
-    ProveedoresService
+    ProveedoresService,
+    CategoriasService
   ],
   bootstrap: [AppComponent]
 })

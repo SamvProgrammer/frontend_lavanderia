@@ -1,0 +1,199 @@
+<div class="row text-center">
+
+  <div class="col">
+    <p style="font-size: 30px">Cátalogo de Productos</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col text-right">
+    <button type="button" class="btn btn-default" (click)="abrir(undefined)">
+      <i class="fa fa-plus"></i>
+    </button>
+  </div>
+</div>
+
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog modal-lg">
+    <form [formGroup]="myForm" (ngSubmit)="enviarformulario()">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header cabecera">
+          <h4 class="modal-title" id="titulo"></h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="row">
+            <label for="" class="col-12 text-center titulomodal">
+              Datos del producto:
+            </label>
+          </div>
+          <hr/>
+          <div class="form-group row">
+            <div class="input-group input-group-sm mb-3 col-8">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Código</span>
+              </div>
+              <input type="text" class="form-control" placeholder="Código del producto" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group input-group-sm mb-3 col-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">No.Producto</span>
+              </div>
+              <input type="text" disabled class="form-control" placeholder="No.Producto" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="input-group input-group-sm col-12">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Nombre</span>
+              </div>
+              <input type="text" class="form-control" placeholder="Ingresar nombre del producto" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+          </div>
+          <div class="form-group  row">
+            <div class="input-group input-group-sm col-12">
+              <div for="buscarClasificacion" class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Clasificación</span>
+              </div>
+              <input for="buscarClasificacion" disabled type="text" class="form-control" placeholder="Elegir clasificación" aria-label="Username" aria-describedby="basic-addon1">
+              <span class="input-group-btn">
+                <button id="buscarClasificacion" class="btn btn-theme" type="button" (click)="abrirClasificacion();" ><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+          </div>
+          <hr/>
+          <div class="row">
+            <label for="" class="col-12 text-center titulomodal">
+              Unidades de medida y sus equivalencias:
+            </label>
+          </div>
+          <div class="form-group row">
+            <div class="input-group input-group-sm mb-3 col-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Igualdad</span>
+              </div>
+              <input type="number" class="form-control" placeholder="Igualdad" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group input-group-sm mb-3 col-8">
+              <select class="custom-select" id="inputGroupSelect01">
+                <option selected>Elegir...</option>
+                <option value="1">Pieza</option>
+                <option value="2">Galon</option>
+                <option value="3">Otro</option>
+              </select>
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="input-group input-group-sm col-12">
+              <div style="width: 120px;" class="input-group-prepend">
+                <span style="width: 100%;" class="input-group-text" id="basic-addon1">Precio costo</span>
+              </div>
+              <input value="0" type="text" class="form-control" placeholder="Precio costo" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+          </div>
+          <div class="row form-group">
+           
+            <div class="input-group input-group-sm col-6">
+              <div style="width: 120px;" class="input-group-prepend">
+                <span style="width: 100%;" class="input-group-text" id="basic-addon1">Mayoreo</span>
+              </div>
+              <input value="0"  type="text" class="form-control" placeholder="Porcentaje" aria-label="Username" aria-describedby="basic-addon1">
+              <input value="0"  type="text" class="form-control" placeholder="precio" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group input-group-sm col-6">
+              <div style="width: 120px;" class="input-group-prepend">
+                <span style="width: 100%;" class="input-group-text" id="basic-addon1">Medio Mayoreo</span>
+              </div>
+              <input value="0"  type="text" class="form-control" placeholder="Porcentaje" aria-label="Username" aria-describedby="basic-addon1">
+              <input value="0" type="text" class="form-control" placeholder="Ingresar medio mayoreo" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+          </div>
+          <div class="row form-group">
+           
+            <div  class="input-group input-group-sm col-6">
+              <div style="width: 120px;" class="input-group-prepend">
+                <span style="width: 100%;" class="input-group-text" id="basic-addon1">Venta</span>
+              </div>
+              <input value="0"  type="text" class="form-control" placeholder="Porcentaje" aria-label="Username" aria-describedby="basic-addon1">
+              <input value="0" type="text" class="form-control" placeholder="precio" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group input-group-sm col-6">
+              <div style="width: 120px;" class="input-group-prepend">
+                <span style="width: 100%;" class="input-group-text" id="basic-addon1">Especial</span>
+              </div>
+              <input value="0" type="text" class="form-control" placeholder="Porcentaje" aria-label="Username" aria-describedby="basic-addon1">
+              <input value="0" type="text" class="form-control" placeholder="precio" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+          </div>
+          <hr/>
+        
+          <div class="row form-group">
+            <div class="input-group form-check form-check-inline col-5">
+              <input  class="form-check-input" type="checkbox" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+              <label style="font-size: initial;
+              font-weight: 600;" class="form-check-label" for="inlineRadio1">Generar serie x unidad</label>
+            </div>
+            <div class="input-group form-check form-check-inline col-5">
+              <input class="form-check-input" type="checkbox" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+              <label style="font-size: initial;
+              font-weight: 600;
+          " class="form-check-label" for="inlineRadio1">Manejar caducidad x serie</label>
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="input-group form-check form-check-inline col-12">
+              <input  class="form-check-input" type="checkbox" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+              <label style="font-size: initial;
+              font-weight: 600; width:300px
+          "  class="form-check-label" for="inlineRadio1">Este producto causa iva</label>
+              <input value="16" type="number" class="form-control" placeholder="%" aria-label="Username" aria-describedby="basic-addon1">
+              <div  class="input-group-prepend">
+                <span  class="input-group-text" id="basic-addon1">%</span>
+              </div>
+            </div>
+           
+          </div>
+          <div class="row form-group">
+            <div class="input-group form-check form-check-inline col-12">
+              <input  class="form-check-input" type="checkbox" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+              <label style="font-size: initial;
+              font-weight: 600; width: 300px;
+          "  class="form-check-label" for="inlineRadio1">Este producto genera IEEPS</label>
+              <input value="16" type="number" class="form-control" placeholder="%" aria-label="Username" aria-describedby="basic-addon1">
+              <div  class="input-group-prepend">
+                <span  class="input-group-text" id="basic-addon1">%</span>
+              </div>
+            </div>
+           
+          </div>
+          <div class="row form group">
+            <div class="input-group input-group-sm mb-3 col-12">
+              <select class="custom-select" id="inputGroupSelect01">
+                <option selected>Tipo ficha...</option>
+                <option value="1">4Kg</option>
+                <option value="2">8kg</option>
+                <option value="3">8kg s</option>
+              </select>
+            </div>
+          </div>
+        </div>
+     
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button [disabled]="!myForm.valid" type="submit" class="btn btn-success pull-right">
+            <i class="fa fa-check"></i> Guardar</button>
+          <button type="button" class="btn" data-dismiss="modal">
+            <i class="fa fa-close"></i>Cerrar</button>
+
+        </div>
+
+      </div>
+    </form>
+  </div>
+</div>
+
