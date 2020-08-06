@@ -30,6 +30,7 @@ export class UnidadesMedidasService {
     };
 
     let json = JSON.stringify(obj);
+    console.log(this.url);
     return this.http.post(this.url,json,httpOptions);
   }
 

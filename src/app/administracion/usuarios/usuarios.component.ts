@@ -33,10 +33,16 @@ export class UsuariosComponent implements OnInit {
 
   public createMyForm(obj) {
     return this.formBuilder.group({
-      nombre: [obj.nombre, Validators.required],
       usuario: [obj.usuario, Validators.required],
-      password: obj.password,
-      id_rol:[obj.id_rol,Validators.required],
+      nombre: [obj.nombre, Validators.required],
+      apellido: [obj.apellido, Validators.required],
+      password: [obj.password, Validators.required],
+      ciudad: [obj.ciudad, Validators.required],
+      codigopostal: [obj.codigopostal, Validators.required],
+      direccion: [obj.direccion, Validators.required],
+      activo: [obj.activo , Validators.required],
+      estado: [obj.estado , Validators.required],
+
       id: obj.id
     });
   }
@@ -47,55 +53,42 @@ export class UsuariosComponent implements OnInit {
    
     $('#myModal').modal('hide');
     if (this.ingresar) {
+      console.log('inserta');
+      console.log(obj);
       this.usuarioPrd.insertar(obj).subscribe(datos => {
-        alertify.success(datos.respuesta);
+        alertify.success('REGISTRO INSERTADO');
         this.ngOnInit();
 
       });
     } else {
       this.usuarioPrd.actualizar(obj).subscribe(datos => {
-        alertify.success(datos.respuesta);
+        alertify.success('REGISTRO ACTUALIZADO');
         this.ngOnInit();
       });
     }
   }
 
 
-  public eliminar(id): any {
+  public eliminar(id , indice): any {
     let clientePrdVar = this.usuarioPrd;
-    
+    let arregloaux = this.arreglo;
     alertify.set({ buttonReverse: true });
     alertify.confirm("¿Desea eliminar el registro?", function (e) {
       if (e) {
         clientePrdVar.eliminar(id).subscribe(respu => {
-          alertify.success(respu.respuesta);
-          localStorage["actualizar"] = true;
+          alertify.success('REGISTRO ELIMINADO');
+    arregloaux.splice(indice,1);
         });
       }
     });
 
 
-    this.actualizandoArreglo();
 
 
-  }
-
-
-  public actualizandoArreglo() {
-
-    setTimeout(() => {
-      if (localStorage["actualizar"] == "true") {
-        localStorage["actualizar"] = false;
-        this.usuarioPrd.obtenerAll().subscribe(datos => {
-          this.arreglo = datos;
-        });
-      } else {
-        this.actualizandoArreglo();
-      }
-    }, 500);
   }
 
   public abrir(obj): any {
+    console.log('modifica');
     $('#myModal').modal('show');
     if (obj == undefined) {
       $("#titulo").text("Ingresar Usuario");

@@ -37,6 +37,8 @@ export class UsuariosService {
     };
 
     let json = JSON.stringify(obj);
+    console.log('actualiza');
+    console.log(json);
     return this.http.put(this.url,json,httpOptions);
   }
     public eliminar(id):Observable<any>{

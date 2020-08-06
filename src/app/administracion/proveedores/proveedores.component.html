@@ -1,3 +1,136 @@
-<p>
-  proveedores works!
-</p>
+
+<div class="row text-center">
+
+  <div class="col">
+    <p style="font-size: 30px">Cátalogo de Proveedores</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col text-right">
+    <button type="button" class="btn btn-default" (click)="abrir(undefined)">
+      <i class="fa fa-plus"></i>
+    </button>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Empresa</th>
+          <th>Nombre</th>
+          <th>Ciudad</th>
+          <th>C.P.</th>
+          <th>Dirección</th>
+          <th>Estado</th>
+          <th>RFC</th>
+          <th>Teléfono</th>
+
+          <th style="width: 200px;text-align: center">Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr *ngFor="let item of arreglo;let indice = index;">
+          <td scope="row">{{indice+1}}</td>
+          <td>{{item.nombrecompania}}</td>
+          <td>{{item.nombre}}</td>
+          <td>{{item.ciudad}}  </td>
+          <td>{{item.codigopostal}}  </td>
+          <td>{{item.direccion}}  </td>
+          <td>{{item.estado}}  </td>
+          <td>{{item.rfc}}  </td>
+          <td>{{item.telefono}}  </td>
+       
+
+          <td style="text-align: center">
+            <button class="btn btn-default" data-toggle="modal" data-target="#myModal" (click)="abrir(item)">
+              <i class="fa fa-refresh"></i>
+            </button>
+            <button class="btn btn-danger" (click)="eliminar(item.id);">
+              <i class="fa fa-remove"></i>
+            </button>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+    <div *ngIf="arreglo.length == 0" class="alert alert-danger text-center" role="alert">
+      <strong></strong> Sin registros en las tablas
+    </div>
+  </div>
+</div>
+
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <form  [formGroup]="myForm" (ngSubmit)="enviarformulario()">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div  class="modal-header cabecera">
+          <h4 class="modal-title" id="titulo"></h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="col">
+            <div class="form-area">
+              <br style="clear:both">
+              <input  formControlName="id" type="hidden" >
+              <div class="form-group">
+                <label  class="letra"><strong>Empresa:</strong></label>
+                <input  formControlName="nombrecompania" type="text" id="nombrecompania" class="form-control text-uppercase"  placeholder="Ingresar Nombre Empresa">
+              </div>
+              <div class="form-group">
+                <label class="letra"><strong>NOMBRE:</strong> </label>
+                <input  formControlName="nombre" type="text" id="nombre" class="form-control text-uppercase" placeholder="Ingresar Nombre">
+              </div>
+              <div class="form-group">
+                <label class="letra"><strong>CIUDAD:</strong> </label>
+                <input  formControlName="ciudad" type="text" id="ciudad" class="form-control text-uppercase"  placeholder="Ingresar Ciudad">
+              </div>
+            
+                <div class="form-group">
+                    <label class="letra"><strong>CODIGO POSTAL:</strong> </label>
+                    <input  formControlName="codigopostal" type="text" id="codigopostal" class="form-control text-uppercase"  placeholder="Ingresar Código Postal">
+                  </div>
+                  <div class="form-group">
+                      <label class="letra"><strong>DIRECCIÓN:</strong> </label>
+                      <input  formControlName="direccion" type="text" id="direccion" class="form-control text-uppercase"  placeholder="Ingresar dirección">
+                    </div>
+                    <div class="form-group">
+                        <label class="letra"><strong>ESTADO:</strong> </label>
+                        <input  formControlName="estado" type="text" id="estado" class="form-control text-uppercase"  placeholder="Ingresar dirección">
+                      </div>
+                      <div class="form-group">
+                        <label class="letra"><strong>RFC:</strong> </label>
+                        <input  formControlName="rfc" type="text" id="rfc" class="form-control text-uppercase"  placeholder="Ingresar RFC">
+                      </div>
+                      <div class="form-group">
+                        <label class="letra"><strong>TELÉFONO:</strong> </label>
+                        <input  formControlName="telefono" type="text" id="telefono" class="form-control text-uppercase"  placeholder="Ingresar Teléfono">
+                      </div>
+
+           
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button [disabled]="!myForm.valid"  type="submit"  class="btn btn-success pull-right">
+            <i class="fa fa-check"></i> Guardar</button>
+          <button type="button" class="btn" data-dismiss="modal">
+            <i class="fa fa-close"></i>Cerrar</button>
+
+        </div>
+
+      </div>
+    </form>
+  </div>
+</div>
+
+
