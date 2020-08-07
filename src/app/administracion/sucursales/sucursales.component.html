@@ -31,7 +31,7 @@
           <td scope="row">{{indice+1}}</td>
           <td>{{item.nombre}}</td>
           <td>{{item.direccion}}</td>
-          <td>{{item.activo}}  </td>
+          <td>{{(item.activa)?"Sucursal Activa":"Sucursal inactiva"}}  </td>
        
 
           <td style="text-align: center">
@@ -67,22 +67,37 @@
   
           <!-- Modal body -->
           <div class="modal-body">
-            <div class="col">
-              <div class="form-area">
-                <br style="clear:both">
+            <div class="row">
+              <label for="" class="col-12 text-center titulomodal">
+                Datos del sucursal
+              </label>
+            </div>
+            <hr/>
+            <div class="form-group row">
+              <div class="input-group input-group-sm mb-3 col-12">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Sucursal</span>
+                </div>
                 <input  formControlName="id" type="hidden" >
-                <div class="form-group">
-                  <label  class="letra"><strong>NOMBRE:</strong></label>
-                  <input  formControlName="nombre" type="text" id="nombre" class="form-control text-uppercase"  placeholder="Ingresar nombre sucursal">
+                <input formControlName="nombre" type="text" class="form-control" placeholder="Nombre de sucursal" aria-label="Username" aria-describedby="basic-addon1">
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="input-group input-group-sm mb-3 col-12">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Dirección</span>
                 </div>
-                <div class="form-group">
-                  <label class="letra"><strong>DIRECCION:</strong> </label>
-                  <input  formControlName="direccion" type="text" id="usuario" class="form-control text-uppercase" placeholder="Ingresar dirección">
-                </div>
-                <div class="form-group">
-                  <label class="letra"><strong>SUCURSAL ACTIVA:</strong> </label>
-                  <input  formControlName="activa" type="checkbox" id="activa" class="form-control text-uppercase" >
-                </div>
+                <input  formControlName="id" type="hidden" >
+                <input formControlName="direccion" type="text" class="form-control" placeholder="Dirección de sucursal" aria-label="Username" aria-describedby="basic-addon1">
+              </div>
+            </div>
+            <div class="row form-group">
+              <div style="margin-left: 3%;" class="input-group form-check form-check-inline col-8">
+                <label class="custom-control custom-checkbox">
+                  <input formControlName="activa" type="checkbox" class="custom-control-input">
+                  <span class="custom-control-indicator"></span>
+                  <span class="custom-control-description">Sucursal activa</span>
+            </label>
               </div>
             </div>
           </div>

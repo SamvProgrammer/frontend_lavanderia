@@ -1,0 +1,40 @@
+.seleccionado{
+    background: #ff5151!important;
+    color: white!important;
+}
+
+
+.modal-dialog {
+width: 98%;
+height: 92%;
+padding: 0;
+}
+
+.modal-content {
+height: 99%;
+}
+
+hr {
+margin-top: 1rem;
+margin-bottom: 1rem;
+border: 0;
+border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+
+.cabecera{
+background: #d3d3d3;
+color: white;
+}
+.titulomodal{
+font-weight: 600;
+font-size: medium;
+}
+
+.input-group-text{
+background-color:#afafaf ;
+color:white;
+}
+#titulo{
+    color:black;
+}

@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CategoriasService } from 'src/app/providers/categorias.service';
+
+declare var $;
+declare var alertify: any;
 
 @Component({
   selector: 'app-categorias',
@@ -7,9 +12,94 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoriasComponent implements OnInit {
 
-  constructor() { }
+  private myForm: FormGroup;
+  private ingresar:boolean = false;
+  private arreglo:any = [];
+  private indice:number = 0;
+
+  constructor(  public formBuilder: FormBuilder,private categoriasPrd:CategoriasService) { 
+   
+  }
 
   ngOnInit() {
+
+    this.categoriasPrd.getAll().subscribe(datos =>{
+      this.arreglo = datos;
+
+      console.log("Se ejecuta la tabla");
+    });
+
+   
+
+
+  this.myForm = this.createMyForm("");
   }
+
+  public createMyForm(obj) {
+    return this.formBuilder.group({
+      nombre: [obj.nombre, Validators.required],
+      id: obj.id
+    });
+  }
+
+
+  public abrir(obj,index): any {
+    $('#myModal').modal('show');
+    if (obj == undefined) {
+      $("#titulo").text("Ingresar categoria");
+      this.myForm = this.createMyForm("");
+      this.ingresar = true;
+    } else {
+      $("#titulo").text("Actualizar categoria");
+      this.myForm = this.createMyForm(obj);
+      this.ingresar = false;
+      this.indice = index;
+    }
+  }
+
+
+  public eliminar(id,index): any {
+    let auxSucursales: any = this.categoriasPrd;
+    let arregloAux = this.arreglo;
+    alertify.set({ buttonReverse: true });
+    alertify.confirm("¿Desea eliminar el registro?", function (e) {
+      console.log(auxSucursales);
+      if (e) {       
+        
+        auxSucursales.delete(id).subscribe(respu => {
+          arregloAux.splice(index,1);
+          alertify.success(respu.resultado);
+        });
+      }
+    });
+  }
+
+
+  public enviarformulario(): any {
+    let obj = this.myForm.value;
+
+   
+    $('#myModal').modal('hide');
+    if (this.ingresar) {
+      this.categoriasPrd.insert(obj).subscribe(datos => {
+        alertify.success("Sucursal agregada correctamente");
+        this.arreglo.push(datos);
+
+      });
+    } else {
+      this.categoriasPrd.update(obj).subscribe(datos => {
+        alertify.success("Sucursal actualizada correctamente");
+        console.log("Este es el indice");
+        console.log(this.indice);
+        this.arreglo.splice(this.indice,1,datos);
+      });
+    }
+  }
+
+
+  
+
+
+ 
 
 }

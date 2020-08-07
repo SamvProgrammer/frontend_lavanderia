@@ -9,6 +9,7 @@ import { UnidadesMedidaComponent } from './administracion/unidades-medida/unidad
 import { ProveedoresComponent } from './administracion/proveedores/proveedores.component';
 import { ProductoComponent } from './administracion/producto/producto.component';
 import { LineasComponent } from './administracion/lineas/lineas.component';
+import { CategoriasComponent } from './administracion/categorias/categorias.component';
 
 const routes: Routes = [
   {path: 'ingresar', component : LoginAdminComponent},
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path:'catalogos/proveedores',component:ProveedoresComponent,canActivate:[AutenticadoService]},
   {path:'catalogos/productos',component:ProductoComponent,canActivate:[AutenticadoService]},
   {path:'catalogos/lineas',component:LineasComponent,canActivate:[AutenticadoService]},
+  {path:'catalogos/categorias',component:CategoriasComponent,canActivate:[AutenticadoService]},
   {path:'**',component : LoginAdminComponent}
 ];
 
@@ -27,3 +29,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+

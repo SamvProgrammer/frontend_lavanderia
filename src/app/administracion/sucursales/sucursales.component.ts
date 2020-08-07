@@ -61,8 +61,6 @@ export class SucursalesComponent implements OnInit {
 
 
   public abrir(obj,index): any {
-    console.log("CUANDO SE ABRE LA MODAL");
-    console.log(obj);
     $('#myModal').modal('show');
     if (obj == undefined) {
       $("#titulo").text("Ingresar Sucursal");

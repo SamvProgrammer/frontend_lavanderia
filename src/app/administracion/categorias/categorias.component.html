@@ -1,3 +1,98 @@
-<p>
-  categorias works!
-</p>
+
+<div class="row text-center">
+
+  <div class="col">
+    <p style="font-size: 30px">Cátalogo de categorías</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col text-right">
+    <button type="button" class="btn btn-default" (click)="abrir(undefined)">
+      <i class="fa fa-plus"></i>
+    </button>
+  </div>
+</div>
+
+<div class="row" id="c1" style="height: 100%;">
+  <div class="col-12">
+    <table  *ngIf="arreglo.length != 0"  id="tablaSucursales" class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nombre categoría</th>
+          <th style="width: 200px;text-align: center">Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr *ngFor="let item of arreglo;let indice = index;">
+          <td scope="row">{{indice+1}}</td>
+          <td>{{item.nombre}}</td>
+       
+
+          <td style="text-align: center">
+            <button class="btn btn-default" data-toggle="modal" data-target="#myModal" (click)="abrir(item,indice)">
+              <i class="fa fa-refresh"></i>
+            </button>
+            <button class="btn btn-danger" (click)="eliminar(item.id,indice);">
+              <i class="fa fa-remove"></i>
+            </button>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+    <div *ngIf="arreglo.length == 0" class="alert alert-danger text-center" role="alert">
+      <strong></strong> Sin registros en las tablas
+    </div>
+  </div>
+</div>
+
+
+  <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <form  [formGroup]="myForm" (ngSubmit)="enviarformulario()">
+        <div class="modal-content">
+  
+          <!-- Modal Header -->
+          <div  class="modal-header cabecera">
+            <h4 class="modal-title" id="titulo">Categorías</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+  
+          <!-- Modal body -->
+          <div class="modal-body">
+            <div class="row">
+              <label for="" class="col-12 text-center titulomodal">
+                Categorias
+              </label>
+            </div>
+            <hr/>
+            <div class="form-group row">
+              <div class="input-group input-group-sm mb-3 col-12">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Nombre</span>
+                </div>
+                <input type="hidden" formControlName="id">
+                <input type="text" formControlName="nombre" class="form-control" placeholder="Nombre de categoria" aria-label="Username" aria-describedby="basic-addon1">
+              </div>
+            </div>
+          </div>
+  
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button [disabled]="!myForm.valid"  type="submit"  class="btn btn-success pull-right">
+              <i class="fa fa-check"></i> Guardar</button>
+            <button type="button" class="btn" data-dismiss="modal">
+              <i class="fa fa-close"></i>Cerrar</button>
+  
+          </div>
+  
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  

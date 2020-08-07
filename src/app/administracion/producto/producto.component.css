@@ -57,3 +57,7 @@
         color:white;
     }
       
+
+    .miclase {
+        overflow: scroll!important; 
+      }

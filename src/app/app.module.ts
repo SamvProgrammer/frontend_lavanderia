@@ -16,6 +16,7 @@ import { SucursalesService } from './providers/sucursales.service';
 import { UnidadesMedidasService } from './providers/unidades-medidas.service';
 import { ProveedoresService } from './providers/proveedores.service';
 import { CategoriasService } from './providers/categorias.service';
+import { ProductosService } from './providers/productos.service';
 
 import { PanelControlComponent } from './administracion/panel-control/panel-control.component';
 import { UsuariosComponent } from './administracion/usuarios/usuarios.component';
@@ -25,7 +26,8 @@ import { UnidadesMedidaComponent } from './administracion/unidades-medida/unidad
 import { ProveedoresComponent } from './administracion/proveedores/proveedores.component';
 import { ProductoComponent } from './administracion/producto/producto.component';
 import { LineasComponent } from './administracion/lineas/lineas.component';
-import { CatcatalogosComponent } from './administracion/catalogos/catcatalogos/catcatalogos.component';
+import { CategoriasComponent } from './administracion/categorias/categorias.component';
+import { CatCategoriasComponent } from './administracion/catalogos/cat-categorias/cat-categorias.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ import { CatcatalogosComponent } from './administracion/catalogos/catcatalogos/c
     ProveedoresComponent,
     ProductoComponent,
     LineasComponent,
-    CatcatalogosComponent
+    CategoriasComponent,
+    CatCategoriasComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +59,8 @@ import { CatcatalogosComponent } from './administracion/catalogos/catcatalogos/c
     SucursalesService,
     UnidadesMedidasService,
     ProveedoresService,
-    CategoriasService
+    CategoriasService,
+    ProductosService
   ],
   bootstrap: [AppComponent]
 })

@@ -3,15 +3,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { direcciones } from '../direcciones';
 import { Observable } from 'rxjs';
 
-
 @Injectable({
   providedIn: 'root'
 })
-export class CategoriasService {
-
+export class ProductosService {
   private url: string = "";
   constructor(private http: HttpClient) {
-    this.url = direcciones.categorias;
+    this.url = direcciones.productos;
   }
 
   public getAll(): Observable<any> {
