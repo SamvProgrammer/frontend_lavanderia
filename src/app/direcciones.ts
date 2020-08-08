@@ -4,6 +4,8 @@ export const direcciones:any = {
    "login":ip+"/api/ingresar",
    "sucursales":`${ip}/api/sucursales`,
    "umedidas":`${ip}/api/umedidas`,
-   "proveedores":`${ip}/api/proveedores`
+   "proveedores":`${ip}/api/proveedores`,
+   "clientes":`${ip}/api/clientes`
+
    
 }

@@ -7,6 +7,7 @@ import { InicioComponent } from './administracion/inicio/inicio.component';
 import { SucursalesComponent } from './administracion/sucursales/sucursales.component';
 import { UnidadesMedidaComponent } from './administracion/unidades-medida/unidades-medida.component';
 import {ProveedoresComponent} from './administracion/proveedores/proveedores.component';
+import {ClientesComponent} from './administracion/clientes/clientes.component';
 
 const routes: Routes = [
   {path: 'ingresar', component : LoginAdminComponent},
@@ -15,6 +16,8 @@ const routes: Routes = [
   {path:'catalogos/sucursales',component:SucursalesComponent, canActivate:[AutenticadoService]},
   {path:'catalogos/unidadmedida',component:UnidadesMedidaComponent,canActivate:[AutenticadoService]},
   {path:'catalogos/proveedores',component:ProveedoresComponent, canActivate:[AutenticadoService]},
+  {path:'catalogos/clientes',component:ClientesComponent, canActivate:[AutenticadoService]},
+
 
 
   {path:'**',component : LoginAdminComponent}

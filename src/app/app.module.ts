@@ -22,6 +22,8 @@ import { InicioComponent } from './administracion/inicio/inicio.component';
 import { SucursalesComponent } from './administracion/sucursales/sucursales.component';
 import { UnidadesMedidaComponent } from './administracion/unidades-medida/unidades-medida.component';
 import { ProveedoresComponent } from './administracion/proveedores/proveedores.component';
+import { EmpleadosComponent } from './administracion/empleados/empleados.component';
+import { ClientesComponent } from './administracion/clientes/clientes.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { ProveedoresComponent } from './administracion/proveedores/proveedores.c
     InicioComponent,
     SucursalesComponent,
     UnidadesMedidaComponent,
-    ProveedoresComponent
+    ProveedoresComponent,
+    EmpleadosComponent,
+    ClientesComponent
   ],
   imports: [
     BrowserModule,
