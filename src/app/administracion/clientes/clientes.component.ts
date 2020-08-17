@@ -1,31 +1,33 @@
 import { Component, OnInit } from '@angular/core';
-import { UsuariosService } from '../../providers/usuarios.service';
+import { ClienteservService } from '../../providers/clienteserv.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 declare var $: any;
 declare var alertify: any;
 
 @Component({
-  selector: 'app-usuarios',
-  templateUrl: './usuarios.component.html',
-  styleUrls: ['./usuarios.component.css']
+  selector: 'app-clientes',
+  templateUrl: './clientes.component.html',
+  styleUrls: ['./clientes.component.css']
 })
-export class UsuariosComponent implements OnInit {
+export class ClientesComponent implements OnInit {
+
 
   public myForm: FormGroup;
   public arreglo: any = [];
   public ingresar: boolean = false;
+  public fecha: Date;
 
-
-  constructor(public usuarioPrd: UsuariosService,
-    public formBuilder: FormBuilder) {
-    localStorage["actualizar"] = false;
-  }
+  constructor(public formBuilder: FormBuilder, public clientesPrd: ClienteservService) { }
 
   ngOnInit() {
-    this.usuarioPrd.obtenerAll().subscribe(datos => {
+    this.clientesPrd.getAll().subscribe(datos => {
       this.arreglo = datos;
-      console.log(datos);
+      console.log(this.arreglo);
     });
+    //let dateFormat = require('dateformat');
+    //let now = new Date();
+    //dateFormat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT");
+    //console.log(dateFormat);
 
     this.myForm = this.createMyForm("");
   }
@@ -33,16 +35,16 @@ export class UsuariosComponent implements OnInit {
 
   public createMyForm(obj) {
     return this.formBuilder.group({
-      usuario: [obj.usuario, Validators.required],
       nombre: [obj.nombre, Validators.required],
       apellido: [obj.apellido, Validators.required],
-      password: [obj.password, Validators.required],
+      direccion: [obj.direccion, Validators.required],
       ciudad: [obj.ciudad, Validators.required],
       codigopostal: [obj.codigopostal, Validators.required],
-      direccion: [obj.direccion, Validators.required],
-      activo: [obj.activo , Validators.required],
-      estado: [obj.estado , Validators.required],
-
+      estado: [obj.estado, Validators.required],
+      pais: [obj.pais, Validators.required],
+      rfc: [obj.rfc, Validators.required],
+      telefono: [obj.telefono, Validators.required],
+      observaciones: [obj.observaciones],
       id: obj.id
     });
   }
@@ -50,18 +52,18 @@ export class UsuariosComponent implements OnInit {
   public enviarformulario(): any {
     let obj = this.myForm.value;
 
-   
+
     $('#myModal').modal('hide');
     if (this.ingresar) {
       console.log('inserta');
       console.log(obj);
-      this.usuarioPrd.insertar(obj).subscribe(datos => {
+      this.clientesPrd.insert(obj).subscribe(datos => {
         alertify.success('REGISTRO INSERTADO');
         this.ngOnInit();
 
       });
     } else {
-      this.usuarioPrd.actualizar(obj).subscribe(datos => {
+      this.clientesPrd.update(obj).subscribe(datos => {
         alertify.success('REGISTRO ACTUALIZADO');
         this.ngOnInit();
       });
@@ -69,22 +71,34 @@ export class UsuariosComponent implements OnInit {
   }
 
 
-  public eliminar(id , indice): any {
-    let clientePrdVar = this.usuarioPrd;
-    let arregloaux = this.arreglo;
+  public eliminar(id): any {
+    let clientePrdVar = this.clientesPrd;
+
     alertify.set({ buttonReverse: true });
     alertify.confirm("¿Desea eliminar el registro?", function (e) {
       if (e) {
-        clientePrdVar.eliminar(id).subscribe(respu => {
+        clientePrdVar.delete(id).subscribe(respu => {
           alertify.success('REGISTRO ELIMINADO');
-    arregloaux.splice(indice,1);
+          localStorage["actualizar"] = true;
         });
       }
     });
 
+  }
 
 
+  public actualizandoArreglo() {
 
+    setTimeout(() => {
+      if (localStorage["actualizar"] == "true") {
+        localStorage["actualizar"] = false;
+        this.clientesPrd.getAll().subscribe(datos => {
+          this.arreglo = datos;
+        });
+      } else {
+        this.actualizandoArreglo();
+      }
+    }, 500);
   }
 
   public abrir(obj): any {
@@ -101,8 +115,5 @@ export class UsuariosComponent implements OnInit {
       this.ingresar = false;
     }
   }
-
-
-
 }
 

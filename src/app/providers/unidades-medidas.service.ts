@@ -8,8 +8,8 @@ import { Observable } from 'rxjs';
 })
 export class UnidadesMedidasService {
 
-  private url: string = "";
-  constructor(private http: HttpClient) {
+  public url: string = "";
+  constructor(public http: HttpClient) {
     this.url = direcciones.umedidas;
   }
 
@@ -30,6 +30,7 @@ export class UnidadesMedidasService {
     };
 
     let json = JSON.stringify(obj);
+    console.log(this.url);
     return this.http.post(this.url,json,httpOptions);
   }
 

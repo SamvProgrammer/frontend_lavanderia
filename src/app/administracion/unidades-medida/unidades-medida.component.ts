@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UnidadesMedidasService } from 'src/app/providers/unidades-medidas.service';
+import { UnidadesMedidasService } from '../../providers/unidades-medidas.service';
 
 declare var $;
 declare var alertify: any;
@@ -12,12 +12,12 @@ declare var alertify: any;
 })
 export class UnidadesMedidaComponent implements OnInit {
 
-  private myForm: FormGroup;
-  private ingresar:boolean = false;
-  private arreglo:any = [];
-  private indice:number = 0;
+  public myForm: FormGroup;
+  public ingresar:boolean = false;
+  public arreglo:any = [];
+  public indice:number = 0;
 
-  constructor(  public formBuilder: FormBuilder,private medidasPrd:UnidadesMedidasService) { 
+  constructor(  public formBuilder: FormBuilder,public medidasPrd:UnidadesMedidasService) { 
    
   }
 

@@ -10,17 +10,21 @@ import { ProveedoresComponent } from './administracion/proveedores/proveedores.c
 import { ProductoComponent } from './administracion/producto/producto.component';
 import { LineasComponent } from './administracion/lineas/lineas.component';
 import { CategoriasComponent } from './administracion/categorias/categorias.component';
+import { ClientesComponent } from './administracion/clientes/clientes.component';
+import { VentasComponent } from './administracion/ventas/ventas.component';
 
 const routes: Routes = [
   {path: 'ingresar', component : LoginAdminComponent},
-  {path:'',component:InicioComponent,canActivate:[AutenticadoService]},
-  {path:'usuarios',component:UsuariosComponent,canActivate:[AutenticadoService]},
-  {path:'catalogos/sucursales',component:SucursalesComponent,canActivate:[AutenticadoService]},
+  {path:'',component:InicioComponent, canActivate:[AutenticadoService]},
+  {path:'catalogos/usuarios',component:UsuariosComponent, canActivate:[AutenticadoService]},
+  {path:'catalogos/sucursales',component:SucursalesComponent, canActivate:[AutenticadoService]},
   {path:'catalogos/unidadmedida',component:UnidadesMedidaComponent,canActivate:[AutenticadoService]},
   {path:'catalogos/proveedores',component:ProveedoresComponent,canActivate:[AutenticadoService]},
   {path:'catalogos/productos',component:ProductoComponent,canActivate:[AutenticadoService]},
   {path:'catalogos/lineas',component:LineasComponent,canActivate:[AutenticadoService]},
   {path:'catalogos/categorias',component:CategoriasComponent,canActivate:[AutenticadoService]},
+  {path:'catalogos/clientes',component:ClientesComponent,canActivate:[AutenticadoService]},
+  {path:'ventas',component:VentasComponent,canActivate:[AutenticadoService]},
   {path:'**',component : LoginAdminComponent}
 ];
 

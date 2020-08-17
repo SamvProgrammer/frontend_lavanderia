@@ -7,7 +7,7 @@ import { LoginService } from './login.service';
 })
 export class AutenticadoService implements CanActivate{
 
-  constructor(private UsuariosService:LoginService,private router: Router) { }
+  constructor(public UsuariosService:LoginService,public router: Router) { }
 
   canActivate(route:ActivatedRouteSnapshot,state:RouterStateSnapshot){
     if(this.UsuariosService.mostrarMenu()){

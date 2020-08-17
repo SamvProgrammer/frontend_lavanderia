@@ -6,10 +6,11 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class SucursalesService {
+export class ClienteservService {
+
   public url: string = "";
   constructor(public http: HttpClient) {
-    this.url = direcciones.sucursales;
+    this.url = direcciones.clientes;
   }
 
   public getAll(): Observable<any> {
@@ -45,5 +46,4 @@ export class SucursalesService {
   public delete(identificador):Observable<any> {
      return this.http.delete(`${this.url}/${identificador}`);
   }
-
 }

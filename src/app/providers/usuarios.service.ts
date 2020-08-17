@@ -8,11 +8,11 @@ import { Observable } from 'rxjs';
 })
 export class UsuariosService {
 
-  private url: string = "";
-  private usuario:any;
+  public url: string = "";
+  public usuario:any;
   
 
-  constructor(private http: HttpClient) {
+  constructor(public http: HttpClient) {
     this.url = direcciones.usuarios;
   }
 
@@ -37,6 +37,8 @@ export class UsuariosService {
     };
 
     let json = JSON.stringify(obj);
+    console.log('actualiza');
+    console.log(json);
     return this.http.put(this.url,json,httpOptions);
   }
     public eliminar(id):Observable<any>{

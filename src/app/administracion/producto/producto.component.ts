@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild ,ElementRef} from '@angular/core';
 import { FormBuilder,FormGroup,Validator, Validators} from '@angular/forms';
-import { UnidadesMedidasService } from 'src/app/providers/unidades-medidas.service';
-import { ProductosService } from 'src/app/providers/productos.service';
+import { UnidadesMedidasService } from '../../providers/unidades-medidas.service';
+import { ProductosService } from '../../providers/productos.service';
 declare var $;
 declare var alertify: any;
 
@@ -14,8 +14,8 @@ export class ProductoComponent implements OnInit {
   @ViewChild("clasificacionNombre") clasificacionNombre:ElementRef;
   @ViewChild("clasificacionId") clasificacionId:ElementRef;
 
-  private myForm:FormGroup;
-  private objDefault = {
+  public myForm:FormGroup;
+  public objDefault = {
     p_costo:0,
     p_mayoreo:0,
     p_mediamayoreo:0,
@@ -31,11 +31,11 @@ export class ProductoComponent implements OnInit {
     unidadmedida:{id:0}
   };
 
-  private arregloUnidad:any = [];
-  private ingresar:boolean = false;
-  private indice;
-  private arreglo:any = [];
-  constructor(private formBuilder:FormBuilder,private unidadProvider:UnidadesMedidasService,private productosPrd:ProductosService) { }
+  public arregloUnidad:any = [];
+  public ingresar:boolean = false;
+  public indice;
+  public arreglo:any = [];
+  constructor(public formBuilder:FormBuilder,public unidadProvider:UnidadesMedidasService,public productosPrd:ProductosService) { }
 
   ngOnInit() {
     this.myForm = this.createMyForm(this.objDefault);

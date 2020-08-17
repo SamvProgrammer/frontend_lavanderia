@@ -11,7 +11,7 @@ import { UsuariosService } from './providers/usuarios.service';
 export class AppComponent {
   title = 'LAVAMAX';
 
-  constructor(private loginPrd:LoginService,private usuariosPrd:UsuariosService){
+  constructor(public loginPrd:LoginService,public usuariosPrd:UsuariosService){
     let usuarioStr = localStorage["usuario"];
     console.log("Esto trae");
     console.log(usuarioStr);

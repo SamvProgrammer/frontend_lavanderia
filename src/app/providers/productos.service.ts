@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductosService {
-  private url: string = "";
-  constructor(private http: HttpClient) {
+  public url: string = "";
+  constructor(public http: HttpClient) {
     this.url = direcciones.productos;
   }
 

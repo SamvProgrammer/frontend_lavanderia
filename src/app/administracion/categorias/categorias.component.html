@@ -2,12 +2,12 @@
 <div class="row text-center">
 
   <div class="col">
-    <p style="font-size: 30px">Cátalogo de categorías</p>
+    <p style="font-size: 30px">Catálogos de categorías</p>
   </div>
 </div>
 <div class="row">
   <div class="col text-right">
-    <button type="button" class="btn btn-default" (click)="abrir(undefined)">
+    <button type="button" class="btn btn-default" (click)="abrir(undefined,undefined)">
       <i class="fa fa-plus"></i>
     </button>
   </div>
@@ -15,7 +15,7 @@
 
 <div class="row" id="c1" style="height: 100%;">
   <div class="col-12">
-    <table  *ngIf="arreglo.length != 0"  id="tablaSucursales" class="table table-striped">
+    <table  *ngIf="arreglo.length != 0"  id="tablaSucursales" class="table table-striped table-hover">
       <thead>
         <tr>
           <th>#</th>
@@ -76,6 +76,42 @@
                 </div>
                 <input type="hidden" formControlName="id">
                 <input type="text" formControlName="nombre" class="form-control" placeholder="Nombre de categoria" aria-label="Username" aria-describedby="basic-addon1">
+              </div>
+            </div>
+            <hr/>
+            <div class="row">
+              <label for="" class="col-12 text-center titulomodal">
+                Productos
+              </label>
+            </div>
+            <div *ngIf="arreglo.length != 0" class="form-group row">
+              <div class="input-group input-group-sm mb-3 col-12">
+                <table  *ngIf="arreglo.length != 0"  id="tablaSucursales" class="table table-striped table-hover">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Nombre producto</th>
+                      <th>Unidad de medida</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+            
+                    <tr *ngFor="let item of productos;let indice = index;">
+                      <td scope="row">{{indice+1}}</td>
+                      <td>{{item.nombre}}</td>
+                      <td>{{item.unidadmedida.descripcion}}</td>
+                    </tr>
+            
+                  </tbody>
+                </table>
+               
+              </div>
+            </div>
+            <div *ngIf="productos.length == 0" class="row">
+              <div class="col-12">
+                <div *ngIf="productos.length == 0" class="alert alert-danger text-center" role="alert">
+                  Sin productos en la categoría
+                </div>
               </div>
             </div>
           </div>

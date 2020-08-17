@@ -1,111 +1,185 @@
-
 <div class="row text-center">
 
-    <div class="col">
-      <p style="font-size: 30px">Cátalogo de Usuarios</p>
+  <div class="col">
+    <p style="font-size: 30px">Cátalogo de Usuarios</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col text-right">
+    <button type="button" class="btn btn-default" (click)="abrir(undefined)">
+      <i class="fa fa-plus"></i>
+    </button>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Usuario</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Password</th>
+          <th>Ciudad</th>
+          <th>C.P.</th>
+          <th>Dirección</th>
+          <th>Estado</th>
+          <th>Status</th>
+
+          <th style="width: 200px;text-align: center">Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr *ngFor="let item of arreglo;let indice = index;">
+          <td scope="row">{{indice+1}}</td>
+          <td>{{item.usuario}}</td>
+          <td>{{item.nombre}}</td>
+          <td>{{item.apellido}} </td>
+          <td>**** </td>
+          <td>{{item.ciudad}} </td>
+          <td>{{item.codigopostal}} </td>
+          <td>{{item.direccion}} </td>
+          <td>{{item.estado}} </td>
+
+          <td *ngIf="item.activo==true">Activo</td>
+          <td *ngIf="item.activo==false">Inactivo</td>
+
+
+
+
+
+          <td style="text-align: center">
+            <button class="btn btn-default" data-toggle="modal" data-target="#myModal" (click)="abrir(item)">
+              <i class="fa fa-refresh"></i>
+            </button>
+            <button class="btn btn-danger" (click)="eliminar(item.id,indice);">
+              <i class="fa fa-remove"></i>
+            </button>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+    <div *ngIf="arreglo.length == 0" class="alert alert-danger text-center" role="alert">
+      <strong></strong> Sin registros en las tablas
     </div>
   </div>
-  <div class="row">
-    <div class="col text-right">
-      <button type="button" class="btn btn-default" (click)="abrir(undefined)">
-        <i class="fa fa-plus"></i>
-      </button>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Nombre</th>
-            <th>Usuario</th>
-            <th>Ultima modificación</th>
-            <th style="width: 200px;text-align: center">Opciones</th>
-          </tr>
-        </thead>
-        <tbody>
-  
-          <tr *ngFor="let item of arreglo;let indice = index;">
-            <td scope="row">{{indice+1}}</td>
-            <td>{{item.nombre}}</td>
-            <td>{{item.usuario}}</td>
-            <td>{{item.fecha_actualizacion}}  </td>
-         
-  
-            <td style="text-align: center">
-              <button class="btn btn-default" data-toggle="modal" data-target="#myModal" (click)="abrir(item)">
-                <i class="fa fa-refresh"></i>
-              </button>
-              <button class="btn btn-danger" (click)="eliminar(item.id);">
-                <i class="fa fa-remove"></i>
-              </button>
-            </td>
-          </tr>
-  
-        </tbody>
-      </table>
-      <div *ngIf="arreglo.length == 0" class="alert alert-danger text-center" role="alert">
-        <strong></strong> Sin registros en las tablas
-      </div>
-    </div>
-  </div>
-  
-  <!-- The Modal -->
-  <div class="modal fade" id="myModal">
-    <div class="modal-dialog">
-      <form  [formGroup]="myForm" (ngSubmit)="enviarformulario()">
-        <div class="modal-content">
-  
-          <!-- Modal Header -->
-          <div  class="modal-header cabecera">
-            <h4 class="modal-title" id="titulo"></h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
+</div>
+
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog modal-lg">
+    <form [formGroup]="myForm" (ngSubmit)="enviarformulario()">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header cabecera">
+          <h4 class="modal-title" id="titulo"></h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="row">
+            <label for="" class="col-12 text-center titulomodal">
+              Datos del usuario
+            </label>
           </div>
-  
-          <!-- Modal body -->
-          <div class="modal-body">
-            <div class="col">
-              <div class="form-area">
-                <br style="clear:both">
-                <input  formControlName="id" type="hidden" >
-                <div class="form-group">
-                  <label  class="letra"><strong>NOMBRE:</strong></label>
-                  <input  formControlName="nombre" type="text" id="nombre" class="form-control text-uppercase"  placeholder="Ingresar nombre">
-                </div>
-                <div class="form-group">
-                  <label class="letra"><strong>USUARIO:</strong> </label>
-                  <input  formControlName="usuario" type="text" id="usuario" class="form-control text-uppercase" placeholder="Ingresar usuario">
-                </div>
-                <div class="form-group">
-                  <label class="letra"><strong>PASSWORD:</strong> </label>
-                  <input  formControlName="password" type="password" id="password" class="form-control text-uppercase"  placeholder="Ingresar password">
-                </div>
-                <div class="form-group">
-                  <label class="letra"><strong>NIVEL:</strong> </label>
-                  <select class="form-control form-control text-uppercase"  formControlName="id_rol" type="text" >
-                      <option value="1">ADMINISTRADOR</option>
-                      <option value="2">COLABORADOR</option>
-                      <option value="3">COLABORADOR 2</option>
-                    </select> 
-                </div>
+          <hr />
+          <div class="form-group row">
+            <div class="input-group input-group-sm mb-3 col-12">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Usuario</span>
               </div>
+              <input formControlName="id" type="hidden">
+              <input formControlName="usuario" type="text" class="form-control" placeholder="Ingresar Usuario"
+                aria-label="Username" aria-describedby="basic-addon1">
             </div>
           </div>
-  
-          <!-- Modal footer -->
-          <div class="modal-footer">
-            <button [disabled]="!myForm.valid"  type="submit"  class="btn btn-success pull-right">
-              <i class="fa fa-check"></i> Guardar</button>
-            <button type="button" class="btn" data-dismiss="modal">
-              <i class="fa fa-close"></i>Cerrar</button>
-  
+          <div class="row form-group">
+            <div class="input-group input-group-sm mb-3 col-6">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Nombre</span>
+              </div>
+              <input formControlName="nombre" type="text" class="form-control" placeholder="Ingresar nombre"
+                aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+
+            <div class="input-group input-group-sm mb-3 col-6">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Apellido</span>
+              </div>
+              <input formControlName="apellido" type="text" class="form-control" placeholder="Ingresar Apellido"
+                aria-label="Username" aria-describedby="basic-addon1">
+            </div>
           </div>
-  
+          <div class="row form-group">
+            <div class="input-group input-group-sm mb-3 col-12">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Contraseña</span>
+              </div>
+              <input formControlName="password" type="password" class="form-control" placeholder="Ingresar contraseña"
+                aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="input-group input-group-sm mb-3 col-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Estado</span>
+              </div>
+              <input formControlName="estado" type="text" class="form-control" placeholder="Ingresar estado"
+                aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group input-group-sm mb-3 col-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Ciudad</span>
+              </div>
+              <input formControlName="ciudad" type="text" class="form-control" placeholder="Ingresar ciudad"
+                aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group input-group-sm mb-3 col-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Código P.</span>
+              </div>
+              <input formControlName="codigopostal" type="text" class="form-control" placeholder="Ingresar CP"
+                aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="input-group input-group-sm mb-3 col-12">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Dirección</span>
+              </div>
+              <input formControlName="direccion" type="text" class="form-control" placeholder="Ingresar dirección"
+                aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="input-group input-group-sm mb-3 col-12">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Seleccionar</span>
+              </div>
+              <select class="form-control form-control text-uppercase" formControlName="activo" type="text">
+                <option value=true>ACTIVO</option>
+                <option value=false>INACTIVO</option>
+              </select>
+            </div>
+          </div>
         </div>
-      </form>
-    </div>
+        <div class="modal-footer">
+          <button [disabled]="!myForm.valid" type="submit" class="btn btn-success pull-right">
+            <i class="fa fa-check"></i> Guardar</button>
+          <button type="button" class="btn" data-dismiss="modal">
+            <i class="fa fa-close"></i>Cerrar</button>
+      
+        </div>
+      </div>
+    </form>
   </div>
-  
-  
-  
+</div>
+  <!-- Modal footer -->
+ 
+
+

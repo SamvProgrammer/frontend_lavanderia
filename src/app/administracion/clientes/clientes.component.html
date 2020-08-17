@@ -2,7 +2,7 @@
 <div class="row text-center">
 
   <div class="col">
-    <p style="font-size: 30px">Cátalogo de Proveedores</p>
+    <p style="font-size: 30px">Cátalogo de Clientes</p>
   </div>
 </div>
 <div class="row">
@@ -18,12 +18,13 @@
       <thead>
         <tr>
           <th>#</th>
-          <th>Empresa</th>
           <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Dirección</th>
           <th>Ciudad</th>
           <th>C.P.</th>
-          <th>Dirección</th>
           <th>Estado</th>
+          <th>Fecha Alta</th>
           <th>RFC</th>
           <th>Teléfono</th>
 
@@ -34,14 +35,16 @@
 
         <tr *ngFor="let item of arreglo;let indice = index;">
           <td scope="row">{{indice+1}}</td>
-          <td>{{item.nombrecompania}}</td>
           <td>{{item.nombre}}</td>
+          <td>{{item.apellido}}</td>
+          <td>{{item.direccion}}  </td>
           <td>{{item.ciudad}}  </td>
           <td>{{item.codigopostal}}  </td>
-          <td>{{item.direccion}}  </td>
           <td>{{item.estado}}  </td>
+          <td>{{item.fechalta}}  </td>
           <td>{{item.rfc}}  </td>
           <td>{{item.telefono}}  </td>
+
        
 
           <td style="text-align: center">
@@ -79,47 +82,26 @@
 
           <div class="row">
             <label for="" class="col-12 text-center titulomodal">
-              Datos de proveedor
+              Datos del cliente
             </label>
           </div>
+          <hr/>
           <div class="form-group row">
-            <div class="input-group input-group-sm mb-3 col-12">
+            <div class="input-group input-group-sm mb-3 col-6">
               <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">Empresa&nbsp;</span>
+                <span class="input-group-text" id="basic-addon1">Nombre</span>
               </div>
               <input  formControlName="id" type="hidden" >
-              <input formControlName="nombrecompania" type="text" class="form-control" placeholder="Nombre de empresa" aria-label="Username" aria-describedby="basic-addon1">
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="input-group input-group-sm mb-3 col-12">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">Nombre&nbsp;</span>
-              </div>
               <input formControlName="nombre" type="text" class="form-control" placeholder="Ingresar nombre" aria-label="Username" aria-describedby="basic-addon1">
             </div>
-          </div>
-          <div class="form-group row">
-            <div class="input-group input-group-sm mb-3 col-4">
+            <div class="input-group input-group-sm mb-3 col-6">
               <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">Estado&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <span class="input-group-text" id="basic-addon1">Apellido</span>
               </div>
-              <input formControlName="estado" type="text" class="form-control" placeholder="Ingresar estado" aria-label="Username" aria-describedby="basic-addon1">
-            </div>
-            <div class="input-group input-group-sm mb-3 col-4">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">Ciudad</span>
-              </div>
-              <input formControlName="ciudad" type="text" class="form-control" placeholder="Ingresar ciudad" aria-label="Username" aria-describedby="basic-addon1">
-            </div>
-            <div class="input-group input-group-sm mb-3 col-4">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">Código postal</span>
-              </div>
-              <input formControlName="codigopostal" type="text" class="form-control" placeholder="Ingresar código postal" aria-label="Username" aria-describedby="basic-addon1">
+              <input formControlName="apellido" type="text" class="form-control" placeholder="Ingresar apellidos" aria-label="Username" aria-describedby="basic-addon1">
             </div>
           </div>
-          <div class="form-group row">
+          <div class="row form-group">
             <div class="input-group input-group-sm mb-3 col-12">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">Dirección</span>
@@ -127,18 +109,52 @@
               <input formControlName="direccion" type="text" class="form-control" placeholder="Ingresar dirección" aria-label="Username" aria-describedby="basic-addon1">
             </div>
           </div>
-          <div class="form-group row">
-            <div class="input-group input-group-sm mb-3 col-8">
+          <div class="row form-group">
+            <div class="input-group input-group-sm mb-3 col-6">
               <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">RFC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <span class="input-group-text" id="basic-addon1">País</span>
+              </div>
+              <input formControlName="pais" type="text" class="form-control" placeholder="Ingresar estado" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group input-group-sm mb-3 col-6">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Estado</span>
+              </div>
+              <input formControlName="estado" type="text" class="form-control" placeholder="Ingresar estado" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group input-group-sm mb-3 col-6">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Ciudad</span>
+              </div>
+              <input formControlName="ciudad" type="text" class="form-control" placeholder="Ingresar ciudad" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group input-group-sm mb-3 col-6">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Codigo P.</span>
+              </div>
+              <input formControlName="codigopostal" type="text" class="form-control" placeholder="Ingresar CP" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="input-group input-group-sm mb-3 col-6">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">RFC</span>
               </div>
               <input formControlName="rfc" type="text" class="form-control" placeholder="Ingresar RFC" aria-label="Username" aria-describedby="basic-addon1">
             </div>
-            <div class="input-group input-group-sm mb-3 col-8">
+            <div class="input-group input-group-sm mb-3 col-6">
               <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">Teléfono&nbsp;&nbsp;</span>
+                <span class="input-group-text" id="basic-addon1">Teléfono</span>
               </div>
-              <input formControlName="telefono" type="number" class="form-control" placeholder="Ingresar Teléfono" aria-label="Username" aria-describedby="basic-addon1">
+              <input formControlName="telefono" type="text" class="form-control" placeholder="Ingresar teléfono" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="input-group input-group-sm mb-3 col-12">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Observ.</span>
+              </div>
+              <input formControlName="observaciones" type="text" class="form-control" placeholder="Ingresar teléfono" aria-label="Username" aria-describedby="basic-addon1">
             </div>
           </div>
         </div>

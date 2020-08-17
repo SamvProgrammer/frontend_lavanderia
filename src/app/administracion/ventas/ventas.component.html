@@ -1,0 +1,209 @@
+<div class="row text-center">
+
+  <div class="col">
+    <p style="font-size: 30px">Ventas</p>
+  </div>
+</div>
+
+<div class="cajaventa">
+  
+<div class="row" >
+  <div class="input-group input-group-sm  col-6">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">Sucursal actual</span>
+    </div>
+    <input disabled type="text" class="form-control" value="Colonia reforma" aria-label="Username" aria-describedby="basic-addon1">
+  </div>
+  <div class="input-group input-group-sm  col-6">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">Empleado</span>
+    </div>
+    <input disabled type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" [value]="usuarios.usuario" >
+  </div>
+</div>
+<hr/>
+
+<div class="row">
+  <div style="margin-left: 3%;" class="input-group form-check form-check-inline col-4">
+    <label class="custom-control custom-checkbox">
+      <input [(ngModel)]="clientebool" type="checkbox" class="custom-control-input">
+      <span class="custom-control-indicator"></span>
+      <span class="custom-control-description">Incluir cliente</span>
+</label>
+  </div>
+  <div class="col-3">
+    <label for="" class="col-12 text-center titulomodal">
+      Clientes
+    </label>
+  </div>
+</div>
+<div class="form-group  row" *ngIf="clientebool">
+  <div class="input-group input-group-sm col-12">
+    <div for="buscarClasificacion" class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">Datos del cliente</span>
+    </div>
+    <input disabled  type="text" class="form-control" placeholder="Nombre y apellido" aria-label="Username" aria-describedby="basic-addon1">
+    <input  disabled type="text" class="form-control" placeholder="Dirección" aria-label="Username" aria-describedby="basic-addon1">
+    <span class="input-group-btn">
+      <button id="buscarClasificacion" class="btn btn-theme" type="button" (click)="abrirClasificacion();" ><i class="fa fa-search"></i></button>
+      </span>
+  </div>
+</div>
+
+<hr/>
+<div class="row">
+  <label for="" class="col-12 text-center titulomodal">
+    Configuración de venta
+  </label>
+</div>
+
+<div class="form-group row">
+  <div class="input-group input-group-sm mb-3 col-4">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">Tipo de venta</span>
+    </div>
+    <select class="form-control form-control text-uppercase"  type="text">
+      <option value=true>CONTADO</option>
+      <option value=false>CREDITO</option>
+    </select>
+  </div>
+  <div class="input-group input-group-sm mb-3 col-2">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">% Descuento</span>
+    </div>
+    <input disabled  type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+  </div>
+  <div class="input-group input-group-sm mb-3 col-2">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">No. Pedido</span>
+    </div>
+    <input disabled type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+  </div>
+  <div class="input-group input-group-sm mb-3 col-2">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">Fecha</span>
+    </div>
+    <input disabled  type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+  </div>
+  <div class="input-group input-group-sm mb-3 col-2">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">Turno</span>
+    </div>
+    <input disabled type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+  </div>
+</div>
+</div>
+<hr />
+<div class="row">
+  <label for="" class="col-12 text-center titulomodal">
+    Productos
+  </label>
+</div>
+<div class="row" id="c1" style="height: 100%;">
+  <div class="col-12">
+    <table    class="table table-striped table-hover table-responsive">
+      <thead id="tablaproductos">
+        <tr>
+          <th>#</th>
+          <th>Código</th>
+          <th >Nombre producto</th>
+          <th>Cantidad</th>
+          <th>Medida</th>
+          <th>Precio unitario</th>
+          <th>Importe</th>
+          <th>Descuento total</th>
+          <th>Importe con descuento</th>
+          <th>Importe IEEPS</th>
+          <th style="width: 200px;text-align: center">Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <th>1</th>
+        <th>samv</th>
+        <th>santiago antonio</th>
+        <th>4325</th>
+        <th>PZ</th>
+        <th>345</th>
+        <th>4353</th>
+        <th>324</th>
+        <th>5</th>
+        <th>100</th>
+        <td style="text-align: center">
+          <button class="btn btn-default" data-toggle="modal" data-target="#myModal" >
+            <i class="fa fa-refresh"></i>
+          </button>
+          <button class="btn btn-danger" >
+            <i class="fa fa-remove"></i>
+          </button>
+        </td>
+      </tbody>
+    </table>
+    
+  </div>
+</div>
+
+
+<div class="row" style="background-color: rgb(37 55 66);color: white;">
+  <label for="" class="col-12 text-center titulomodal">
+    Productos
+  </label>
+  <hr />
+  <div class="col-8">
+     <div class="col-12">
+       <div class="row form-group">
+        <div class="input-group input-group-sm mb-3 col-6">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">No. Productos</span>
+          </div>
+          <input  type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+        <div class="input-group input-group-sm mb-3 col-6">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">No. Ticket</span>
+          </div>
+          <input  type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+        <div class="input-group input-group-sm mb-3 col-6">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">No. Factura</span>
+          </div>
+          <input  type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+        <div class="input-group input-group-sm mb-3 col-6">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">No.Cart.Fact.</span>
+          </div>
+          <input  type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+       </div>
+     </div>
+  </div>
+  <div class="col-4">
+    <div class="input-group input-group-sm mb-3 col-12">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Desc total</span>
+      </div>
+      <input  type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+    </div>
+    <div class="input-group input-group-sm mb-3 col-12">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Desc total</span>
+      </div>
+      <input  type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+    </div>
+    <div class="input-group input-group-sm mb-3 col-12">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Desc total</span>
+      </div>
+      <input  type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+    </div>
+
+    <div class="input-group input-group-sm mb-3 col-12">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Desc total</span>
+      </div>
+      <input  type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+    </div>
+  </div>
+</div>
+

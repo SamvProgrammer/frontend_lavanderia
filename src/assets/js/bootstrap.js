@@ -39,7 +39,7 @@ var Util = function ($) {
 
   /**
    * ------------------------------------------------------------------------
-   * Private TransitionEnd Helpers
+   * public TransitionEnd Helpers
    * ------------------------------------------------------------------------
    */
 
@@ -252,7 +252,7 @@ var Alert = function ($) {
       this._element = null;
     };
 
-    // private
+    // public
 
     Alert.prototype._getRootElement = function _getRootElement(element) {
       var selector = Util.getSelectorFromElement(element);
@@ -720,7 +720,7 @@ var Carousel = function ($) {
       this._indicatorsElement = null;
     };
 
-    // private
+    // public
 
     Carousel.prototype._getConfig = function _getConfig(config) {
       config = $.extend({}, Default, config);
@@ -1236,7 +1236,7 @@ var Collapse = function ($) {
       this._isTransitioning = null;
     };
 
-    // private
+    // public
 
     Collapse.prototype._getConfig = function _getConfig(config) {
       config = $.extend({}, Default, config);
@@ -1473,7 +1473,7 @@ var Dropdown = function ($) {
       this._element = null;
     };
 
-    // private
+    // public
 
     Dropdown.prototype._addEventListeners = function _addEventListeners() {
       $(this._element).on(Event.CLICK, this.toggle);
@@ -1840,7 +1840,7 @@ var Modal = function ($) {
       this._scrollbarWidth = null;
     };
 
-    // private
+    // public
 
     Modal.prototype._getConfig = function _getConfig(config) {
       config = $.extend({}, Default, config);
@@ -2315,7 +2315,7 @@ var ScrollSpy = function ($) {
       this._scrollHeight = null;
     };
 
-    // private
+    // public
 
     ScrollSpy.prototype._getConfig = function _getConfig(config) {
       config = $.extend({}, Default, config);
@@ -2611,7 +2611,7 @@ var Tab = function ($) {
       this._element = null;
     };
 
-    // private
+    // public
 
     Tab.prototype._activate = function _activate(element, container, callback) {
       var _this21 = this;
@@ -2848,7 +2848,7 @@ var Tooltip = function ($) {
     function Tooltip(element, config) {
       _classCallCheck(this, Tooltip);
 
-      // private
+      // public
       this._isEnabled = true;
       this._timeout = 0;
       this._hoverState = '';
@@ -3110,7 +3110,7 @@ var Tooltip = function ($) {
       }
     };
 
-    // private
+    // public
 
     Tooltip.prototype._getAttachment = function _getAttachment(placement) {
       return AttachmentMap[placement.toUpperCase()];
@@ -3441,7 +3441,7 @@ var Popover = function ($) {
       this.cleanupTether();
     };
 
-    // private
+    // public
 
     Popover.prototype._getContent = function _getContent() {
       return this.element.getAttribute('data-content') || (typeof this.config.content === 'function' ? this.config.content.call(this.element) : this.config.content);

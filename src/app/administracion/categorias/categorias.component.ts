@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CategoriasService } from 'src/app/providers/categorias.service';
+import { CategoriasService  } from '../../providers/categorias.service';
 
 declare var $;
 declare var alertify: any;
@@ -12,12 +12,13 @@ declare var alertify: any;
 })
 export class CategoriasComponent implements OnInit {
 
-  private myForm: FormGroup;
-  private ingresar:boolean = false;
-  private arreglo:any = [];
-  private indice:number = 0;
+  public myForm: FormGroup;
+  public ingresar:boolean = false;
+  public arreglo:any = [];
+  public indice:number = 0;
+  public productos:any = [];
 
-  constructor(  public formBuilder: FormBuilder,private categoriasPrd:CategoriasService) { 
+  constructor(  public formBuilder: FormBuilder,public categoriasPrd:CategoriasService) { 
    
   }
 
@@ -44,12 +45,15 @@ export class CategoriasComponent implements OnInit {
 
 
   public abrir(obj,index): any {
+    console.log(obj);
+    this.productos =[];
     $('#myModal').modal('show');
     if (obj == undefined) {
       $("#titulo").text("Ingresar categoria");
       this.myForm = this.createMyForm("");
       this.ingresar = true;
     } else {
+      this.productos =obj.productos;
       $("#titulo").text("Actualizar categoria");
       this.myForm = this.createMyForm(obj);
       this.ingresar = false;
