@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuariosService } from '../../providers/usuarios.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SucursalesService } from '../../providers/sucursales.service';
 declare var $: any;
 declare var alertify: any;
 
@@ -14,10 +15,17 @@ export class UsuariosComponent implements OnInit {
   public myForm: FormGroup;
   public arreglo: any = [];
   public ingresar: boolean = false;
+  public arregloSucursal:any = [];
+
+  public objDefault = {
+    sucursales:{
+      id:0
+    }
+  }
 
 
   constructor(public usuarioPrd: UsuariosService,
-    public formBuilder: FormBuilder) {
+    public formBuilder: FormBuilder,private sucursalesPrd:SucursalesService) {
     localStorage["actualizar"] = false;
   }
 
@@ -27,7 +35,13 @@ export class UsuariosComponent implements OnInit {
       console.log(datos);
     });
 
-    this.myForm = this.createMyForm("");
+    
+
+    this.sucursalesPrd.getAll().subscribe(datos =>{
+        this.arregloSucursal = datos;
+    });
+
+    this.myForm = this.createMyForm(this.objDefault);
   }
 
 
@@ -42,8 +56,8 @@ export class UsuariosComponent implements OnInit {
       direccion: [obj.direccion, Validators.required],
       activo: [obj.activo , Validators.required],
       estado: [obj.estado , Validators.required],
-
-      id: obj.id
+      id: obj.id,
+      id_sucursal:[obj.sucursales.id_sucursal,Validators.required]
     });
   }
 
@@ -93,7 +107,7 @@ export class UsuariosComponent implements OnInit {
     if (obj == undefined) {
       $("#titulo").text("Ingresar Usuario");
 
-      this.myForm = this.createMyForm("");
+      this.myForm = this.createMyForm(this.objDefault);
       this.ingresar = true;
     } else {
       $("#titulo").text("Actualizar cliente");

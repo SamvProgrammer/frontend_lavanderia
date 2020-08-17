@@ -78,6 +78,16 @@
                 <input type="text" formControlName="nombre" class="form-control" placeholder="Nombre de categoria" aria-label="Username" aria-describedby="basic-addon1">
               </div>
             </div>
+            <div class="row form group">
+               <label style="margin-left: 5%;">
+                 <strong>Seleccionar sucursal</strong>
+               </label>
+              <div class="input-group input-group-sm mb-3 col-12">
+                <select formControlName="id_sucursal" class="custom-select" id="inputGroupSelect">
+                  <option  *ngFor="let item of arregloSucursal" [value]="item.id">{{item.nombre}}</option>
+                </select>
+              </div>
+            </div>
             <hr/>
             <div class="row">
               <label for="" class="col-12 text-center titulomodal">

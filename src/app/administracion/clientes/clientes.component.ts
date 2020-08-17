@@ -45,7 +45,16 @@ export class ClientesComponent implements OnInit {
       rfc: [obj.rfc, Validators.required],
       telefono: [obj.telefono, Validators.required],
       observaciones: [obj.observaciones],
-      id: obj.id
+      id: obj.id,
+      credito:obj.credito,
+      creditoVencido:obj.creditoVencido,
+      otorgarCredito:obj.otorgarCredito,
+      tipoCredito:obj.tipoCredito,
+      dias:obj.dias,
+      descuento:obj.descuento,
+      clientePolizaserv:obj.clientePolizaserv,
+      limiteCredito:obj.limiteCredito,
+      saldo:obj.saldo
     });
   }
 

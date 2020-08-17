@@ -102,12 +102,12 @@ public abrir(obj): any {
   console.log('modifica');
   $('#myModal').modal('show');
   if (obj == undefined) {
-    $("#titulo").text("Ingresar Usuario");
+    $("#titulo").text("Ingresar proveedor");
 
     this.myForm = this.createMyForm("");
     this.ingresar = true;
   } else {
-    $("#titulo").text("Actualizar cliente");
+    $("#titulo").text("Actualizar proveedor");
     this.myForm = this.createMyForm(obj);
     this.ingresar = false;
   }

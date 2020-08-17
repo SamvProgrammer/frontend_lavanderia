@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CategoriasService  } from '../../providers/categorias.service';
+import { CategoriasService } from '../../providers/categorias.service';
+import { SucursalesService } from '../../providers/sucursales.service';
 
 declare var $;
 declare var alertify: any;
@@ -13,47 +14,60 @@ declare var alertify: any;
 export class CategoriasComponent implements OnInit {
 
   public myForm: FormGroup;
-  public ingresar:boolean = false;
-  public arreglo:any = [];
-  public indice:number = 0;
-  public productos:any = [];
+  public ingresar: boolean = false;
+  public arreglo: any = [];
+  public indice: number = 0;
+  public productos: any = [];
+  public arregloSucursal: any = [];
+  public objDefault = {
+    sucursales:{
+      id:0
+    }
+  }
 
-  constructor(  public formBuilder: FormBuilder,public categoriasPrd:CategoriasService) { 
-   
+  constructor(public formBuilder: FormBuilder, public categoriasPrd: CategoriasService, private sucursalesPrd: SucursalesService) {
+
   }
 
   ngOnInit() {
 
-    this.categoriasPrd.getAll().subscribe(datos =>{
+    this.categoriasPrd.getAll().subscribe(datos => {
       this.arreglo = datos;
 
       console.log("Se ejecuta la tabla");
     });
 
+    this.sucursalesPrd.getAll().subscribe(datos => {
+      this.arregloSucursal = datos;
+    });
+
+
+
+
+    this.myForm = this.createMyForm(this.objDefault);
+
    
-
-
-  this.myForm = this.createMyForm("");
   }
 
   public createMyForm(obj) {
     return this.formBuilder.group({
       nombre: [obj.nombre, Validators.required],
+      id_sucursal: [obj.sucursales.id, Validators.required],
       id: obj.id
     });
   }
 
 
-  public abrir(obj,index): any {
+  public abrir(obj, index): any {
     console.log(obj);
-    this.productos =[];
+    this.productos = [];
     $('#myModal').modal('show');
     if (obj == undefined) {
       $("#titulo").text("Ingresar categoria");
-      this.myForm = this.createMyForm("");
+      this.myForm = this.createMyForm(this.objDefault);
       this.ingresar = true;
     } else {
-      this.productos =obj.productos;
+      this.productos = obj.productos;
       $("#titulo").text("Actualizar categoria");
       this.myForm = this.createMyForm(obj);
       this.ingresar = false;
@@ -62,16 +76,16 @@ export class CategoriasComponent implements OnInit {
   }
 
 
-  public eliminar(id,index): any {
+  public eliminar(id, index): any {
     let auxSucursales: any = this.categoriasPrd;
     let arregloAux = this.arreglo;
     alertify.set({ buttonReverse: true });
     alertify.confirm("¿Desea eliminar el registro?", function (e) {
       console.log(auxSucursales);
-      if (e) {       
-        
+      if (e) {
+
         auxSucursales.delete(id).subscribe(respu => {
-          arregloAux.splice(index,1);
+          arregloAux.splice(index, 1);
           alertify.success(respu.resultado);
         });
       }
@@ -82,7 +96,12 @@ export class CategoriasComponent implements OnInit {
   public enviarformulario(): any {
     let obj = this.myForm.value;
 
-   
+
+    obj.sucursales = {
+      id:obj.id_sucursal
+    }
+
+    console.log(obj);
     $('#myModal').modal('hide');
     if (this.ingresar) {
       this.categoriasPrd.insert(obj).subscribe(datos => {
@@ -95,15 +114,15 @@ export class CategoriasComponent implements OnInit {
         alertify.success("Sucursal actualizada correctamente");
         console.log("Este es el indice");
         console.log(this.indice);
-        this.arreglo.splice(this.indice,1,datos);
+        this.arreglo.splice(this.indice, 1, datos);
       });
     }
   }
 
 
-  
 
 
- 
+
+
 
 }
