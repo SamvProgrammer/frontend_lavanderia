@@ -1,4 +1,3 @@
-
 <div class="row text-center">
 
   <div class="col">
@@ -15,7 +14,7 @@
 
 <div class="row" id="c1" style="height: 100%;">
   <div class="col-12">
-    <table  *ngIf="arreglo.length != 0"  id="tablaSucursales" class="table table-striped">
+    <table *ngIf="arreglo.length != 0" id="tablaSucursales" class="table table-striped">
       <thead>
         <tr>
           <th>#</th>
@@ -31,8 +30,8 @@
           <td scope="row">{{indice+1}}</td>
           <td>{{item.descripcion}}</td>
           <td>{{item.suspendido}}</td>
-          <td>{{item.peso}}  </td>
-       
+          <td>{{item.peso}} </td>
+
 
           <td style="text-align: center">
             <button class="btn btn-default" data-toggle="modal" data-target="#myModal" (click)="abrir(item,indice)">
@@ -53,50 +52,64 @@
 </div>
 
 
-  <!-- The Modal -->
-  <div class="modal fade" id="myModal">
-    <div class="modal-dialog">
-      <form  [formGroup]="myForm" (ngSubmit)="enviarformulario()">
-        <div class="modal-content">
-  
-          <!-- Modal Header -->
-          <div  class="modal-header cabecera">
-            <h4 class="modal-title" id="titulo"></h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <form [formGroup]="myForm" (ngSubmit)="enviarformulario()">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header cabecera">
+          <h4 class="modal-title" id="titulo"></h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="row">
+            <label for="" class="col-12 text-center titulomodal">
+              Datos de unidad de medida
+            </label>
           </div>
-  
-          <!-- Modal body -->
-          <div class="modal-body">
-            <div class="col">
-              <div class="form-area">
-                <br style="clear:both">
-                <input  formControlName="id" type="hidden" >
-                <div class="form-group">
-                  <label  class="letra"><strong>Descripción:</strong></label>
-                  <input  formControlName="descripcion" type="text" id="descripcion" class="form-control text-uppercase"  placeholder="Ingresar unidad de medida">
-                </div>
-                <div class="form-group">
-                  <label class="letra"><strong>Suspendido:</strong> </label>
-                  <input  formControlName="suspendido" type="checkbox" id="suspendido" class="form-control text-uppercase">
-                </div>
-                <div class="form-group">
-                  <label class="letra"><strong>Peso:</strong> </label>
-                  <input  formControlName="peso" type="checkbox" id="peso" class="form-control text-uppercase" >
-                </div>
+          <hr/>
+          <div class="form-group row">
+            <div class="input-group input-group-sm mb-3 col-12">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Descripción:</span>
               </div>
+              <input formControlName="id" type="hidden">
+              <input formControlName="descripcion" type="text" class="form-control"
+                placeholder="Ingresar unidad de medida" aria-label="Username" aria-describedby="basic-addon1">
             </div>
           </div>
-  
-          <!-- Modal footer -->
-          <div class="modal-footer">
-            <button [disabled]="!myForm.valid"  type="submit"  class="btn btn-success pull-right">
-              <i class="fa fa-check"></i> Guardar</button>
-            <button type="button" class="btn" data-dismiss="modal">
-              <i class="fa fa-close"></i>Cerrar</button>
-  
+          <div class="row form-group">
+            <div style="margin-left: 3%;" class="input-group form-check form-check-inline col-6">
+              <label class="custom-control custom-checkbox">
+                <input formControlName="suspendido" type="checkbox" class="custom-control-input">
+                <span class="custom-control-indicator"></span>
+                <span class="custom-control-description">Suspendido</span>
+              </label>
+            </div>
+            <div style="margin-left: 3%;" class="input-group form-check form-check-inline col-6">
+              <label class="custom-control custom-checkbox">
+                <input formControlName="peso" type="checkbox" class="custom-control-input">
+                <span class="custom-control-indicator"></span>
+                <span class="custom-control-description">Peso</span>
+              </label>
+            </div>
           </div>
-  
         </div>
-      </form>
-    </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button [disabled]="!myForm.valid" type="submit" class="btn btn-success pull-right">
+            <i class="fa fa-check"></i> Guardar</button>
+          <button type="button" class="btn" data-dismiss="modal">
+            <i class="fa fa-close"></i>Cerrar</button>
+
+        </div>
+
+      </div>
+    </form>
   </div>
+</div>

@@ -15,6 +15,8 @@ import { AutenticadoService } from './providers/autenticado.service';
 import { SucursalesService } from './providers/sucursales.service';
 import { UnidadesMedidasService } from './providers/unidades-medidas.service';
 import { ProveedoresService } from './providers/proveedores.service';
+import { CategoriasService } from './providers/categorias.service';
+import { ProductosService } from './providers/productos.service';
 
 import { PanelControlComponent } from './administracion/panel-control/panel-control.component';
 import { UsuariosComponent } from './administracion/usuarios/usuarios.component';
@@ -22,8 +24,15 @@ import { InicioComponent } from './administracion/inicio/inicio.component';
 import { SucursalesComponent } from './administracion/sucursales/sucursales.component';
 import { UnidadesMedidaComponent } from './administracion/unidades-medida/unidades-medida.component';
 import { ProveedoresComponent } from './administracion/proveedores/proveedores.component';
+<<<<<<< HEAD
 import { EmpleadosComponent } from './administracion/empleados/empleados.component';
 import { ClientesComponent } from './administracion/clientes/clientes.component';
+=======
+import { ProductoComponent } from './administracion/producto/producto.component';
+import { LineasComponent } from './administracion/lineas/lineas.component';
+import { CategoriasComponent } from './administracion/categorias/categorias.component';
+import { CatCategoriasComponent } from './administracion/catalogos/cat-categorias/cat-categorias.component';
+>>>>>>> 95de3415ece1c07e94c729cf11394cca43ff5441
 
 @NgModule({
   declarations: [
@@ -35,8 +44,15 @@ import { ClientesComponent } from './administracion/clientes/clientes.component'
     SucursalesComponent,
     UnidadesMedidaComponent,
     ProveedoresComponent,
+<<<<<<< HEAD
     EmpleadosComponent,
     ClientesComponent
+=======
+    ProductoComponent,
+    LineasComponent,
+    CategoriasComponent,
+    CatCategoriasComponent
+>>>>>>> 95de3415ece1c07e94c729cf11394cca43ff5441
   ],
   imports: [
     BrowserModule,
@@ -52,7 +68,9 @@ import { ClientesComponent } from './administracion/clientes/clientes.component'
     {provide:LocationStrategy,useClass:HashLocationStrategy},
     SucursalesService,
     UnidadesMedidasService,
-    ProveedoresService
+    ProveedoresService,
+    CategoriasService,
+    ProductosService
   ],
   bootstrap: [AppComponent]
 })

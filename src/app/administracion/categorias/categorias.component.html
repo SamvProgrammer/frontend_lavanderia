@@ -2,7 +2,7 @@
 <div class="row text-center">
 
   <div class="col">
-    <p style="font-size: 30px">Cátalogo de sucursales</p>
+    <p style="font-size: 30px">Cátalogo de categorías</p>
   </div>
 </div>
 <div class="row">
@@ -19,9 +19,7 @@
       <thead>
         <tr>
           <th>#</th>
-          <th>Nombre</th>
-          <th>Dirección</th>
-          <th>Activo</th>
+          <th>Nombre categoría</th>
           <th style="width: 200px;text-align: center">Opciones</th>
         </tr>
       </thead>
@@ -30,8 +28,6 @@
         <tr *ngFor="let item of arreglo;let indice = index;">
           <td scope="row">{{indice+1}}</td>
           <td>{{item.nombre}}</td>
-          <td>{{item.direccion}}</td>
-          <td>{{(item.activa)?"Sucursal Activa":"Sucursal inactiva"}}  </td>
        
 
           <td style="text-align: center">
@@ -61,7 +57,7 @@
   
           <!-- Modal Header -->
           <div  class="modal-header cabecera">
-            <h4 class="modal-title" id="titulo"></h4>
+            <h4 class="modal-title" id="titulo">Categorías</h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
   
@@ -69,35 +65,17 @@
           <div class="modal-body">
             <div class="row">
               <label for="" class="col-12 text-center titulomodal">
-                Datos del sucursal
+                Categorias
               </label>
             </div>
             <hr/>
             <div class="form-group row">
               <div class="input-group input-group-sm mb-3 col-12">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" id="basic-addon1">Sucursal</span>
+                  <span class="input-group-text" id="basic-addon1">Nombre</span>
                 </div>
-                <input  formControlName="id" type="hidden" >
-                <input formControlName="nombre" type="text" class="form-control" placeholder="Nombre de sucursal" aria-label="Username" aria-describedby="basic-addon1">
-              </div>
-            </div>
-            <div class="form-group row">
-              <div class="input-group input-group-sm mb-3 col-12">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="basic-addon1">Dirección</span>
-                </div>
-                <input  formControlName="id" type="hidden" >
-                <input formControlName="direccion" type="text" class="form-control" placeholder="Dirección de sucursal" aria-label="Username" aria-describedby="basic-addon1">
-              </div>
-            </div>
-            <div class="row form-group">
-              <div style="margin-left: 3%;" class="input-group form-check form-check-inline col-8">
-                <label class="custom-control custom-checkbox">
-                  <input formControlName="activa" type="checkbox" class="custom-control-input">
-                  <span class="custom-control-indicator"></span>
-                  <span class="custom-control-description">Sucursal activa</span>
-            </label>
+                <input type="hidden" formControlName="id">
+                <input type="text" formControlName="nombre" class="form-control" placeholder="Nombre de categoria" aria-label="Username" aria-describedby="basic-addon1">
               </div>
             </div>
           </div>
@@ -115,3 +93,6 @@
       </form>
     </div>
   </div>
+
+
+  

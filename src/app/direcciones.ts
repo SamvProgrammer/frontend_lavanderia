@@ -5,7 +5,12 @@ export const direcciones:any = {
    "sucursales":`${ip}/api/sucursales`,
    "umedidas":`${ip}/api/umedidas`,
    "proveedores":`${ip}/api/proveedores`,
+<<<<<<< HEAD
    "clientes":`${ip}/api/clientes`
 
    
+=======
+   "categorias":`${ip}/api/clasificacion`,
+   "productos":`${ip}/api/productos`
+>>>>>>> 95de3415ece1c07e94c729cf11394cca43ff5441
 }
