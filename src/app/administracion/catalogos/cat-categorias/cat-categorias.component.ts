@@ -1,5 +1,5 @@
 import { Component, OnInit ,Output, EventEmitter} from '@angular/core';
-import { CategoriasService } from 'src/app/providers/categorias.service';
+import { CategoriasService } from '../../../providers/categorias.service';
 
 @Component({
   selector: 'app-cat-categorias',
@@ -8,10 +8,10 @@ import { CategoriasService } from 'src/app/providers/categorias.service';
 })
 export class CatCategoriasComponent implements OnInit {
   @Output() eventoFunciones = new EventEmitter();
-  private arreglo:any = [];
-  private desabilitar:boolean = true;
-  private indexSeleccionado:number = 0;
-  constructor(private categoriasPrd:CategoriasService) { }
+  public arreglo:any = [];
+  public desabilitar:boolean = true;
+  public indexSeleccionado:number = 0;
+  constructor(public categoriasPrd:CategoriasService) { }
 
   ngOnInit() {
 

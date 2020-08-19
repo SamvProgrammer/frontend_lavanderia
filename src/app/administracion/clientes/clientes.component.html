@@ -1,4 +1,3 @@
-
 <div class="row text-center">
 
   <div class="col">
@@ -37,15 +36,15 @@
           <td scope="row">{{indice+1}}</td>
           <td>{{item.nombre}}</td>
           <td>{{item.apellido}}</td>
-          <td>{{item.direccion}}  </td>
-          <td>{{item.ciudad}}  </td>
-          <td>{{item.codigopostal}}  </td>
-          <td>{{item.estado}}  </td>
-          <td>{{item.fechalta}}  </td>
-          <td>{{item.rfc}}  </td>
-          <td>{{item.telefono}}  </td>
+          <td>{{item.direccion}} </td>
+          <td>{{item.ciudad}} </td>
+          <td>{{item.codigopostal}} </td>
+          <td>{{item.estado}} </td>
+          <td>{{item.fechalta}} </td>
+          <td>{{item.rfc}} </td>
+          <td>{{item.telefono}} </td>
 
-       
+
 
           <td style="text-align: center">
             <button class="btn btn-default" data-toggle="modal" data-target="#myModal" (click)="abrir(item)">
@@ -67,18 +66,19 @@
 
 <!-- The Modal -->
 <div class="modal fade" id="myModal">
-  <div class="modal-dialog">
-    <form  [formGroup]="myForm" (ngSubmit)="enviarformulario()">
+  <div class="modal-dialog modal-lg">
+    <form [formGroup]="myForm" (ngSubmit)="enviarformulario()">
       <div class="modal-content">
 
         <!-- Modal Header -->
-        <div  class="modal-header cabecera">
+        <div class="modal-header cabecera">
           <h4 class="modal-title" id="titulo"></h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
 
         <!-- Modal body -->
         <div class="modal-body">
+<<<<<<< HEAD
           <div class="col">
             <div class="form-area">
               <br style="clear:both">
@@ -120,13 +120,189 @@
                         <label class="letra"><strong>OBSERVACIONES:</strong> </label>
                         <input  formControlName="observaciones" type="text" id="observaciones" class="form-control text-uppercase"  placeholder="Ingresar Teléfono">
                       </div>
+=======
+
+          <div class="row">
+            <label for="" class="col-12 text-center titulomodal">
+              Datos del cliente
+            </label>
+          </div>
+          <hr/>
+          <div class="form-group row">
+            <div class="input-group input-group-sm mb-3 col-6">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Nombre</span>
+              </div>
+              <input formControlName="id" type="hidden">
+              <input formControlName="nombre" type="text" class="form-control" placeholder="Ingresar nombre" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group input-group-sm mb-3 col-6">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Apellido</span>
+              </div>
+              <input formControlName="apellido" type="text" class="form-control" placeholder="Ingresar apellidos" aria-label="Username"
+                aria-describedby="basic-addon1">
             </div>
           </div>
+          <div class="row form-group">
+            <div class="input-group input-group-sm mb-3 col-12">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Dirección</span>
+              </div>
+              <input formControlName="direccion" type="text" class="form-control" placeholder="Ingresar dirección" aria-label="Username"
+                aria-describedby="basic-addon1">
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="input-group input-group-sm mb-3 col-6">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">País</span>
+              </div>
+              <input formControlName="pais" type="text" class="form-control" placeholder="Ingresar estado" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group input-group-sm mb-3 col-6">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Estado</span>
+              </div>
+              <input formControlName="estado" type="text" class="form-control" placeholder="Ingresar estado" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group input-group-sm mb-3 col-6">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Ciudad</span>
+              </div>
+              <input formControlName="ciudad" type="text" class="form-control" placeholder="Ingresar ciudad" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group input-group-sm mb-3 col-6">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Codigo P.</span>
+              </div>
+              <input formControlName="codigopostal" type="text" class="form-control" placeholder="Ingresar CP" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="input-group input-group-sm mb-3 col-6">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">RFC</span>
+              </div>
+              <input formControlName="rfc" type="text" class="form-control" placeholder="Ingresar RFC" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group input-group-sm mb-3 col-6">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Teléfono</span>
+              </div>
+              <input formControlName="telefono" type="text" class="form-control" placeholder="Ingresar teléfono" aria-label="Username"
+                aria-describedby="basic-addon1">
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="input-group input-group-sm mb-3 col-12">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Observ.</span>
+              </div>
+              <input formControlName="observaciones" type="text" class="form-control" placeholder="Ingresar teléfono" aria-label="Username"
+                aria-describedby="basic-addon1">
+            </div>
+          </div>
+
+          <div style="background: rgb(247, 247, 247)">
+
+            <div style="background: #6ac794;
+      color: white;margin: 0%;" class="row">
+              <label for="" class="col-12 text-center titulomodal">
+                información de crédito
+              </label>
+            </div>
+            <hr/>
+            <div class="row form-group">
+              <div style="margin-left: 3%;" class="input-group form-check form-check-inline col-3">
+                <label class="custom-control custom-checkbox">
+                  <input formControlName="credito" type="checkbox" class="custom-control-input">
+                  <span class="custom-control-indicator"></span>
+                  <span class="custom-control-description">Limite de crédito</span>
+                </label>
+              </div>
+              <div style="margin-left: 3%;" class="input-group form-check form-check-inline col-3">
+                <label class="custom-control custom-checkbox">
+                  <input formControlName="creditoVencido" type="checkbox" class="custom-control-input">
+                  <span class="custom-control-indicator"></span>
+                  <span class="custom-control-description">Crédito vencido</span>
+                </label>
+              </div>
+              <div style="margin-left: 3%;" class="input-group form-check form-check-inline col-3">
+                <label class="custom-control custom-checkbox">
+                  <input formControlName="otorgarCredito" type="checkbox" class="custom-control-input">
+                  <span class="custom-control-indicator"></span>
+                  <span class="custom-control-description">Otorgar crédito</span>
+                </label>
+              </div>
+            </div>
+            <div class="row form-group">
+              <div class="input-group input-group-sm mb-3 col-12">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Tipo</span>
+                </div>
+                <select formControlName="tipoCredito" class="custom-select" id="inputGroupSelect">
+                  <option value="1">Normal</option>
+                  <option value="2">Moroso</option>
+                  <option value="3">Licenciado</option>
+                  <option value="4">Incobrable</option>
+                </select>
+              </div>
+            </div>
+            <div class="row form-grup">
+              <div class="input-group input-group-sm mb-3 col-4">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Días</span>
+                </div>
+                <input formControlName="dias" type="text" class="form-control" placeholder="Ingresar teléfono" aria-label="Username" aria-describedby="basic-addon1">
+              </div>
+              <div class="input-group input-group-sm mb-3 col-8">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Descuento</span>
+                </div>
+                <input focrmControlName="descuento" type="text" class="form-control" placeholder="Ingresar teléfono" aria-label="Username"
+                  aria-describedby="basic-addon1">
+
+
+              </div>
+>>>>>>> b5acd8991c5bea330ab9ec8078fa9597c721b26b
+            </div>
+            <div class="row form-group">
+              <div style="margin-left: 3%;" class="input-group form-check form-check-inline col-5">
+                <label class="custom-control custom-checkbox">
+                  <input formControlName="clientePolizaserv" type="checkbox" class="custom-control-input">
+                  <span class="custom-control-indicator"></span>
+                  <span class="custom-control-description">Clientes con poliza de servicio</span>
+                </label>
+              </div>
+            </div>
+            <div class="row form-group">
+              <div class="input-group input-group-sm mb-3 col-6">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Limite de crédito</span>
+                </div>
+                <input formControlName="limiteCredito" type="text" class="form-control" placeholder="Ingresar teléfono" aria-label="Username"
+                  aria-describedby="basic-addon1">
+
+
+              </div>
+              <div class="input-group input-group-sm mb-3 col-6">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Saldo</span>
+                </div>
+                <input formControlName="saldo" type="text" class="form-control" placeholder="Ingresar teléfono" aria-label="Username" aria-describedby="basic-addon1">
+
+
+              </div>
+            </div>
+
+          </div>
+
         </div>
 
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button [disabled]="!myForm.valid"  type="submit"  class="btn btn-success pull-right">
+          <button [disabled]="!myForm.valid" type="submit" class="btn btn-success pull-right">
             <i class="fa fa-check"></i> Guardar</button>
           <button type="button" class="btn" data-dismiss="modal">
             <i class="fa fa-close"></i>Cerrar</button>
@@ -137,5 +313,3 @@
     </form>
   </div>
 </div>
-
-

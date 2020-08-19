@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SucursalesService } from 'src/app/providers/sucursales.service';
+import { SucursalesService } from '../../providers/sucursales.service';
 
 
 declare var $;
@@ -14,12 +14,12 @@ declare var alertify: any;
 export class SucursalesComponent implements OnInit {
 
 
-  private myForm: FormGroup;
-  private ingresar:boolean = false;
-  private arreglo:any = [];
-  private indice:number = 0;
+  public myForm: FormGroup;
+  public ingresar:boolean = false;
+  public arreglo:any = [];
+  public indice:number = 0;
 
-  constructor(  public formBuilder: FormBuilder,private sucursalesPrd:SucursalesService) { 
+  constructor(  public formBuilder: FormBuilder,public sucursalesPrd:SucursalesService) { 
    
   }
 

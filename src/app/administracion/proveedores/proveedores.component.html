@@ -64,7 +64,7 @@
 
 <!-- The Modal -->
 <div class="modal fade" id="myModal">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <form  [formGroup]="myForm" (ngSubmit)="enviarformulario()">
       <div class="modal-content">
 
@@ -76,45 +76,69 @@
 
         <!-- Modal body -->
         <div class="modal-body">
-          <div class="col">
-            <div class="form-area">
-              <br style="clear:both">
-              <input  formControlName="id" type="hidden" >
-              <div class="form-group">
-                <label  class="letra"><strong>Empresa:</strong></label>
-                <input  formControlName="nombrecompania" type="text" id="nombrecompania" class="form-control text-uppercase"  placeholder="Ingresar Nombre Empresa">
-              </div>
-              <div class="form-group">
-                <label class="letra"><strong>NOMBRE:</strong> </label>
-                <input  formControlName="nombre" type="text" id="nombre" class="form-control text-uppercase" placeholder="Ingresar Nombre">
-              </div>
-              <div class="form-group">
-                <label class="letra"><strong>CIUDAD:</strong> </label>
-                <input  formControlName="ciudad" type="text" id="ciudad" class="form-control text-uppercase"  placeholder="Ingresar Ciudad">
-              </div>
-            
-                <div class="form-group">
-                    <label class="letra"><strong>CODIGO POSTAL:</strong> </label>
-                    <input  formControlName="codigopostal" type="text" id="codigopostal" class="form-control text-uppercase"  placeholder="Ingresar Código Postal">
-                  </div>
-                  <div class="form-group">
-                      <label class="letra"><strong>DIRECCIÓN:</strong> </label>
-                      <input  formControlName="direccion" type="text" id="direccion" class="form-control text-uppercase"  placeholder="Ingresar dirección">
-                    </div>
-                    <div class="form-group">
-                        <label class="letra"><strong>ESTADO:</strong> </label>
-                        <input  formControlName="estado" type="text" id="estado" class="form-control text-uppercase"  placeholder="Ingresar dirección">
-                      </div>
-                      <div class="form-group">
-                        <label class="letra"><strong>RFC:</strong> </label>
-                        <input  formControlName="rfc" type="text" id="rfc" class="form-control text-uppercase"  placeholder="Ingresar RFC">
-                      </div>
-                      <div class="form-group">
-                        <label class="letra"><strong>TELÉFONO:</strong> </label>
-                        <input  formControlName="telefono" type="text" id="telefono" class="form-control text-uppercase"  placeholder="Ingresar Teléfono">
-                      </div>
 
-           
+          <div class="row">
+            <label for="" class="col-12 text-center titulomodal">
+              Datos de proveedor
+            </label>
+          </div>
+          <div class="form-group row">
+            <div class="input-group input-group-sm mb-3 col-12">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Empresa&nbsp;</span>
+              </div>
+              <input  formControlName="id" type="hidden" >
+              <input formControlName="nombrecompania" type="text" class="form-control" placeholder="Nombre de empresa" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="input-group input-group-sm mb-3 col-12">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Nombre&nbsp;</span>
+              </div>
+              <input formControlName="nombre" type="text" class="form-control" placeholder="Ingresar nombre" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="input-group input-group-sm mb-3 col-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Estado&nbsp;&nbsp;&nbsp;&nbsp;</span>
+              </div>
+              <input formControlName="estado" type="text" class="form-control" placeholder="Ingresar estado" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group input-group-sm mb-3 col-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Ciudad</span>
+              </div>
+              <input formControlName="ciudad" type="text" class="form-control" placeholder="Ingresar ciudad" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group input-group-sm mb-3 col-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Código postal</span>
+              </div>
+              <input formControlName="codigopostal" type="text" class="form-control" placeholder="Ingresar código postal" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="input-group input-group-sm mb-3 col-12">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Dirección</span>
+              </div>
+              <input formControlName="direccion" type="text" class="form-control" placeholder="Ingresar dirección" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="input-group input-group-sm mb-3 col-8">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">RFC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+              </div>
+              <input formControlName="rfc" type="text" class="form-control" placeholder="Ingresar RFC" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group input-group-sm mb-3 col-8">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Teléfono&nbsp;&nbsp;</span>
+              </div>
+              <input formControlName="telefono" type="number" class="form-control" placeholder="Ingresar Teléfono" aria-label="Username" aria-describedby="basic-addon1">
             </div>
           </div>
         </div>

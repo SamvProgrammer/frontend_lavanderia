@@ -11,10 +11,10 @@ import { UsuariosService } from './usuarios.service';
 })
 export class LoginService {
 
-  private url: string = "";
+  public url: string = "";
   
 
-  constructor(private http: HttpClient,private usuariosPrd:UsuariosService) {
+  constructor(public http: HttpClient,public usuariosPrd:UsuariosService) {
     this.url = direcciones.login;
   }
 

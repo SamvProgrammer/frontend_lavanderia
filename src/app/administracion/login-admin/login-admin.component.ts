@@ -12,9 +12,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class LoginAdminComponent implements OnInit {
   public myForm: FormGroup;
   public visible: boolean = false;
-  private mensaje: string = "";
-  constructor(private loginPrd: LoginService,
-    public formBuilder: FormBuilder,private usuariosPrd:UsuariosService) {
+  public mensaje: string = "";
+  constructor(public loginPrd: LoginService,
+    public formBuilder: FormBuilder,public usuariosPrd:UsuariosService) {
 
   }
 
@@ -22,7 +22,7 @@ export class LoginAdminComponent implements OnInit {
     this.myForm = this.createMyForm();
   }
 
-  private createMyForm() {
+  public createMyForm() {
     return this.formBuilder.group({
       usuario: ['', Validators.required],
       password: ['', Validators.required]

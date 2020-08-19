@@ -25,14 +25,22 @@ import { SucursalesComponent } from './administracion/sucursales/sucursales.comp
 import { UnidadesMedidaComponent } from './administracion/unidades-medida/unidades-medida.component';
 import { ProveedoresComponent } from './administracion/proveedores/proveedores.component';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { EmpleadosComponent } from './administracion/empleados/empleados.component';
 import { ClientesComponent } from './administracion/clientes/clientes.component';
 =======
+=======
+>>>>>>> b5acd8991c5bea330ab9ec8078fa9597c721b26b
 import { ProductoComponent } from './administracion/producto/producto.component';
 import { LineasComponent } from './administracion/lineas/lineas.component';
 import { CategoriasComponent } from './administracion/categorias/categorias.component';
 import { CatCategoriasComponent } from './administracion/catalogos/cat-categorias/cat-categorias.component';
+<<<<<<< HEAD
 >>>>>>> 95de3415ece1c07e94c729cf11394cca43ff5441
+=======
+import { ClientesComponent } from './administracion/clientes/clientes.component';
+import { VentasComponent } from './administracion/ventas/ventas.component';
+>>>>>>> b5acd8991c5bea330ab9ec8078fa9597c721b26b
 
 @NgModule({
   declarations: [
@@ -45,6 +53,7 @@ import { CatCategoriasComponent } from './administracion/catalogos/cat-categoria
     UnidadesMedidaComponent,
     ProveedoresComponent,
 <<<<<<< HEAD
+<<<<<<< HEAD
     EmpleadosComponent,
     ClientesComponent
 =======
@@ -53,6 +62,14 @@ import { CatCategoriasComponent } from './administracion/catalogos/cat-categoria
     CategoriasComponent,
     CatCategoriasComponent
 >>>>>>> 95de3415ece1c07e94c729cf11394cca43ff5441
+=======
+    ProductoComponent,
+    LineasComponent,
+    CategoriasComponent,
+    CatCategoriasComponent,
+    ClientesComponent,
+    VentasComponent
+>>>>>>> b5acd8991c5bea330ab9ec8078fa9597c721b26b
   ],
   imports: [
     BrowserModule,

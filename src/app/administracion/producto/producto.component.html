@@ -6,7 +6,7 @@
 </div>
 <div class="row">
   <div class="col text-right">
-    <button type="button" class="btn btn-default" (click)="abrir(undefined)">
+    <button type="button" class="btn btn-default" (click)="abrir(undefined,undefined)">
       <i class="fa fa-plus"></i>
     </button>
   </div>
@@ -216,6 +216,17 @@
                 <option value="1">4Kg</option>
                 <option value="2">8kg</option>
                 <option value="3">8kg s</option>
+              </select>
+            </div>
+          </div>
+          <div class="row form group">
+            <div class="input-group input-group-sm mb-3 col-12">
+              <div  class="input-group-prepend">
+                <span style="width: 100%;" class="input-group-text" id="basic-addon1">Seleccionar sucursal</span>
+              </div>
+              <select formControlName="id_sucursal" class="custom-select" id="inputGroupSelect">
+                <option selected>Elegir sucursal...</option>
+                <option  *ngFor="let item of arregloSucursal" [value]="item.id">{{item.nombre}}</option>
               </select>
             </div>
           </div>

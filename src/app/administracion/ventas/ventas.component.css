@@ -4,9 +4,8 @@ font-size: medium;
 }
 
 .input-group-text{
-    background-color:#afafaf ;
+    background-color:#253742 ;
     color:white;
-    
 }
 .cabecera{
     background: #008fc5;
@@ -24,4 +23,15 @@ font-size: medium;
         margin-bottom: 1rem;
         border: 0;
         border-top: 1px solid rgba(0, 0, 0, 0.1);
+      }
+
+      .cajaventa{
+        background: #f3f3f3;
+        padding: 20px 5px 5px 5px;
+      }
+
+      #tablaproductos{
+        background: #c7c7c7;
+        color: rgb(54, 54, 54);
+    
       }

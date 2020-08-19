@@ -12,7 +12,7 @@ export class PanelControlComponent implements OnInit {
   public nombre:string = "";
   public usuario:string = "";
 
-  constructor(private usuariosPrd:UsuariosService,private loginPrd:LoginService) { }
+  constructor(public usuariosPrd:UsuariosService,public loginPrd:LoginService) { }
 
   ngOnInit() {
       let obj = this.usuariosPrd.getUsuario();

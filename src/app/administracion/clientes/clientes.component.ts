@@ -17,17 +17,17 @@ export class ClientesComponent implements OnInit {
   public ingresar: boolean = false;
   public fecha: Date;
 
-  constructor(public formBuilder: FormBuilder, private clientesPrd: ClienteservService) { }
+  constructor(public formBuilder: FormBuilder, public clientesPrd: ClienteservService) { }
 
   ngOnInit() {
     this.clientesPrd.getAll().subscribe(datos => {
       this.arreglo = datos;
       console.log(this.arreglo);
     });
-    let dateFormat = require('dateformat');
-    let now = new Date();
-    dateFormat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT");
-    console.log(dateFormat);
+    //let dateFormat = require('dateformat');
+    //let now = new Date();
+    //dateFormat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT");
+    //console.log(dateFormat);
 
     this.myForm = this.createMyForm("");
   }
@@ -41,12 +41,20 @@ export class ClientesComponent implements OnInit {
       ciudad: [obj.ciudad, Validators.required],
       codigopostal: [obj.codigopostal, Validators.required],
       estado: [obj.estado, Validators.required],
-      fechalta: [obj.fechalta, Validators.required],
       pais: [obj.pais, Validators.required],
       rfc: [obj.rfc, Validators.required],
-      telefono: [obj.rfc, Validators.required],
-      observaciones: [obj.observaciones, Validators.required],
-      id: obj.id
+      telefono: [obj.telefono, Validators.required],
+      observaciones: [obj.observaciones],
+      id: obj.id,
+      credito:obj.credito,
+      creditoVencido:obj.creditoVencido,
+      otorgarCredito:obj.otorgarCredito,
+      tipoCredito:obj.tipoCredito,
+      dias:obj.dias,
+      descuento:obj.descuento,
+      clientePolizaserv:obj.clientePolizaserv,
+      limiteCredito:obj.limiteCredito,
+      saldo:obj.saldo
     });
   }
 

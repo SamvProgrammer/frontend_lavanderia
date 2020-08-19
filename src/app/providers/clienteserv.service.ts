@@ -8,8 +8,8 @@ import { Observable } from 'rxjs';
 })
 export class ClienteservService {
 
-  private url: string = "";
-  constructor(private http: HttpClient) {
+  public url: string = "";
+  constructor(public http: HttpClient) {
     this.url = direcciones.clientes;
   }
 

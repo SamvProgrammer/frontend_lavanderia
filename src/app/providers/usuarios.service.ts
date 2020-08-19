@@ -8,11 +8,11 @@ import { Observable } from 'rxjs';
 })
 export class UsuariosService {
 
-  private url: string = "";
-  private usuario:any;
+  public url: string = "";
+  public usuario:any;
   
 
-  constructor(private http: HttpClient) {
+  constructor(public http: HttpClient) {
     this.url = direcciones.usuarios;
   }
 
