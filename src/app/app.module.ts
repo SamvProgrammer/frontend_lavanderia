@@ -31,6 +31,7 @@ import { LineasComponent } from './administracion/lineas/lineas.component';
 import { CategoriasComponent } from './administracion/categorias/categorias.component';
 import { CatCategoriasComponent } from './administracion/catalogos/cat-categorias/cat-categorias.component';
 import { VentasComponent } from './administracion/ventas/ventas.component';
+import { DetalleFichasComponent } from './administracion/detalle-fichas/detalle-fichas.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { VentasComponent } from './administracion/ventas/ventas.component';
     CategoriasComponent,
     CatCategoriasComponent,
     ClientesComponent,
-    VentasComponent
+    VentasComponent,
+    DetalleFichasComponent
 
   ],
   imports: [

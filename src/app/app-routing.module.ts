@@ -12,6 +12,7 @@ import { LineasComponent } from './administracion/lineas/lineas.component';
 import { CategoriasComponent } from './administracion/categorias/categorias.component';
 import { ClientesComponent } from './administracion/clientes/clientes.component';
 import { VentasComponent } from './administracion/ventas/ventas.component';
+import {DetalleFichasComponent} from './administracion/detalle-fichas/detalle-fichas.component';
 
 const routes: Routes = [
   { path: 'ingresar', component: LoginAdminComponent },
@@ -25,6 +26,8 @@ const routes: Routes = [
   { path: 'catalogos/categorias', component: CategoriasComponent, canActivate: [AutenticadoService] },
   { path: 'catalogos/clientes', component: ClientesComponent, canActivate: [AutenticadoService] },
   { path: 'ventas', component: VentasComponent, canActivate: [AutenticadoService] },
+  { path: 'servicio/detalle-fichas', component: DetalleFichasComponent, canActivate: [AutenticadoService] },
+
   { path: '**', component: LoginAdminComponent }
 ];
 
