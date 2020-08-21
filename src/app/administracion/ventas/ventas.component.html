@@ -39,13 +39,13 @@
 </div>
 <div class="form-group  row" *ngIf="clientebool">
   <div class="input-group input-group-sm col-12">
-    <div for="buscarClasificacion" class="input-group-prepend">
+    <div for="buscarclientes" class="input-group-prepend">
       <span class="input-group-text" id="basic-addon1">Datos del cliente</span>
     </div>
-    <input disabled  type="text" class="form-control" placeholder="Nombre y apellido" aria-label="Username" aria-describedby="basic-addon1">
-    <input  disabled type="text" class="form-control" placeholder="Dirección" aria-label="Username" aria-describedby="basic-addon1">
+    <input #nombrecliente disabled  type="text" class="form-control" placeholder="Nombre y apellido" aria-label="Username" aria-describedby="basic-addon1">
+    <input #apellidocliente disabled type="text" class="form-control" placeholder="Dirección" aria-label="Username" aria-describedby="basic-addon1">
     <span class="input-group-btn">
-      <button id="buscarClasificacion" class="btn btn-theme" type="button" (click)="abrirClasificacion();" ><i class="fa fa-search"></i></button>
+      <button id="buscarclientes" class="btn btn-theme" type="button" (click)="abriClientes();" ><i class="fa fa-search"></i></button>
       </span>
   </div>
 </div>
@@ -58,38 +58,52 @@
 </div>
 
 <div class="form-group row">
-  <div class="input-group input-group-sm mb-3 col-4">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Tipo de venta</span>
-    </div>
-    <select class="form-control form-control text-uppercase"  type="text">
-      <option value=true>CONTADO</option>
-      <option value=false>CREDITO</option>
-    </select>
-  </div>
-  <div class="input-group input-group-sm mb-3 col-2">
+  <div  class="input-group input-group-sm mb-3 col-3">
     <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon1">% Descuento</span>
     </div>
     <input disabled  type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
   </div>
-  <div class="input-group input-group-sm mb-3 col-2">
+  <div class="input-group input-group-sm mb-3 col-3">
     <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">No. Pedido</span>
+      <span class="input-group-text" id="basic-addon1">No. Servicio</span>
     </div>
     <input disabled type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
   </div>
-  <div class="input-group input-group-sm mb-3 col-2">
+  <div class="input-group input-group-sm mb-3 col-3">
     <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon1">Fecha</span>
     </div>
     <input disabled  type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
   </div>
-  <div class="input-group input-group-sm mb-3 col-2">
+  <div class="input-group input-group-sm mb-3 col-3">
     <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon1">Turno</span>
     </div>
     <input disabled type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+  </div>
+</div>
+<div class="row form-group">
+  <div class="input-group input-group-sm mb-3 col-4">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">Servicio</span>
+    </div>
+    <select [(ngModel)]="valorservicio" class="form-control form-control text-uppercase"  type="text">
+      <option value=true>Autoservicio</option>
+      <option value=false>Servicio por engargo</option>
+    </select>
+  </div>
+  <div *ngIf="valorservicio == 'true'" class="input-group input-group-sm mb-3 col-4">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">Fecha de entrega</span>
+    </div>
+    <input   type="date" class=""  aria-label="Username" aria-describedby="basic-addon1">
+  </div>
+  <div *ngIf="valorservicio == 'true'" class="input-group input-group-sm mb-3 col-4">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">Hora</span>
+    </div>
+    <input   type="time" class=""  aria-label="Username" aria-describedby="basic-addon1">
   </div>
 </div>
 </div>
@@ -207,3 +221,8 @@
   </div>
 </div>
 
+
+
+<div class="modal fade miclase" style="background: #0000006e;" id="myModalclientees">
+  <app-cat-clientes  (eventoFunciones)="recibir($event)"></app-cat-clientes>  
+</div>
