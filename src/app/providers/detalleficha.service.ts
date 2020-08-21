@@ -6,11 +6,11 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ProveedoresService {
-
+export class DetallefichaService {
   public url: string = "";
+
   constructor(public http: HttpClient) {
-    this.url = direcciones.proveedores;
+    this.url = direcciones.fichas;
   }
 
   public getAll(): Observable<any> {

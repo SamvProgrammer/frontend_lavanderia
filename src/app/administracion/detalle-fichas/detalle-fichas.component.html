@@ -6,13 +6,16 @@
 </div>
 
 <div class="cajaventa">
-  
+    <form  [formGroup]="myForm" (ngSubmit)="enviarformulario()">
+
 <div class="row" >
+
+
   <div class="input-group input-group-sm mb-3 col-4">
     <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon1">Bodega</span>
     </div>
-    <select class="form-control form-control text-uppercase"  type="text">
+    <select formControlName="sucursal" class="form-control form-control text-uppercase"  type="text">
       <option value=1>Matriz</option>
       <option value=2>Sucursal</option>
     </select>
@@ -22,7 +25,7 @@
     <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon1">Tipo de Servicio</span>
     </div>
-    <select class="form-control form-control text-uppercase"  type="text">
+    <select formControlName="tipo_servicio"  class="form-control form-control text-uppercase"  type="text">
       <option value=1>Autoservicio</option>
       <option value=2>Servicio por Enc</option>
     </select>
@@ -32,7 +35,7 @@
     <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon1">Empleado</span>
     </div>
-    <select class="form-control form-control text-uppercase"  type="text">
+    <select formControlName="empleado" class="form-control form-control text-uppercase"  type="text">
       <option value=true>Alejandro</option>
       <option value=false>Roberto</option>
     </select>
@@ -42,18 +45,18 @@
     <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon1">Desde</span>
     </div>
-    <input type="date" class="form-control form-control"  aria-label="Username" >
+    <input formControlName="desde" type="date" class="form-control form-control"  aria-label="Username" >
   </div>
   
   <div class="input-group input-group-sm mb-4 col-6">
     <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon1">Hasta</span>
     </div>
-    <input type="date" class="form-control form-control"  aria-label="Username" >
+    <input formControlName="hasta" type="date" class="form-control form-control"  aria-label="Username" >
   </div>
-
-
 </div>
+
+
 <hr/>
 
 <div class="row">
@@ -63,19 +66,29 @@
 </div>
 
 <div class="form-group row">
-  <div class="input-group input-group-sm mb-3 col-5">
-    <button type="button" class="btn btn-primary">Visualizar</button>
-  </div>
-  <div class="input-group input-group-sm mb-3 col-4">
-    <button type="button" class="btn btn-info">Imprimir</button>
-  </div>
-  <div class="input-group input-group-sm mb-3 col-3">
-    <button type="button" class="btn btn-warning">Limpiar</button>
+
+
+    <div class="input-group input-group-sm mb-3 col-4">
+      <button [disabled]="!myForm.valid"  type="submit"  class="btn btn-success pull-right">
+        <i class="fa fa-check"></i> Visualizar</button>
+      </div>
+    
+      <div class="input-group input-group-sm mb-3 col-4">
+        <button [disabled]="!myForm.valid"  type="submit"  class="btn btn-success pull-right" (click)="tipoboton=true">
+          <i class="fa fa-check"></i> Reporte</button>
+        </div>
+    
+      <div class="input-group input-group-sm mb-3 col-3">
+        <button type="button" class="btn btn-warning">Limpiar</button>
+      </div>
+  
+  
   </div>
 
+</form>
+
 </div>
-</div>
-<hr />
+<hr/>
 <div class="row">
   <label for="" class="col-12 text-center titulomodal">
     Productos
@@ -97,8 +110,7 @@
           <th>Ficha 4kg</th>
           <th>Ficha 8kg</th>
           <th>Secadora</th>
-
-          <th style="width: 200px;text-align: center">Opciones</th>
+          <th style="width: 200px;text-align: center">#</th>
         </tr>
       </thead>
  <!--      <tbody>
