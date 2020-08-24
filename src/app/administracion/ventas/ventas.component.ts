@@ -49,6 +49,7 @@ public conventa:any = {
 
 
   public generarServicio(){
+    //alertify.error('Error, falta datos que rellenar');
     let conventa1 = this.conventa;
     alertify.confirm("¿Desea generar un nuevo servicio?", function (e) {
       console.log(this);
