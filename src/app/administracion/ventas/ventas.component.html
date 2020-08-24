@@ -106,13 +106,13 @@
     <input   type="time" class=""  aria-label="Username" aria-describedby="basic-addon1">
   </div>
 </div>
-<div *ngIf="!conventa" class="row form-group">
+<div *ngIf="!conventa.conventa" class="row form-group">
   <div class="col-12 text-center">
     <button type="button" (click)="generarServicio()" class="btn btn-success">Generar servicio</button>
   </div>
 </div>
 </div>
-<div *ngIf="conventa">
+<div *ngIf="conventa.conventa">
   <hr/>
 <div class="row">
   <label for="" class="col-12 text-center titulomodal">
@@ -178,67 +178,69 @@
 
 <div class="row" style="background-color: rgb(37 55 66);color: white;">
   <label for="" class="col-12 text-center titulomodal">
-    Productos
+    
   </label>
   <hr />
-  <div class="col-8">
+  <div class="col-7">
      <div class="col-12">
        <div class="row form-group">
-        <div class="input-group input-group-sm mb-3 col-6">
+        <div class="input-group input-group-sm mb-3 col-12">
           <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1">No. Productos</span>
-          </div>
-          <input  type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
-        </div>
-        <div class="input-group input-group-sm mb-3 col-6">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1">No. Ticket</span>
-          </div>
-          <input  type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
-        </div>
-        <div class="input-group input-group-sm mb-3 col-6">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1">No. Factura</span>
-          </div>
-          <input  type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
-        </div>
-        <div class="input-group input-group-sm mb-3 col-6">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1">No.Cart.Fact.</span>
+            <span class="input-group-text" id="basic-addon1">Observaciones</span>
           </div>
           <input  type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
         </div>
        </div>
      </div>
   </div>
-  <div class="col-4">
+  <div class="col-5">
     <div class="input-group input-group-sm mb-3 col-12">
       <div class="input-group-prepend">
-        <span class="input-group-text" id="basic-addon1">Desc total</span>
+        <span class="input-group-text" id="basic-addon1">Servicio</span>
       </div>
       <input  type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
     </div>
     <div class="input-group input-group-sm mb-3 col-12">
       <div class="input-group-prepend">
-        <span class="input-group-text" id="basic-addon1">Desc total</span>
+        <span class="input-group-text" id="basic-addon1">Recepción</span>
       </div>
       <input  type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
     </div>
     <div class="input-group input-group-sm mb-3 col-12">
       <div class="input-group-prepend">
-        <span class="input-group-text" id="basic-addon1">Desc total</span>
-      </div>
-      <input  type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
-    </div>
-
-    <div class="input-group input-group-sm mb-3 col-12">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="basic-addon1">Desc total</span>
+        <span class="input-group-text" id="basic-addon1">Total</span>
       </div>
       <input  type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
     </div>
   </div>
 </div>
+
+ <div class="row" style="    position: fixed;
+ bottom: 0;
+ width: 62%;
+ 
+ z-index: 100;
+ left: 20%;">
+
+<button style="margin:auto ;    color: #ffffff;
+background-color: #00903ab8;
+border-color: #f8f9fa;" type="button" class="btn btn-light "><i class="fa fa-plus"></i>Nuevo</button>
+<button style="margin:auto ;    color: #ffffff;
+background-color: #686868b8;
+border-color: #f8f9fa;" type="button" class="btn btn-light "><i class="fa fa-print"></i>Imprimir</button>
+<button style="margin:auto ;    color: #ffffff;
+background-color: #e80c0cb8;
+border-color: #f8f9fa;" type="button" class="btn btn-light "><i class="fa fa-close"></i>Cancelar</button>
+<button style="margin:auto ;    color: #ffffff;
+background-color: #00903ab8;
+border-color: #f8f9fa;" type="button" class="btn btn-light "><i class="fa fa-check"></i>Finalizar servicio</button>
+<button style="margin:auto ;    color: #ffffff;
+background-color: #b19a36;
+border-color: #f8f9fa;" type="button" class="btn btn-light "><i class="fa fa-align-justify"></i>Fichas</button>
+<button style="margin:auto ;    color: #ffffff;
+background-color: #686868b8;
+border-color: #f8f9fa;" type="button" class="btn btn-light "><i class="fa fa-cog"></i>Opciones</button>
+ </div>
 
 </div>
 

@@ -16,7 +16,9 @@ public usuarios;
 public clientebool:boolean = false;
 public valorservicio:boolean = false;
 public arregloProductos:any = [];
-public conventa:boolean = false;
+public conventa:any = {
+  conventa:false
+};
   constructor(public usuariosPrd:UsuariosService) { }
 
   ngOnInit() {
@@ -47,8 +49,17 @@ public conventa:boolean = false;
 
 
   public generarServicio(){
-    this.conventa = true;
-    alertify.success("El servicio esta generado, favor de ingresar los produtos correspondientes y cerrar el ticket");
+    let conventa1 = this.conventa;
+    alertify.confirm("¿Desea generar un nuevo servicio?", function (e) {
+      console.log(this);
+      if (e) {
+        conventa1.conventa = true;
+        alertify.success("El servicio esta generado, favor de ingresar los produtos correspondientes y cerrar el ticket");
+      }
+    });
+  
   }
+
+  
 
 }
