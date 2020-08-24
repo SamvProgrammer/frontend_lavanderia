@@ -15,6 +15,8 @@ export class VentasComponent implements OnInit {
 public usuarios;
 public clientebool:boolean = false;
 public valorservicio:boolean = false;
+public arregloProductos:any = [];
+public conventa:boolean = false;
   constructor(public usuariosPrd:UsuariosService) { }
 
   ngOnInit() {
@@ -31,6 +33,22 @@ public valorservicio:boolean = false;
     $('#myModalclientees').modal('hide');
     this.nombreClienteId.nativeElement.value = $evento.nombre;
     this.apellidoClienteId.nativeElement.value = $evento.apellido;
+  }
+
+
+  public abrir(){
+    $('#myModalProductos').modal('show');
+  }
+
+  public recibirProducto($evento){
+    $('#myModalProductos').modal('hide');
+    this.arregloProductos.push($evento);
+  }
+
+
+  public generarServicio(){
+    this.conventa = true;
+    alertify.success("El servicio esta generado, favor de ingresar los produtos correspondientes y cerrar el ticket");
   }
 
 }

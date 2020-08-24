@@ -162,7 +162,7 @@ export class ProductoComponent implements OnInit {
     $('#myModal').modal('hide');
     if (this.ingresar) {
       this.productosPrd.insert(obj).subscribe(datos => {
-        alertify.success("Sucursal agregada correctamente");
+        alertify.success("Producto agregado correctamente");
         this.productosPrd.get(datos.id).subscribe(unico =>{
         this.arreglo.push(unico);
         });
@@ -170,7 +170,7 @@ export class ProductoComponent implements OnInit {
       });
     } else {
       this.productosPrd.update(obj).subscribe(datos => {
-        alertify.success("Sucursal actualizada correctamente");
+        alertify.success("Producto actualizado correctamente");
         console.log("Este es el indice");
         console.log(this.indice);
         console.log(datos);
