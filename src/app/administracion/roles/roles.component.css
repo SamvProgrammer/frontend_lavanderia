@@ -1,0 +1,30 @@
+.titulomodal{
+    font-weight: 600;
+font-size: medium;
+}
+
+.input-group-text{
+    background-color:#afafaf ;
+    color:white;
+}
+.cabecera{
+    background: #008fc5;
+    color: white;
+}
+
+.custom-control-input:checked~.custom-control-indicator{
+    color:white;
+    background-color:rgb(26, 219, 84);
+    }
+
+    
+    hr {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border: 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+      }
+
+      .miclase {
+        overflow: scroll!important; 
+      }

@@ -4,6 +4,8 @@ import { UsuariosService } from '../../providers/usuarios.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
+declare var $;
+
 @Component({
   selector: 'app-login-admin',
   templateUrl: './login-admin.component.html',
@@ -13,6 +15,9 @@ export class LoginAdminComponent implements OnInit {
   public myForm: FormGroup;
   public visible: boolean = false;
   public mensaje: string = "";
+  public arreglousuarios:any = [];
+  public botonDesabilitado:boolean = true;
+  public indexGlobal;
   constructor(public loginPrd: LoginService,
     public formBuilder: FormBuilder,public usuariosPrd:UsuariosService) {
 
@@ -20,20 +25,27 @@ export class LoginAdminComponent implements OnInit {
 
   ngOnInit() {
     this.myForm = this.createMyForm();
+    this.usuariosPrd.obtenerAll().subscribe(datos =>{
+      this.arreglousuarios = datos;
+      for(let item of this.arreglousuarios){
+           item.seleccionado = false;
+      }
+    });
   }
 
   public createMyForm() {
     return this.formBuilder.group({
-      usuario: ['', Validators.required],
+      usuario: [''],
       password: ['', Validators.required]
     });
   }
   public enviarformulario(): any {
     let obj = this.myForm.value;
     let enviar = {
-      usuario: obj.usuario,
+      usuario: this.arreglousuarios[this.indexGlobal].usuario,
       password: obj.password
     }
+    
     this.loginPrd.ingresarSistema(enviar).subscribe(datos => {
       console.log("Entra adentor del suscribe");
         this.visible = false;
@@ -52,6 +64,24 @@ export class LoginAdminComponent implements OnInit {
 
   }
 
-  public mostrarmodal(): any {
+  public elegirUsuario() {
+    console.log("ELEGIR EL USUARIO");
+     $("#myModal").modal('show');
+
+  }
+
+  public seleccionandoC(indice){
+      for(let item of this.arreglousuarios)
+            item.seleccionado = false;
+
+            this.arreglousuarios[indice].seleccionado = true;
+
+            this.botonDesabilitado = false;
+            this.indexGlobal = indice;
+  }
+
+  public btnSeleccionando(nombreusuario){
+      nombreusuario.value = this.arreglousuarios[this.indexGlobal].usuario;
+      $("#myModal").modal('hide');
   }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsuariosService } from '../../providers/usuarios.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SucursalesService } from '../../providers/sucursales.service';
+import { RolesService } from '../../providers/roles.service';
 declare var $: any;
 declare var alertify: any;
 
@@ -16,16 +17,20 @@ export class UsuariosComponent implements OnInit {
   public arreglo: any = [];
   public ingresar: boolean = false;
   public arregloSucursal:any = [];
+  public arregloRoles:any = [];
 
   public objDefault = {
     sucursales:{
+      id:0
+    },
+    roles:{
       id:0
     }
   }
 
 
   constructor(public usuarioPrd: UsuariosService,
-    public formBuilder: FormBuilder,private sucursalesPrd:SucursalesService) {
+    public formBuilder: FormBuilder,private sucursalesPrd:SucursalesService,private rolesPrd:RolesService) {
     localStorage["actualizar"] = false;
   }
 
@@ -39,6 +44,10 @@ export class UsuariosComponent implements OnInit {
 
     this.sucursalesPrd.getAll().subscribe(datos =>{
         this.arregloSucursal = datos;
+    });
+
+    this.rolesPrd.getAll().subscribe(datos =>{
+      this.arregloRoles = datos;
     });
 
     this.myForm = this.createMyForm(this.objDefault);
@@ -57,13 +66,24 @@ export class UsuariosComponent implements OnInit {
       activo: [obj.activo , Validators.required],
       estado: [obj.estado , Validators.required],
       id: obj.id,
-      id_sucursal:[obj.sucursales.id_sucursal,Validators.required]
+      id_sucursal:[obj.sucursales.id,Validators.required],
+      id_rol:[obj.roles.id,Validators.required]
     });
   }
 
   public enviarformulario(): any {
     let obj = this.myForm.value;
 
+    obj.sucursales = {
+      id : obj.id_sucursal
+    }
+
+    obj.roles = {
+      id : obj.id_rol
+    }
+
+
+    console.log(obj);
    
     $('#myModal').modal('hide');
     if (this.ingresar) {

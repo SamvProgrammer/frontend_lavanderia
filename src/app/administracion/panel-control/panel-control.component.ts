@@ -11,6 +11,7 @@ export class PanelControlComponent implements OnInit {
 
   public nombre:string = "";
   public usuario:string = "";
+  public nombrerol:string = "";
 
   constructor(public usuariosPrd:UsuariosService,public loginPrd:LoginService) { }
 
@@ -18,6 +19,7 @@ export class PanelControlComponent implements OnInit {
       let obj = this.usuariosPrd.getUsuario();
       this.nombre = obj.nombre;
       this.usuario = obj.usuario;
+      this.nombrerol = obj.roles.nombre;
       $(".sidebar-dropdown > a").click(function() {
         $(".sidebar-submenu").slideUp(200);
         if (

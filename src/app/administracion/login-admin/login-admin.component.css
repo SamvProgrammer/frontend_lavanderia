@@ -265,4 +265,29 @@ html {
   .classpuntero{
     cursor:  pointer;
   }
+
+
+
+  img{
+    width: inherit;
+  }
+
+  .sinSeleccionar{
+    text-align: center;
+    background: #efefef;
+    border-radius: 19px;
+    margin: 5px;
+    cursor: pointer;
+    overflow:auto;
+  }
+
+  .seleccionado{
+    text-align: center;
+    background: #f0e691;
+    border-radius: 19px;
+    margin: 5px;
+    cursor: pointer;
+    border:1px solid white;
+    overflow:auto;
+  }
   
