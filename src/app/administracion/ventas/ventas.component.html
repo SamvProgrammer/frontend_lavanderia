@@ -1,7 +1,7 @@
 <div class="row text-center">
 
   <div class="col">
-    <p style="font-size: 30px">Ventas</p>
+    <p style="font-size: 30px">Servicio</p>
   </div>
 </div>
 
@@ -39,13 +39,13 @@
 </div>
 <div class="form-group  row" *ngIf="clientebool">
   <div class="input-group input-group-sm col-12">
-    <div for="buscarClasificacion" class="input-group-prepend">
+    <div for="buscarclientes" class="input-group-prepend">
       <span class="input-group-text" id="basic-addon1">Datos del cliente</span>
     </div>
-    <input disabled  type="text" class="form-control" placeholder="Nombre y apellido" aria-label="Username" aria-describedby="basic-addon1">
-    <input  disabled type="text" class="form-control" placeholder="Dirección" aria-label="Username" aria-describedby="basic-addon1">
+    <input #nombrecliente disabled  type="text" class="form-control" placeholder="Nombre y apellido" aria-label="Username" aria-describedby="basic-addon1">
+    <input #apellidocliente disabled type="text" class="form-control" placeholder="Dirección" aria-label="Username" aria-describedby="basic-addon1">
     <span class="input-group-btn">
-      <button id="buscarClasificacion" class="btn btn-theme" type="button" (click)="abrirClasificacion();" ><i class="fa fa-search"></i></button>
+      <button id="buscarclientes" class="btn btn-theme" type="button" (click)="abriClientes();" ><i class="fa fa-search"></i></button>
       </span>
   </div>
 </div>
@@ -58,46 +58,73 @@
 </div>
 
 <div class="form-group row">
-  <div class="input-group input-group-sm mb-3 col-4">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Tipo de venta</span>
-    </div>
-    <select class="form-control form-control text-uppercase"  type="text">
-      <option value=true>CONTADO</option>
-      <option value=false>CREDITO</option>
-    </select>
-  </div>
-  <div class="input-group input-group-sm mb-3 col-2">
+  <div  class="input-group input-group-sm mb-3 col-3">
     <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon1">% Descuento</span>
     </div>
     <input disabled  type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
   </div>
-  <div class="input-group input-group-sm mb-3 col-2">
+  <div class="input-group input-group-sm mb-3 col-3">
     <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">No. Pedido</span>
+      <span class="input-group-text" id="basic-addon1">No. Servicio</span>
     </div>
     <input disabled type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
   </div>
-  <div class="input-group input-group-sm mb-3 col-2">
+  <div class="input-group input-group-sm mb-3 col-3">
     <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon1">Fecha</span>
     </div>
     <input disabled  type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
   </div>
-  <div class="input-group input-group-sm mb-3 col-2">
+  <div class="input-group input-group-sm mb-3 col-3">
     <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon1">Turno</span>
     </div>
     <input disabled type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
   </div>
 </div>
+<div class="row form-group">
+  <div class="input-group input-group-sm mb-3 col-4">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">Servicio</span>
+    </div>
+    <select [(ngModel)]="valorservicio" class="form-control form-control text-uppercase"  type="text">
+      <option value="true" selected>Autoservicio</option>
+      <option value="false">Servicio por engargo</option>
+    </select>
+  </div>
+  <div *ngIf="valorservicio != 'true'" class="input-group input-group-sm mb-3 col-4">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">Fecha de entrega</span>
+    </div>
+    <input   type="date" class=""  aria-label="Username" aria-describedby="basic-addon1">
+  </div>
+  <div *ngIf="valorservicio != 'true'" class="input-group input-group-sm mb-3 col-4">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">Hora</span>
+    </div>
+    <input   type="time" class=""  aria-label="Username" aria-describedby="basic-addon1">
+  </div>
 </div>
-<hr />
+<div *ngIf="!conventa.conventa" class="row form-group">
+  <div class="col-12 text-center">
+    <button type="button" (click)="generarServicio()" class="btn btn-success">Generar servicio</button>
+  </div>
+</div>
+</div>
+<div *ngIf="conventa.conventa">
+  <hr/>
 <div class="row">
   <label for="" class="col-12 text-center titulomodal">
     Productos
   </label>
+</div>
+<div class="row">
+  <div class="col text-right">
+    <button type="button" class="btn btn-default" (click)="abrir()">
+      <i class="fa fa-search"></i>
+    </button>
+  </div>
 </div>
 <div class="row" id="c1" style="height: 100%;">
   <div class="col-12">
@@ -118,24 +145,30 @@
         </tr>
       </thead>
       <tbody>
-        <th>1</th>
-        <th>samv</th>
-        <th>santiago antonio</th>
-        <th>4325</th>
-        <th>PZ</th>
-        <th>345</th>
-        <th>4353</th>
-        <th>324</th>
-        <th>5</th>
-        <th>100</th>
-        <td style="text-align: center">
-          <button class="btn btn-default" data-toggle="modal" data-target="#myModal" >
-            <i class="fa fa-refresh"></i>
-          </button>
-          <button class="btn btn-danger" >
-            <i class="fa fa-remove"></i>
-          </button>
-        </td>
+        <tr *ngFor = "let item of arregloProductos;let indice = index;">
+          <td>{{indice+1}}</td>
+          <td>{{item.codigo}}</td>
+          <td>{{item.nombre}}</td>
+          <td>1</td>
+          <td>{{item.unidadmedida.descripcion}}</td>
+          <td>{{item.por_venta}}</td>
+          <td>{{item.por_venta+100}}</td>
+          <td>10%</td>
+          <td>{{item.por_venta}}</td>
+          <td>{{item.ieeps}}</td>
+
+          <td style="text-align: center">
+            <button  class="btn btn-default" data-toggle="modal" data-target="#myModal" >
+              <i class="fa fa-refresh"></i>
+            </button>
+            <button class="btn btn-danger" >
+              <i class="fa fa-remove"></i>
+            </button>
+          </td>
+
+        </tr>
+        
+        
       </tbody>
     </table>
     
@@ -145,65 +178,79 @@
 
 <div class="row" style="background-color: rgb(37 55 66);color: white;">
   <label for="" class="col-12 text-center titulomodal">
-    Productos
+    
   </label>
   <hr />
-  <div class="col-8">
+  <div class="col-7">
      <div class="col-12">
        <div class="row form-group">
-        <div class="input-group input-group-sm mb-3 col-6">
+        <div class="input-group input-group-sm mb-3 col-12">
           <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1">No. Productos</span>
-          </div>
-          <input  type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
-        </div>
-        <div class="input-group input-group-sm mb-3 col-6">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1">No. Ticket</span>
-          </div>
-          <input  type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
-        </div>
-        <div class="input-group input-group-sm mb-3 col-6">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1">No. Factura</span>
-          </div>
-          <input  type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
-        </div>
-        <div class="input-group input-group-sm mb-3 col-6">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1">No.Cart.Fact.</span>
+            <span class="input-group-text" id="basic-addon1">Observaciones</span>
           </div>
           <input  type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
         </div>
        </div>
      </div>
   </div>
-  <div class="col-4">
+  <div class="col-5">
     <div class="input-group input-group-sm mb-3 col-12">
       <div class="input-group-prepend">
-        <span class="input-group-text" id="basic-addon1">Desc total</span>
+        <span class="input-group-text" id="basic-addon1">Servicio</span>
       </div>
       <input  type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
     </div>
     <div class="input-group input-group-sm mb-3 col-12">
       <div class="input-group-prepend">
-        <span class="input-group-text" id="basic-addon1">Desc total</span>
+        <span class="input-group-text" id="basic-addon1">Recepción</span>
       </div>
       <input  type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
     </div>
     <div class="input-group input-group-sm mb-3 col-12">
       <div class="input-group-prepend">
-        <span class="input-group-text" id="basic-addon1">Desc total</span>
-      </div>
-      <input  type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
-    </div>
-
-    <div class="input-group input-group-sm mb-3 col-12">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="basic-addon1">Desc total</span>
+        <span class="input-group-text" id="basic-addon1">Total</span>
       </div>
       <input  type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
     </div>
   </div>
 </div>
 
+ <div class="row" style="    position: fixed;
+ bottom: 0;
+ width: 62%;
+ 
+ z-index: 100;
+ left: 20%;">
+
+<button style="margin:auto ;    color: #ffffff;
+background-color: #00903ab8;
+border-color: #f8f9fa;" type="button" class="btn btn-light "><i class="fa fa-plus"></i>Nuevo</button>
+<button style="margin:auto ;    color: #ffffff;
+background-color: #686868b8;
+border-color: #f8f9fa;" type="button" class="btn btn-light "><i class="fa fa-print"></i>Imprimir</button>
+<button style="margin:auto ;    color: #ffffff;
+background-color: #e80c0cb8;
+border-color: #f8f9fa;" type="button" class="btn btn-light "><i class="fa fa-close"></i>Cancelar</button>
+<button style="margin:auto ;    color: #ffffff;
+background-color: #00903ab8;
+border-color: #f8f9fa;" type="button" class="btn btn-light "><i class="fa fa-check"></i>Finalizar servicio</button>
+<button style="margin:auto ;    color: #ffffff;
+background-color: #b19a36;
+border-color: #f8f9fa;" type="button" class="btn btn-light "><i class="fa fa-align-justify"></i>Fichas</button>
+<button style="margin:auto ;    color: #ffffff;
+background-color: #686868b8;
+border-color: #f8f9fa;" type="button" class="btn btn-light "><i class="fa fa-cog"></i>Opciones</button>
+ </div>
+
+</div>
+
+
+<div class="modal fade miclase" style="background: #0000006e;" id="myModalclientees">
+  <app-cat-clientes  (eventoFunciones)="recibir($event)"></app-cat-clientes>  
+</div>
+
+
+
+<div class="modal fade miclase" style="background: #0000006e;" id="myModalProductos">
+  <app-cat-productos  (eventoFunciones)="recibirProducto($event)"></app-cat-productos>  
+</div>

@@ -105,13 +105,13 @@ export class CategoriasComponent implements OnInit {
     $('#myModal').modal('hide');
     if (this.ingresar) {
       this.categoriasPrd.insert(obj).subscribe(datos => {
-        alertify.success("Sucursal agregada correctamente");
+        alertify.success("Categoría agregada correctamente");
         this.arreglo.push(datos);
 
       });
     } else {
       this.categoriasPrd.update(obj).subscribe(datos => {
-        alertify.success("Sucursal actualizada correctamente");
+        alertify.success("Categoría actualizada correctamente");
         console.log("Este es el indice");
         console.log(this.indice);
         this.arreglo.splice(this.indice, 1, datos);
