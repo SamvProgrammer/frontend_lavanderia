@@ -15,9 +15,10 @@
     <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon1">Bodega</span>
     </div>
-    <select formControlName="sucursal" class="form-control form-control text-uppercase"  type="text">
-      <option value=1>Matriz</option>
-      <option value=2>Sucursal</option>
+    <select formControlName="idsucursal" class="form-control form-control text-uppercase"  type="text">
+      <option  *ngFor ="let item of arregloSucursales" value= {{item.id}}>{{item.nombre}}</option>
+      <option value='0'>Todos</option>
+
     </select>
   </div>
 
@@ -26,8 +27,10 @@
       <span class="input-group-text" id="basic-addon1">Tipo de Servicio</span>
     </div>
     <select formControlName="tipo_servicio"  class="form-control form-control text-uppercase"  type="text">
-      <option value=1>Autoservicio</option>
-      <option value=2>Servicio por Enc</option>
+      <option value='1'>Autoservicio</option>
+      <option value='2'>Servicio por Enc</option>
+      <option value='0'>Todos</option>
+
     </select>
   </div>
 
@@ -35,20 +38,20 @@
     <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon1">Empleado</span>
     </div>
-    <select formControlName="empleado" class="form-control form-control text-uppercase"  type="text">
-      <option value=true>Alejandro</option>
-      <option value=false>Roberto</option>
+    <select  formControlName="empleado" class="form-control form-control text-uppercase"  type="text">
+      <option *ngFor="let item of arregloUsuarios" value={{item.id}}>{{item.nombre}}</option>
+      <option value='0'>Todos</option>
     </select>
   </div>
 
-  <div class="input-group input-group-sm mb-4 col-6">
+  <div class="input-group-sm mb-4 col-6">
     <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon1">Desde</span>
     </div>
     <input formControlName="desde" type="date" class="form-control form-control"  aria-label="Username" >
   </div>
   
-  <div class="input-group input-group-sm mb-4 col-6">
+  <div class="input-group-sm mb-4 col-6">
     <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon1">Hasta</span>
     </div>
@@ -105,7 +108,6 @@
           <th>NoServicio</th>
           <th>Usuario</th>
           <th>Tipo Servicio</th>
-          <th>Importe</th>
           <th>Cliente</th>
           <th>Ficha 4kg</th>
           <th>Ficha 8kg</th>
@@ -113,17 +115,18 @@
           <th style="width: 200px;text-align: center">#</th>
         </tr>
       </thead>
- <!--      <tbody>
-        <th>1</th>
-        <th>samv</th>
-        <th>santiago antonio</th>
-        <th>4325</th>
-        <th>PZ</th>
-        <th>345</th>
-        <th>4353</th>
-        <th>324</th>
-        <th>5</th>
-        <th>100</th>
+      <tbody>
+        <tr *ngFor="let item of arregloDetalleGrid;let indice = index;">
+          <td scope="row">{{indice+1}}</td>
+          <th>{{item.fecha}}</th>
+          <th >{{item.idservicio}}</th>
+          <th>{{item.noservicio}}</th>
+          <th>{{item.empleado}}</th>
+          <th>{{(item.tiposerv==1)?'AUTOSERV':'SERV X ENCAR'}}</th>
+          <th>{{item.nombrecliente}}</th>
+          <th>{{item.ficha4kg}}</th>
+          <th>{{item.ficha8kg}}</th>
+          <th>{{item.fichasecadora}}</th>
         <td style="text-align: center">
           <button class="btn btn-default" data-toggle="modal" data-target="#myModal" >
             <i class="fa fa-refresh"></i>
@@ -132,7 +135,8 @@
             <i class="fa fa-remove"></i>
           </button>
         </td>
-      </tbody> -->
+      </tr>
+      </tbody> 
     </table>
     
   </div>
@@ -144,30 +148,30 @@
     Resumen Fichas
   </label>
   <hr />
-       <div class="row form-group">
+       <div  *ngFor="let item of arregloSuma"  class="row form-group">
         <div class="input-group input-group-sm mb-3 col-3">
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1">N°Serv.</span>
           </div>
-          <input  type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+          <input  type="text" class="form-control" value ={{item.totalserv}}  aria-label="Username" aria-describedby="basic-addon1">
         </div>
         <div class="input-group input-group-sm mb-3 col-3">
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1">Fichas 4kg</span>
           </div>
-          <input  type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+          <input  type="text" class="form-control"  value ={{item.ficha4kg}} aria-label="Username" aria-describedby="basic-addon1">
         </div>
         <div class="input-group input-group-sm mb-3 col-3">
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1">Fichas 8kg</span>
           </div>
-          <input  type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+          <input  type="text" class="form-control"  value ={{item.ficha8kg}} aria-label="Username" aria-describedby="basic-addon1">
         </div>
         <div class="input-group input-group-sm mb-3 col-3">
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1">Secadora</span>
           </div>
-          <input  type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+          <input  type="text" class="form-control" value ={{item.secadora}} aria-label="Username" aria-describedby="basic-addon1">
         </div>
   </div>
 </div>

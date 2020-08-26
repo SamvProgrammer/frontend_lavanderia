@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { direcciones } from '../direcciones';
 import { Observable } from 'rxjs';
+import { R3BoundTarget } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,23 @@ export class DetallefichaService {
     return this.http.get(`${this.url}/${identificador}`);
   }
 
+
+
+
+  public getDetalle(idsucursal, tipo_servicio, empleado, desde, hasta): Observable<any> {
+    let ruta = `${this.url}/${desde}/${hasta}/${idsucursal}/${tipo_servicio}/${empleado} `;
+    console.log(ruta);
+    return this.http.get(ruta);
+  }
+
+
+  public SumaDetalle(idsucursal, tipo_servicio, empleado, desde, hasta): Observable<any> {
+    let ruta = `${this.url}/sumafichas/${desde}/${hasta}/${idsucursal}/${tipo_servicio}/${empleado} `;
+    console.log(ruta);
+    return this.http.get(ruta);
+  }
+
+
   public insert(obj): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -32,6 +50,10 @@ export class DetallefichaService {
     let json = JSON.stringify(obj);
     return this.http.post(this.url, json, httpOptions);
   }
+
+
+
+
 
   public update(obj): Observable<any> {
     const httpOptions = {
