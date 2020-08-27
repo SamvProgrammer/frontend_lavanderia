@@ -269,7 +269,7 @@ html {
 
 
   img{
-    width: inherit;
+     width: 64px;;
   }
 
   .sinSeleccionar{
@@ -279,6 +279,7 @@ html {
     margin: 5px;
     cursor: pointer;
     overflow:auto;
+    margin-left: 16px;
   }
 
   .seleccionado{
@@ -289,5 +290,6 @@ html {
     cursor: pointer;
     border:1px solid white;
     overflow:auto;
+    margin-left: 16px;
   }
   
