@@ -168,6 +168,16 @@
             </div>
           </div>
           <div class="row form group">
+            <div class="input-group input-group-sm mb-3 col-12">
+             <div class="input-group-prepend">
+               <span class="input-group-text" id="basic-addon1">Rol usuario</span>
+             </div>
+              <select formControlName="id_rol" class="custom-select" id="inputGroupSelect">
+                <option  *ngFor="let item of arregloRoles" [value]="item.id">{{item.nombre}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="row form group">
            <div class="input-group input-group-sm mb-3 col-12">
             <div class="input-group-prepend">
               <span class="input-group-text" id="basic-addon1">Sucursal</span>
@@ -177,6 +187,7 @@
              </select>
            </div>
          </div>
+        
         </div>
         <div class="modal-footer">
           <button [disabled]="!myForm.valid" type="submit" class="btn btn-success pull-right">

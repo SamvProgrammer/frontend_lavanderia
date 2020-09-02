@@ -7,42 +7,46 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Responsive sidebar template with sliding effect and dropdown menu based on bootstrap 3">
-    <title>Sidebar template</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
-        crossorigin="anonymous">
-    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description"
+    content="Responsive sidebar template with sliding effect and dropdown menu based on bootstrap 3">
+  <title>Sidebar template</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    crossorigin="anonymous">
+  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
- 
+
 </head>
+
 <body>
 
-  <div class="page-wrapper chiller-theme toggled" >
+  <div class="page-wrapper chiller-theme toggled">
     <a style="color: white;" id="show-sidebar" class="btn btn-sm btn-dark" (click)="mostrar();">
       <i class="fas fa-bars" (click)="mostrar();"></i>
     </a>
     <nav id="sidebar" class="sidebar-wrapper">
       <div class="sidebar-content">
         <div class="sidebar-brand">
-          <a >Panel de control LAVAMAX</a>
+          <a>Panel de control LAVAMAX</a>
           <div (click)="cerrar();" id="close-sidebar">
             <i class="fas fa-times"></i>
           </div>
         </div>
         <div class="sidebar-header">
           <div class="user-pic">
-            <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+            <img class="img-responsive img-rounded"
+              src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
               alt="User picture">
           </div>
           <div class="user-info">
-            <span class="user-name">{{usuario}}
-              <strong>{{nombre}}</strong>
+            <span class="user-name">
+              <strong></strong>{{nombre}}
             </span>
-            <span class="user-role">Administrator</span>
+            <span class="user-role">{{nombrerol}}</span>
+            <span class="user-role">{{sucursal.nombre}}</span>
             <span class="user-status">
               <i class="fa fa-circle"></i>
               <span>En línea</span>
@@ -74,87 +78,80 @@
                 <span>Inicio</span>
               </a>
             </li>
-            <li class="sidebar-dropdown ">
+            <li *ngIf="habilitado('sucursales') || habilitado('usuarios') || habilitado('roles')" class="sidebar-dropdown ">
               <a >
                 <i class="fa fa-building"></i>
                 <span>Empresa</span>
-               <!-- <span class="badge badge-pill badge-warning">New</span>-->
+                <!-- <span class="badge badge-pill badge-warning">New</span>-->
               </a>
-              <div class="sidebar-submenu" >
+              <div  class="sidebar-submenu">
                 <ul>
-                  <li>
+                  <li *ngIf="habilitado('sucursales')">
                     <a routerLink="/catalogos/sucursales">Sucursales
                       <!--<span class="badge badge-pill badge-success">Pro</span>-->
                     </a>
                   </li>
-                  <li>
+                  <li *ngIf="habilitado('usuarios')">
                     <a routerLink="/catalogos/usuarios">Usuarios sistema
                       <!--<span class="badge badge-pill badge-success">Pro</span>-->
                     </a>
                   </li>
-                  <li>
-                    <a routerLink="/catalogos/sucursales">Roles usuario
+                  <li *ngIf="habilitado('roles')">
+                    <a routerLink="/catalogos/roles">Roles usuario
                       <!--<span class="badge badge-pill badge-success">Pro</span>-->
                     </a>
                   </li>
                 </ul>
               </div>
             </li>
-            <li class="sidebar-dropdown ">
-              <a >
+            <li *ngIf="habilitado('lineas') || habilitado('productos') || habilitado('unidadmedida') || habilitado('proveedores') || habilitado('clientess')" class="sidebar-dropdown ">
+              <a>
                 <i class="fa fa-book"></i>
                 <span>Cátalogos</span>
-               <!-- <span class="badge badge-pill badge-warning">New</span>-->
+                <!-- <span class="badge badge-pill badge-warning">New</span>-->
               </a>
-              <div class="sidebar-submenu" >
+              <div class="sidebar-submenu">
                 <ul>
-
-                    <li>
-                        <a routerLink="/catalogos/usuarios">Usuarios
-                          <!--<span class="badge badge-pill badge-success">Pro</span>-->
-                        </a>
-                      </li>
-
-                  <li>
+                  <li *ngIf="habilitado('lineas')">
                     <a routerLink="/catalogos/categorias">Lineas
                       <!--<span class="badge badge-pill badge-success">Pro</span>-->
                     </a>
                   </li>
-                  <li>
+                  <li *ngIf="habilitado('productos')">
                     <a routerLink="/catalogos/productos">Productos
                       <!--<span class="badge badge-pill badge-success">Pro</span>-->
                     </a>
                   </li>
-     <li>
+                  <li *ngIf="habilitado('unidadmedida')">
                     <a routerLink="/catalogos/unidadmedida">Unidades de medida
                       <!--<span class="badge badge-pill badge-success">Pro</span>-->
                     </a>
                   </li>
-                
-                  <li>
-                      <a routerLink="/catalogos/proveedores">Proveedores
-                        <!--<span class="badge badge-pill badge-success">Pro</span>-->
-                      </a>
-                    </li>
-                  <li>
+
+                  <li *ngIf="habilitado('proveedores')">
+                    <a routerLink="/catalogos/proveedores">Proveedores
+                      <!--<span class="badge badge-pill badge-success">Pro</span>-->
+                    </a>
+                  </li>
+                  <li *ngIf="habilitado('clientes')">
 
                     <a routerLink="/catalogos/clientes">Clientes
                       <!--<span class="badge badge-pill badge-success">Pro</span>-->
                     </a>
                   </li>
-                 
+
                 </ul>
               </div>
             </li>
-            <li class="sidebar-dropdown ">
-              <a >
+            <li *ngIf="habilitado('servicios')" class="sidebar-dropdown ">
+              <a>
                 <i class="fa fa-building"></i>
                 <span>Ventas</span>
-               <!-- <span class="badge badge-pill badge-warning">New</span>-->
+                <!-- <span class="badge badge-pill badge-warning">New</span>-->
               </a>
-              <div class="sidebar-submenu" >
+              <div class="sidebar-submenu">
                 <ul>
-                  <li>
+                  <li *ngIf="habilitado('servicios')">
                     <a routerLink="/ventas">Ventas
                       <!--<span class="badge badge-pill badge-success">Pro</span>-->
                     </a>
@@ -163,28 +160,12 @@
               </div>
             </li>
             <li class="sidebar-dropdown ">
-              <a >
-                <i class="fa fa-building"></i>
-                <span>Caja registradora</span>
-               <!-- <span class="badge badge-pill badge-warning">New</span>-->
-              </a>
-              <div class="sidebar-submenu" >
-                <ul>
-                  <li>
-                    <a routerLink="/empresa/sucursales">Caja
-                      <!--<span class="badge badge-pill badge-success">Pro</span>-->
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li class="sidebar-dropdown ">
-              <a >
+              <a>
                 <i class="fa fa-building"></i>
                 <span>Inventarios</span>
-               <!-- <span class="badge badge-pill badge-warning">New</span>-->
+                <!-- <span class="badge badge-pill badge-warning">New</span>-->
               </a>
-              <div class="sidebar-submenu" >
+              <div class="sidebar-submenu">
                 <ul>
                   <li>
                     <a routerLink="/empresa/sucursales">Sucursales
@@ -195,12 +176,12 @@
               </div>
             </li>
             <li class="sidebar-dropdown ">
-              <a >
+              <a>
                 <i class="fa fa-building"></i>
                 <span>Servicios</span>
-               <!-- <span class="badge badge-pill badge-warning">New</span>-->
+                <!-- <span class="badge badge-pill badge-warning">New</span>-->
               </a>
-              <div class="sidebar-submenu" >
+              <div class="sidebar-submenu">
                 <ul>
                   <li>
                     <a routerLink="/servicio/detalle-fichas">Detalle de Fichas
@@ -210,44 +191,7 @@
                 </ul>
               </div>
             </li>
-            <li class="sidebar-dropdown ">
-              <a >
-                <i class="fa fa-building"></i>
-                <span>Compras</span>
-               <!-- <span class="badge badge-pill badge-warning">New</span>-->
-              </a>
-              <div class="sidebar-submenu" >
-                <ul>
-                  <li>
-                    <a routerLink="/empresa/sucursales">Compras la proveedor
-                      <!--<span class="badge badge-pill badge-success">Pro</span>-->
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li class="sidebar-dropdown">
-              <a href="#">
-                <i class="fa fa-shopping-cart"></i>
-                <span>Comercio electrónico</span>
-               <!-- <span class="badge badge-pill badge-danger">3</span>-->
-              </a>
-              <div class="sidebar-submenu">
-                <ul>
-                  <li>
-                    <a href="#">Productos
-  
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">Ordenes</a>
-                  </li>
-                  <li>
-                    <a href="#">Tarjeta de crédito</a>
-                  </li>
-                </ul>
-              </div>
-            </li>
+       
             <!--
                  <li class="sidebar-dropdown">
               <a href="#">
@@ -298,42 +242,11 @@
               </div>
             </li>
             -->
-       
-            <li class="sidebar-dropdown">
-              <a href="#">
-                <i class="fa fa-globe"></i>
-                <span>Mapas</span>
-              </a>
-              <div class="sidebar-submenu">
-                <ul>
-                  <li>
-                    <a href="#">Google maps</a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li class="header-menu">
-              <span>Extra</span>
-            </li>
-            <li>
-              <a href="#">
-                <i class="fa fa-book"></i>
-                <span>Documentación</span>
-                <span class="badge badge-pill badge-primary">Beta</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <i class="fa fa-calendar"></i>
-                <span>Calendarios de eventos</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <i class="fa fa-folder"></i>
-                <span>Ejemplos</span>
-              </a>
-            </li>
+
+          
+           
+         
+          
           </ul>
         </div>
         <!-- sidebar-menu  -->
@@ -358,11 +271,11 @@
       </div>
     </nav>
     <!-- sidebar-wrapper  -->
-    <main class="page-content" style="background-color: rgb(243, 243, 243);height: 100%;" >
+    <main class="page-content" style="background-color: rgb(243, 243, 243);height: 100%;">
       <div class="container" style="background-color: rgb(255, 255, 255);">
-        <router-outlet ></router-outlet>
+        <router-outlet></router-outlet>
       </div>
-  
+
     </main>
     <!-- page-content" -->
   </div>

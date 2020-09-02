@@ -6,22 +6,80 @@
     <div class="fadeIn first">
       <img src="../../../assets/img/logo.PNG" id="icon" alt="User Icon" />
     </div>
+    <div *ngIf="inicio == true">
+      <div class="alert alert-success" role="alert">
+        Sucursal {{sucursal.nombre}}
+      </div>
+      <!-- Login Form -->
+      <form [formGroup]="myForm" (ngSubmit)="enviarformulario()">
+        <input formControlName="usuario" #nombrecontrol (click)="elegirUsuario()" type="text" id="login"
+          class="fadeIn second" name="login" placeholder="Usuario">
+        <input formControlName="password" type="password" id="password" class="fadeIn third" name="login"
+          placeholder="Contraseña">
+        <input type="submit" class="fadeIn fourth classpuntero" value="Ingresar" [disabled]="!myForm.valid">
+      </form>
 
-    <!-- Login Form -->
-    <form [formGroup]="myForm" (ngSubmit)="enviarformulario()">
-      <input formControlName="usuario" type="text"  id="login" class="fadeIn second" name="login" placeholder="Usuario">
-      <input formControlName="password" type="password" id="password" class="fadeIn third" name="login" placeholder="Contraseña">
-      <input  type="submit"  class="fadeIn fourth classpuntero" value="Ingresar" [disabled]="!myForm.valid">
-    </form>
+      <div class="alert alert-danger" *ngIf="visible" role="alert">
+        {{mensaje}}
+      </div>
 
-    <div class="alert alert-danger" *ngIf="visible" role="alert">
-      {{mensaje}}
+      <!-- Remind Passowrd -->
+      <div id="formFooter" class="classpuntero">
+        <a class="underlineHover" (click)="mostrarmodal()">¿Olvido su contraseña?</a>
+      </div>
     </div>
 
-    <!-- Remind Passowrd -->
-    <div id="formFooter" class="classpuntero">
-      <a class="underlineHover" (click)="mostrarmodal()" >¿Olvido su contraseña?</a>
+    <div *ngIf="inicio == false">
+      <div class="alert alert-warning" role="alert">
+        Esta es la configuración de inicio, seleccionar la sucursal a trabajar
+      </div>
+      <div class="row">
+        <div (click)="seleccionandoSucursal(indice)"
+          [ngClass]="{'sinSeleccionar': !item.seleccionado, 'seleccionado': item.seleccionado}"
+          *ngFor="let item of sucursales;let indice= index" class="col-3">
+          <img src="../../../assets/img/sucursales.png" alt="" srcset="">
+          <br>
+          <label style="font-size: x-small;"><strong>{{item.nombre}}</strong></label>
+        </div>
+      </div>
+
+      <button style="cursor: pointer;" (click)="sucursalSeleccionadaBtn();" type="button" [disabled]="sucursalSeleccionada" class="btn btn-success btn-lg btn-block">Seleccionar sucursal</button>
+
     </div>
 
+  </div>
+</div>
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background: #3ab4ef;
+      color: white;
+      margin: auto;
+      width: 100%;">
+        <h5 class="modal-title" id="exampleModalLabel">Elegir usuario</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div (click)="seleccionandoC(indice)"
+            [ngClass]="{'sinSeleccionar': !item.seleccionado, 'seleccionado': item.seleccionado}"
+            *ngFor="let item of arreglousuarios;let indice= index" class="col-3">
+            <img src="../../../assets/img/usuario.png" alt="" srcset="">
+            <br>
+            <label style="font-size: x-small;"><strong>{{item.usuario}}</strong></label>
+            <br>
+            <label style="font-size: x-small;">{{item.roles.nombre}}</label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" (click)="btnSeleccionando()" class="btn btn-success"
+          [disabled]="botonDesabilitado">Seleccionar</button>
+      </div>
+    </div>
   </div>
 </div>

@@ -17,6 +17,7 @@ import { UnidadesMedidasService } from './providers/unidades-medidas.service';
 import { ProveedoresService } from './providers/proveedores.service';
 import { CategoriasService } from './providers/categorias.service';
 import { ProductosService } from './providers/productos.service';
+import { RolesService } from './providers/roles.service';
 
 import { PanelControlComponent } from './administracion/panel-control/panel-control.component';
 import { UsuariosComponent } from './administracion/usuarios/usuarios.component';
@@ -34,6 +35,8 @@ import { VentasComponent } from './administracion/ventas/ventas.component';
 import { DetalleFichasComponent } from './administracion/detalle-fichas/detalle-fichas.component';
 import { CatClientesComponent } from './administracion/catalogos/cat-clientes/cat-clientes.component';
 import { CatProductosComponent } from './administracion/catalogos/cat-productos/cat-productos.component';
+import { RolesComponent } from './administracion/roles/roles.component';
+import { CatMenuComponent } from './administracion/catalogos/cat-menu/cat-menu.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +59,9 @@ import { CatProductosComponent } from './administracion/catalogos/cat-productos/
     VentasComponent,
     DetalleFichasComponent,
     CatClientesComponent,
-    CatProductosComponent
+    CatProductosComponent,
+    RolesComponent,
+    CatMenuComponent
 
   ],
   imports: [
@@ -75,7 +80,8 @@ import { CatProductosComponent } from './administracion/catalogos/cat-productos/
     UnidadesMedidasService,
     ProveedoresService,
     CategoriasService,
-    ProductosService
+    ProductosService,
+    RolesService 
   ],
   bootstrap: [AppComponent]
 })

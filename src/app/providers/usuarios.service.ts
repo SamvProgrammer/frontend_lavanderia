@@ -10,7 +10,7 @@ export class UsuariosService {
 
   public url: string = "";
   public usuario:any;
-  
+  public sucursal:any;
 
   constructor(public http: HttpClient) {
     this.url = direcciones.usuarios;
@@ -18,6 +18,9 @@ export class UsuariosService {
 
   public obtenerAll():Observable<any>{
       return this.http.get(this.url);
+  }
+  public obtenerAllSucursal(id_sucursal):Observable<any>{
+      return this.http.get(this.url+"?id_sucursal="+id_sucursal);
   }
   public insertar(obj):Observable<any>{
     const httpOptions = {
@@ -52,6 +55,14 @@ export class UsuariosService {
 
   public setUsuario(obj){
     this.usuario = obj;
+  }
+
+  public setSucursal(obj){
+    this.sucursal = obj;
+  }
+
+  public getSucursal(){
+     return this.sucursal;
   }
 
 }

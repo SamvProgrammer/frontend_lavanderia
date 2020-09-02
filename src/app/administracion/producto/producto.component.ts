@@ -98,7 +98,7 @@ export class ProductoComponent implements OnInit {
   public recibir($evento){
     $('#myModalCategoria').modal('hide');
     
-     console.log($evento);
+    
      this.clasificacionId.nativeElement.value = $evento.id;
      this.clasificacionNombre.nativeElement.value = $evento.nombre;
   }
