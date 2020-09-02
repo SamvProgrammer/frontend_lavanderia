@@ -9,6 +9,9 @@ export const direcciones: any = {
     "categorias": `${ip}/api/clasificacion`,
     "productos": `${ip}/api/productos`,
     "clientes": `${ip}/api/clientes`,
-    "fichas": `${ip}/api/serviciodetalles`
+    "fichas": `${ip}/api/serviciodetalles`,
+    "reportes": `${ip}/reportes`
+
+
 
 }
