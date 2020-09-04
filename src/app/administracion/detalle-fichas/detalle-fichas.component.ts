@@ -86,14 +86,14 @@ export class DetalleFichasComponent implements OnInit {
       console.log(idsucursal);
 
       if (idsucursal != 0 && tipo_servicio != 0 && empleado != 0) {
-       // document.location.href = (`https://docs.google.com/viewer?url=${direcciones.reportes}/servicio/${desde}/${hasta}/${idsucursal}/${tipo_servicio}/${empleado}/pdf`);
+        document.location.href = (`https://docs.google.com/viewer?url=${direcciones.reportes}/servicio/${desde}/${hasta}/${idsucursal}/${tipo_servicio}/${empleado}/pdf`);
         console.log('llego0');
         console.log(idsucursal);
         console.log(tipo_servicio);
         console.log(empleado);
       }
       if (idsucursal == 0 && tipo_servicio == 0 && empleado == 0) {
-    //    document.location.href = (`https://docs.google.com/viewer?url=${direcciones.reportes}/servicio/solo/${desde}/${hasta}/pdf`);
+        document.location.href = (`https://docs.google.com/viewer?url=${direcciones.reportes}/servicio/solo/${desde}/${hasta}/pdf`);
         console.log('llego1');
         console.log(idsucursal);
         console.log(tipo_servicio);
@@ -101,14 +101,14 @@ export class DetalleFichasComponent implements OnInit {
       }
 
       if (idsucursal != 0 && tipo_servicio == 0 && empleado != 0) {
-      //  document.location.href = (`https://docs.google.com/viewer?url=${direcciones.reportes}/servicio/noservicio/${desde}/${hasta}/pdf`);
+        document.location.href = (`https://docs.google.com/viewer?url=${direcciones.reportes}/servicio/noservicio/${desde}/${hasta}/pdf`);
         console.log('llego3');
         console.log(idsucursal);
         console.log(tipo_servicio);
         console.log(empleado);
       }
       if (idsucursal == 0 && tipo_servicio != 0 && empleado != 0) {
-       // document.location.href = (`https://docs.google.com/viewer?url=${direcciones.reportes}/servicio/nosucursal/${desde}/${hasta}/pdf`);
+        document.location.href = (`https://docs.google.com/viewer?url=${direcciones.reportes}/servicio/nosucursal/${desde}/${hasta}/pdf`);
         console.log('llego4');
         console.log(idsucursal);
         console.log(tipo_servicio);
