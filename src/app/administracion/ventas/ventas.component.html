@@ -26,7 +26,7 @@
 <div class="row">
   <div style="margin-left: 3%;" class="input-group form-check form-check-inline col-4">
     <label class="custom-control custom-checkbox">
-      <input [(ngModel)]="clientebool" type="checkbox" class="custom-control-input">
+      <input [(ngModel)]="clientebool" type="checkbox" #checkUser class="custom-control-input">
       <span class="custom-control-indicator"></span>
       <span class="custom-control-description">Incluir cliente</span>
 </label>
@@ -42,6 +42,7 @@
     <div for="buscarclientes" class="input-group-prepend">
       <span class="input-group-text" id="basic-addon1">Datos del cliente</span>
     </div>
+    <input type="hidden" #id_cliente>
     <input #nombrecliente disabled  type="text" class="form-control" placeholder="Nombre y apellido" aria-label="Username" aria-describedby="basic-addon1">
     <input #apellidocliente disabled type="text" class="form-control" placeholder="Dirección" aria-label="Username" aria-describedby="basic-addon1">
     <span class="input-group-btn">
@@ -88,7 +89,7 @@
     <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon1">Servicio</span>
     </div>
-    <select [(ngModel)]="valorservicio" class="form-control form-control text-uppercase"  type="text">
+    <select [(ngModel)]="valorservicio" #objValorService class="form-control form-control text-uppercase"  type="text">
       <option value="true" selected>Autoservicio</option>
       <option value="false">Servicio por engargo</option>
     </select>
@@ -97,13 +98,13 @@
     <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon1">Fecha de entrega</span>
     </div>
-    <input   type="date" class=""  aria-label="Username" aria-describedby="basic-addon1">
+    <input  #objDateEntrega  type="date" class=""  aria-label="Username" aria-describedby="basic-addon1">
   </div>
   <div *ngIf="valorservicio != 'true'" class="input-group input-group-sm mb-3 col-4">
     <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon1">Hora</span>
     </div>
-    <input   type="time" class=""  aria-label="Username" aria-describedby="basic-addon1">
+    <input #objTimeEntrega   type="time" class=""  aria-label="Username" aria-describedby="basic-addon1">
   </div>
 </div>
 <div *ngIf="!conventa.conventa" class="row form-group">

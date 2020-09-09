@@ -18,6 +18,7 @@ import { ProveedoresService } from './providers/proveedores.service';
 import { CategoriasService } from './providers/categorias.service';
 import { ProductosService } from './providers/productos.service';
 import { RolesService } from './providers/roles.service';
+import { ServiciosService } from './providers/servicios.service';
 
 import { PanelControlComponent } from './administracion/panel-control/panel-control.component';
 import { UsuariosComponent } from './administracion/usuarios/usuarios.component';
@@ -37,6 +38,7 @@ import { CatClientesComponent } from './administracion/catalogos/cat-clientes/ca
 import { CatProductosComponent } from './administracion/catalogos/cat-productos/cat-productos.component';
 import { RolesComponent } from './administracion/roles/roles.component';
 import { CatMenuComponent } from './administracion/catalogos/cat-menu/cat-menu.component';
+
 
 @NgModule({
   declarations: [
@@ -81,7 +83,8 @@ import { CatMenuComponent } from './administracion/catalogos/cat-menu/cat-menu.c
     ProveedoresService,
     CategoriasService,
     ProductosService,
-    RolesService 
+    RolesService ,
+    ServiciosService
   ],
   bootstrap: [AppComponent]
 })
