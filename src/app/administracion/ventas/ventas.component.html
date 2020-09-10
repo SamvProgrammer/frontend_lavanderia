@@ -26,7 +26,7 @@
 <div class="row">
   <div style="margin-left: 3%;" class="input-group form-check form-check-inline col-4">
     <label class="custom-control custom-checkbox">
-      <input [(ngModel)]="clientebool" type="checkbox" #checkUser class="custom-control-input">
+      <input [(ngModel)]="clientebool" type="checkbox" #checkUser class="custom-control-input"  [disabled]="conventa.conventa">
       <span class="custom-control-indicator"></span>
       <span class="custom-control-description">Incluir cliente</span>
 </label>
@@ -45,8 +45,8 @@
     <input type="hidden" #id_cliente>
     <input #nombrecliente disabled  type="text" class="form-control" placeholder="Nombre y apellido" aria-label="Username" aria-describedby="basic-addon1">
     <input #apellidocliente disabled type="text" class="form-control" placeholder="Dirección" aria-label="Username" aria-describedby="basic-addon1">
-    <span class="input-group-btn">
-      <button id="buscarclientes" class="btn btn-theme" type="button" (click)="abriClientes();" ><i class="fa fa-search"></i></button>
+    <span *ngIf="!conventa.conventa" class="input-group-btn">
+      <button #btnBuscar id="buscarclientes" class="btn btn-theme" type="button" (click)="abriClientes();" ><i class="fa fa-search"></i></button>
       </span>
   </div>
 </div>
@@ -69,13 +69,13 @@
     <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon1">No. Servicio</span>
     </div>
-    <input disabled type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+    <input [value]="venta.idservicio" disabled type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
   </div>
   <div class="input-group input-group-sm mb-3 col-3">
     <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon1">Fecha</span>
     </div>
-    <input disabled  type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+    <input disabled [value]="venta.fecha" type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
   </div>
   <div class="input-group input-group-sm mb-3 col-3">
     <div class="input-group-prepend">
@@ -89,7 +89,7 @@
     <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon1">Servicio</span>
     </div>
-    <select [(ngModel)]="valorservicio" #objValorService class="form-control form-control text-uppercase"  type="text">
+    <select [(ngModel)]="valorservicio" #objValorService class="form-control form-control text-uppercase"  type="text"  [disabled]="conventa.conventa">
       <option value="true" selected>Autoservicio</option>
       <option value="false">Servicio por engargo</option>
     </select>
@@ -98,13 +98,13 @@
     <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon1">Fecha de entrega</span>
     </div>
-    <input  #objDateEntrega  type="date" class=""  aria-label="Username" aria-describedby="basic-addon1">
+    <input [disabled]="conventa.conventa"  #objDateEntrega  type="date" class=""  aria-label="Username" aria-describedby="basic-addon1">
   </div>
   <div *ngIf="valorservicio != 'true'" class="input-group input-group-sm mb-3 col-4">
     <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon1">Hora</span>
     </div>
-    <input #objTimeEntrega   type="time" class=""  aria-label="Username" aria-describedby="basic-addon1">
+    <input [disabled]="conventa.conventa" #objTimeEntrega   type="time" class=""  aria-label="Username" aria-describedby="basic-addon1">
   </div>
 </div>
 <div *ngIf="!conventa.conventa" class="row form-group">
@@ -254,4 +254,62 @@ border-color: #f8f9fa;" type="button" class="btn btn-light "><i class="fa fa-cog
 
 <div class="modal fade miclase" style="background: #0000006e;" id="myModalProductos">
   <app-cat-productos  (eventoFunciones)="recibirProducto($event)"></app-cat-productos>  
+</div>
+
+<div class="modal fade miclase" style="background: #0000006e;" id="myModalVentas">
+  <div class="modal-dialog  modal-dialog-scrollable">
+    <form >
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div  class="modal-header cabecera">
+          <h4 class="modal-title" >Ventas activas</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="row" style="height: 100%;">
+            <div class="col-12">
+              <table  *ngIf="arregloVentas.length != 0"   class="table table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Id Servicio</th>
+                    <th>Fecha del servicio</th>
+                    <th>Tipo Servicio</th>
+                  </tr>
+                </thead>
+                <tbody>
+          
+                  <tr style="cursor: pointer;" *ngFor="let item of arregloVentas;let indice = index;" (click)="seleccionar(item,indice)" [ngClass]="{'seleccionado' : item.seleccionado}">
+                    <td scope="row">{{indice+1}}</td>
+                    <td>{{item.idservicio}}</td>
+                    <td>{{item.fecha}}</td>
+                    <td>{{(tipoServicio == 1) ? 'POR ENCARGO':'AUTOSERVICIO' }}</td>
+                  </tr>
+          
+                </tbody>
+              </table>
+              <div *ngIf="arregloVentas.length == 0" class="alert alert-danger text-center" role="alert">
+                <strong></strong> Sin registros en las tablas
+              </div>
+            </div>
+          </div>
+          
+      
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button [disabled]="desabilitar" (click)="seleccionarItem()"  type="submit"  class="btn btn-success pull-right">
+            <i class="fa fa-check"></i> Seleccionar</button>
+          <button type="button" class="btn" data-dismiss="modal">
+            <i class="fa fa-close"></i>Cerrar</button>
+  
+        </div>
+  
+      </div>
+    </form>
+  </div>
 </div>
