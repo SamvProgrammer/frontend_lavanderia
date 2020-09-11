@@ -27,8 +27,6 @@ export class SucursalesComponent implements OnInit {
 
     this.sucursalesPrd.getAll().subscribe(datos =>{
       this.arreglo = datos;
-
-      console.log("Se ejecuta la tabla");
       $('#tablaSucursales').DataTable({
         "language": {
             "lengthMenu": "Visualizar _MENU_ registros por página",
@@ -80,8 +78,6 @@ export class SucursalesComponent implements OnInit {
     let arregloAux = this.arreglo;
     alertify.set({ buttonReverse: true });
     alertify.confirm("¿Desea eliminar el registro?", function (e) {
-      console.log("Despuez del evento");
-      console.log(auxSucursales);
       if (e) {       
         
         auxSucursales.delete(id).subscribe(respu => {
@@ -107,8 +103,6 @@ export class SucursalesComponent implements OnInit {
     } else {
       this.sucursalesPrd.update(obj).subscribe(datos => {
         alertify.success("Sucursal actualizada correctamente");
-        console.log("Este es el indice");
-        console.log(this.indice);
         this.arreglo.splice(this.indice,1,datos);
       });
     }

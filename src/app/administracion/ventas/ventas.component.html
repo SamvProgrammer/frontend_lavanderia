@@ -26,7 +26,7 @@
 <div class="row">
   <div style="margin-left: 3%;" class="input-group form-check form-check-inline col-4">
     <label class="custom-control custom-checkbox">
-      <input [(ngModel)]="clientebool" type="checkbox" #checkUser class="custom-control-input"  [disabled]="conventa.conventa">
+      <input [(ngModel)]="venta.checkUser" type="checkbox" #checkUser class="custom-control-input"  [disabled]="conventa.conventa">
       <span class="custom-control-indicator"></span>
       <span class="custom-control-description">Incluir cliente</span>
 </label>
@@ -37,14 +37,14 @@
     </label>
   </div>
 </div>
-<div class="form-group  row" *ngIf="clientebool">
+<div class="form-group  row" *ngIf="venta.checkUser">
   <div class="input-group input-group-sm col-12">
     <div for="buscarclientes" class="input-group-prepend">
       <span class="input-group-text" id="basic-addon1">Datos del cliente</span>
     </div>
     <input type="hidden" #id_cliente>
-    <input #nombrecliente disabled  type="text" class="form-control" placeholder="Nombre y apellido" aria-label="Username" aria-describedby="basic-addon1">
-    <input #apellidocliente disabled type="text" class="form-control" placeholder="Dirección" aria-label="Username" aria-describedby="basic-addon1">
+    <input  disabled [value]="venta.cliente.nombre + ' - '+ venta.cliente.apellido"  type="text" class="form-control" placeholder="Nombre y apellido" aria-label="Username" aria-describedby="basic-addon1">
+    <input  disabled [value]="venta.cliente.direccion" type="text" class="form-control" placeholder="Dirección" aria-label="Username" aria-describedby="basic-addon1">
     <span *ngIf="!conventa.conventa" class="input-group-btn">
       <button #btnBuscar id="buscarclientes" class="btn btn-theme" type="button" (click)="abriClientes();" ><i class="fa fa-search"></i></button>
       </span>
@@ -89,22 +89,22 @@
     <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon1">Servicio</span>
     </div>
-    <select [(ngModel)]="valorservicio" #objValorService class="form-control form-control text-uppercase"  type="text"  [disabled]="conventa.conventa">
+    <select [(ngModel)]="venta.valorservicio"  class="form-control form-control text-uppercase"  type="text"  [disabled]="conventa.conventa">
       <option value="true" selected>Autoservicio</option>
       <option value="false">Servicio por engargo</option>
     </select>
   </div>
-  <div *ngIf="valorservicio != 'true'" class="input-group input-group-sm mb-3 col-4">
+  <div *ngIf="venta.valorservicio != 'true'" class="input-group input-group-sm mb-3 col-4">
     <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon1">Fecha de entrega</span>
     </div>
-    <input [disabled]="conventa.conventa"  #objDateEntrega  type="date" class=""  aria-label="Username" aria-describedby="basic-addon1">
+    <input [disabled]="conventa.conventa"   [(ngModel)]="venta.fechaentrega"  type="date" class=""  aria-label="Username" aria-describedby="basic-addon1">
   </div>
-  <div *ngIf="valorservicio != 'true'" class="input-group input-group-sm mb-3 col-4">
+  <div *ngIf="venta.valorservicio != 'true'" class="input-group input-group-sm mb-3 col-4">
     <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon1">Hora</span>
     </div>
-    <input [disabled]="conventa.conventa" #objTimeEntrega   type="time" class=""  aria-label="Username" aria-describedby="basic-addon1">
+    <input [disabled]="conventa.conventa"    type="time" class=""  aria-label="Username" aria-describedby="basic-addon1" [(ngModel)]="venta.hora">
   </div>
 </div>
 <div *ngIf="!conventa.conventa" class="row form-group">
@@ -223,13 +223,13 @@
  z-index: 100;
  left: 20%;">
 
-<button style="margin:auto ;    color: #ffffff;
+<button (click)="nuevoTicket()"  style="margin:auto ;    color: #ffffff;
 background-color: #00903ab8;
 border-color: #f8f9fa;" type="button" class="btn btn-light "><i class="fa fa-plus"></i>Nuevo</button>
 <button style="margin:auto ;    color: #ffffff;
 background-color: #686868b8;
 border-color: #f8f9fa;" type="button" class="btn btn-light "><i class="fa fa-print"></i>Imprimir</button>
-<button style="margin:auto ;    color: #ffffff;
+<button  (click)="cancelarTicket()" style="margin:auto ;    color: #ffffff;
 background-color: #e80c0cb8;
 border-color: #f8f9fa;" type="button" class="btn btn-light "><i class="fa fa-close"></i>Cancelar</button>
 <button style="margin:auto ;    color: #ffffff;

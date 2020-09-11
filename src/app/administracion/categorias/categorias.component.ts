@@ -33,8 +33,6 @@ export class CategoriasComponent implements OnInit {
 
     this.categoriasPrd.getAll().subscribe(datos => {
       this.arreglo = datos;
-
-      console.log("Se ejecuta la tabla");
     });
 
     this.sucursalesPrd.getAll().subscribe(datos => {
@@ -59,7 +57,6 @@ export class CategoriasComponent implements OnInit {
 
 
   public abrir(obj, index): any {
-    console.log(obj);
     this.productos = [];
     $('#myModal').modal('show');
     if (obj == undefined) {
@@ -81,7 +78,6 @@ export class CategoriasComponent implements OnInit {
     let arregloAux = this.arreglo;
     alertify.set({ buttonReverse: true });
     alertify.confirm("¿Desea eliminar el registro?", function (e) {
-      console.log(auxSucursales);
       if (e) {
 
         auxSucursales.delete(id).subscribe(respu => {
@@ -101,7 +97,6 @@ export class CategoriasComponent implements OnInit {
       id:obj.id_sucursal
     }
 
-    console.log(obj);
     $('#myModal').modal('hide');
     if (this.ingresar) {
       this.categoriasPrd.insert(obj).subscribe(datos => {
@@ -112,8 +107,6 @@ export class CategoriasComponent implements OnInit {
     } else {
       this.categoriasPrd.update(obj).subscribe(datos => {
         alertify.success("Categoría actualizada correctamente");
-        console.log("Este es el indice");
-        console.log(this.indice);
         this.arreglo.splice(this.indice, 1, datos);
       });
     }

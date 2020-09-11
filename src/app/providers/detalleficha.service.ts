@@ -28,14 +28,12 @@ export class DetallefichaService {
 
   public getDetalle(idsucursal, tipo_servicio, empleado, desde, hasta): Observable<any> {
     let ruta = `${this.url}/${desde}/${hasta}/${idsucursal}/${tipo_servicio}/${empleado} `;
-    console.log(ruta);
     return this.http.get(ruta);
   }
 
 
   public SumaDetalle(idsucursal, tipo_servicio, empleado, desde, hasta): Observable<any> {
     let ruta = `${this.url}/sumafichas/${desde}/${hasta}/${idsucursal}/${tipo_servicio}/${empleado} `;
-    console.log(ruta);
     return this.http.get(ruta);
   }
 

@@ -34,12 +34,10 @@ export class DetalleFichasComponent implements OnInit {
 
     this.usariosPrd.obtenerAll().subscribe(datos => {
       this.arregloUsuarios = datos;
-      console.log(datos);
     });
 
     this.susrsalesPrd.getAll().subscribe(datos1 => {
       this.arregloSucursales = datos1
-      console.log(datos1);
     });
 
 
@@ -65,54 +63,30 @@ export class DetalleFichasComponent implements OnInit {
     let desde = obj.desde;
     let hasta = obj.hasta;
 
-    console.log(obj);
-    console.log(this.tipoboton);
 
     if (this.tipoboton === false) {
       this.detallefichaServ.getDetalle(idsucursal, tipo_servicio, empleado, desde, hasta).subscribe(detalle => {
         this.arregloDetalleGrid = detalle;
-        console.log(this.parametro);
 
-        console.log('detalle' + detalle);
       });
       this.detallefichaServ.SumaDetalle(idsucursal, tipo_servicio, empleado, desde, hasta).subscribe(suma => {
         this.arregloSuma = suma;
-        console.log('suma' + suma);
       });
     }
 
     if (this.tipoboton === true) {
-
-      console.log(idsucursal);
-
       if (idsucursal != 0 && tipo_servicio != 0 && empleado != 0) {
         document.location.href = (`https://docs.google.com/viewer?url=${direcciones.reportes}/servicio/${desde}/${hasta}/${idsucursal}/${tipo_servicio}/${empleado}/pdf`);
-        console.log('llego0');
-        console.log(idsucursal);
-        console.log(tipo_servicio);
-        console.log(empleado);
       }
       if (idsucursal == 0 && tipo_servicio == 0 && empleado == 0) {
         document.location.href = (`https://docs.google.com/viewer?url=${direcciones.reportes}/servicio/solo/${desde}/${hasta}/pdf`);
-        console.log('llego1');
-        console.log(idsucursal);
-        console.log(tipo_servicio);
-        console.log(empleado);
       }
 
       if (idsucursal != 0 && tipo_servicio == 0 && empleado != 0) {
         document.location.href = (`https://docs.google.com/viewer?url=${direcciones.reportes}/servicio/noservicio/${desde}/${hasta}/pdf`);
-        console.log('llego3');
-        console.log(idsucursal);
-        console.log(tipo_servicio);
-        console.log(empleado);
       }
       if (idsucursal == 0 && tipo_servicio != 0 && empleado != 0) {
         document.location.href = (`https://docs.google.com/viewer?url=${direcciones.reportes}/servicio/nosucursal/${desde}/${hasta}/pdf`);
-        console.log('llego4');
-        console.log(idsucursal);
-        console.log(tipo_servicio);
-        console.log(empleado);
       }
 
     }

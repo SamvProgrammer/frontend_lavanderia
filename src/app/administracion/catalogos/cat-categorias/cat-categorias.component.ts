@@ -17,8 +17,6 @@ export class CatCategoriasComponent implements OnInit {
 
     this.categoriasPrd.getAll().subscribe(datos =>{
       this.arreglo = datos;
-
-      console.log("Se ejecuta la tabla");
     });
 
 

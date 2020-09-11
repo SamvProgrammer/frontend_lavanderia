@@ -25,8 +25,6 @@ export class UnidadesMedidaComponent implements OnInit {
 
     this.medidasPrd.getAll().subscribe(datos =>{
       this.arreglo = datos;
-
-      console.log("Se ejecuta la tabla");
     });
 
    
@@ -46,8 +44,6 @@ export class UnidadesMedidaComponent implements OnInit {
 
 
   public abrir(obj,index): any {
-    console.log("CUANDO SE ABRE LA MODAL");
-    console.log(obj);
     $('#myModal').modal('show');
     if (obj == undefined) {
       $("#titulo").text("Ingresar Unidad de medida");
@@ -67,8 +63,6 @@ export class UnidadesMedidaComponent implements OnInit {
     let arregloAux = this.arreglo;
     alertify.set({ buttonReverse: true });
     alertify.confirm("¿Desea eliminar el registro?", function (e) {
-      console.log("Despuez del evento");
-      console.log(auxSucursales);
       if (e) {       
         
         auxSucursales.delete(id).subscribe(respu => {
@@ -94,8 +88,6 @@ export class UnidadesMedidaComponent implements OnInit {
     } else {
       this.medidasPrd.update(obj).subscribe(datos => {
         alertify.success("Unidad de medida actualizada correctamente");
-        console.log("Este es el indice");
-        console.log(this.indice);
         this.arreglo.splice(this.indice,1,datos);
       });
     }

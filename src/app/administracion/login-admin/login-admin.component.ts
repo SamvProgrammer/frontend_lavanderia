@@ -67,7 +67,6 @@ export class LoginAdminComponent implements OnInit {
     }
 
     this.loginPrd.ingresarSistema(enviar).subscribe(datos => {
-      console.log("Entra adentor del suscribe");
       this.visible = false;
 
       this.loginPrd.guardarusuario(datos, true);
@@ -85,7 +84,6 @@ export class LoginAdminComponent implements OnInit {
   }
 
   public elegirUsuario() {
-    console.log("ELEGIR EL USUARIO");
     $("#myModal").modal('show');
 
   }
@@ -101,7 +99,6 @@ export class LoginAdminComponent implements OnInit {
   }
 
   public btnSeleccionando(nombreusuario) {
-    console.log(nombreusuario);
     this.campoUsuario.nativeElement.value = this.arreglousuarios[this.indexGlobal].usuario;
     $("#myModal").modal('hide');
   }

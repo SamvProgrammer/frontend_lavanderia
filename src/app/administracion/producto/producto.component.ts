@@ -47,7 +47,6 @@ export class ProductoComponent implements OnInit {
     });
 
     this.productosPrd.getAll().subscribe(datos =>{
-      console.log("Esto se produce");
        this.arreglo = datos;
     });
 
@@ -127,8 +126,6 @@ export class ProductoComponent implements OnInit {
     let arregloAux = this.arreglo;
     alertify.set({ buttonReverse: true });
     alertify.confirm("¿Desea eliminar el registro?", function (e) {
-      console.log("Despuez del evento");
-      console.log(auxSucursales);
       if (e) {       
         
         auxSucursales.delete(id).subscribe(respu => {
@@ -154,10 +151,7 @@ export class ProductoComponent implements OnInit {
     obj.sucursales = {
       id:obj.id_sucursal
     }
-   
 
-    console.log("objeto a enviar");
-    console.log(obj);
     
     $('#myModal').modal('hide');
     if (this.ingresar) {
@@ -171,9 +165,6 @@ export class ProductoComponent implements OnInit {
     } else {
       this.productosPrd.update(obj).subscribe(datos => {
         alertify.success("Producto actualizado correctamente");
-        console.log("Este es el indice");
-        console.log(this.indice);
-        console.log(datos);
         this.arreglo.splice(this.indice,1,datos);
       });
     }

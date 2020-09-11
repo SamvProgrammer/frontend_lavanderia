@@ -65,7 +65,6 @@ export class RolesComponent implements OnInit {
     let arregloAux = this.arreglo;
     alertify.set({ buttonReverse: true });
     alertify.confirm("¿Desea eliminar el registro?", function (e) {
-      console.log(auxSucursales);
       if (e) {       
         
         auxSucursales.delete(id).subscribe(respu => {
@@ -96,8 +95,6 @@ export class RolesComponent implements OnInit {
     } else {
       this.rolesPrd.update(obj).subscribe(datos => {
         alertify.success("Rol actualizado correctamente");
-        console.log("Este es el indice");
-        console.log(this.indice);
         this.arreglo.splice(this.indice,1,datos);
       });
     }
