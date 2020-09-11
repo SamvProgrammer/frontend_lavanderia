@@ -38,6 +38,7 @@ import { CatClientesComponent } from './administracion/catalogos/cat-clientes/ca
 import { CatProductosComponent } from './administracion/catalogos/cat-productos/cat-productos.component';
 import { RolesComponent } from './administracion/roles/roles.component';
 import { CatMenuComponent } from './administracion/catalogos/cat-menu/cat-menu.component';
+import { MovimientosInventarioComponent } from './administracion/movimientos-inventario/movimientos-inventario.component';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import { CatMenuComponent } from './administracion/catalogos/cat-menu/cat-menu.c
     CatClientesComponent,
     CatProductosComponent,
     RolesComponent,
-    CatMenuComponent
+    CatMenuComponent,
+    MovimientosInventarioComponent
 
   ],
   imports: [
