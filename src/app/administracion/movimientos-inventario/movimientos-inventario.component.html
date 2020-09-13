@@ -15,7 +15,7 @@
     <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon1">Tipo de Movimiento</span>
     </div>
-    <select formControlName="idsucursal" class="form-control form-control text-uppercase"  type="text">
+    <select formControlName="movimiento" class="form-control form-control text-uppercase"  type="text">
       <option value='0'>Entrada </option>
       <option value='1'>Salida</option>
       <option value='2'>Traspaso</option>
@@ -27,11 +27,8 @@
     <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon1">Ubicación</span>
     </div>
-    <select formControlName="tipo_servicio"  class="form-control form-control text-uppercase"  type="text">
-      <option value='1'>BODEGA1</option>
-      <option value='2'>BODEGA2</option>
-      <option value='0'>Todos</option>
-
+    <select formControlName="bodega"  class="form-control form-control text-uppercase"  type="text">
+      <option  *ngFor ="let item of arregloSucursales" value= {{item.id}}>{{item.nombre}}</option>    
     </select>
   </div>
 </div>
@@ -58,11 +55,11 @@
       </thead>
       <tbody>
 
-        <tr *ngFor="let item of arreglo;let indice = index;">
+        <tr *ngFor="let item of arregloTablas;let indice = index;">
           <td scope="row">{{indice+1}}</td>
-          <td>{{item.nombrecompania}}</td>
           <td>{{item.nombre}}</td>
-          <td>{{item.ciudad}}  </td>
+          <td>{{item.unidadmedida}}</td>
+          <td>{{item.cantidad}}  </td>
          
        
 
@@ -105,9 +102,7 @@
             </label>
           </div>
             <div class="col text-right">
-              <button type="button" class="btn btn-default" (click)="abrirProductos()">
-                <i class="fa fa-plus"></i>
-              </button>
+
               <app-cat-productos  (eventoFunciones)="recibirProducto($event)"></app-cat-productos>  
           </div>
           <div class="form-group row">
@@ -120,14 +115,14 @@
               <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">Cantidad&nbsp;</span>
               </div>
-              <input formControlName="nombre" type="number" class="form-control" placeholder="Ingresar Cantidad" aria-label="Username" aria-describedby="basic-addon1">
+              <input formControlName="cantidad" type="number" class="form-control" placeholder="Ingresar Cantidad" aria-label="cantidad" aria-describedby="basic-addon1">
             </div>
           </div>
         </div>
 
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button [disabled]="!myForm.valid"  type="submit"  class="btn btn-success pull-right">
+          <button [disabled]="!myForm.valid"  (click)="enviaObjeto()" class="btn btn-success pull-right">
             <i class="fa fa-check"></i> Guardar</button>
           <button type="button" class="btn" data-dismiss="modal">
             <i class="fa fa-close"></i>Cerrar</button>
@@ -137,7 +132,7 @@
       </div>
     </form>
   </div>
-</div>
+
 
 
 <div class="modal fade miclase" style="background: #0000006e;" id="myModalProductos">
