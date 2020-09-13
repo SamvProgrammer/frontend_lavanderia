@@ -17,8 +17,6 @@ export class CatClientesComponent implements OnInit {
 
     this.clientesPrd.getAll().subscribe(datos =>{
       this.arreglo = datos;
-
-      console.log("Se ejecuta la tabla");
     });
 
 

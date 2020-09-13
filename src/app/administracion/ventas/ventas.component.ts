@@ -11,34 +11,32 @@ declare var alertify: any;
   styleUrls: ['./ventas.component.css']
 })
 export class VentasComponent implements OnInit {
-  @ViewChild("nombrecliente") nombreClienteId: ElementRef;
-  @ViewChild("apellidocliente") apellidoClienteId: ElementRef;
-  @ViewChild("objValorService") objValorService: ElementRef;
-  @ViewChild("objDateEntrega") objDateEntrega: ElementRef;
-  @ViewChild("objTimeEntrega") objTimeEntrega: ElementRef;
-  @ViewChild("checkUser") checkUser: ElementRef;
-  @ViewChild("id_cliente") id_cliente: ElementRef;
+
 
   public usuarios;
-  public clientebool: boolean = false;
-  public valorservicio: boolean = false;
   public arregloProductos: any = [];
-  public desabilitar:boolean = false;
+  public desabilitar: boolean = false;
   public indexSeleccionado;
   public venta = {
     generarServicio: undefined,
-    idcliente: undefined,
-    fecha: new Date().toLocaleDateString(),
+    fecha: new Date(),
     tipoServicio: undefined,
     idsucursal: undefined,
     fechaentrega: undefined,
     hora: undefined,
     idempleado: undefined,
-    idservicio: 0
-
+    idservicio: 0,
+    cliente: {
+      id: undefined,
+      nombre: "",
+      apellido: "",
+      direccion: ""
+    },
+    valorservicio: "false",
+    checkUser: false
   }
 
-  public arregloVentas:any = [];
+  public arregloVentas: any = [];
   public conventa: any = {
     conventa: false
   };
@@ -46,12 +44,17 @@ export class VentasComponent implements OnInit {
 
   ngOnInit() {
     this.usuarios = this.usuariosPrd.getUsuario();
-    this.serviciosPrd.getVentas(false).subscribe(datos =>{
-      console.log("Esto es lpo que trae2");
-      console.log(datos);
+    this.serviciosPrd.getVentas(false).subscribe(datos => {
       this.arregloVentas = datos;
-      if(this.arregloVentas.length > 1){
-       $('#myModalVentas').modal('show');
+      if (this.arregloVentas.length > 1) {
+        $('#myModalVentas').modal('show');
+      } else if (this.arregloVentas.length == 1) {
+        this.venta = this.arregloVentas[0];
+        this.venta.valorservicio = this.venta.tipoServicio == 1 ? "true" : "false";
+        this.conventa.conventa = true;
+        if (this.venta.cliente != null || this.venta.cliente != null) {
+          this.venta.checkUser = true;
+        }
       }
     });
   }
@@ -63,9 +66,12 @@ export class VentasComponent implements OnInit {
 
   public recibir($evento) {
     $('#myModalclientees').modal('hide');
-    this.nombreClienteId.nativeElement.value = $evento.nombre;
-    this.apellidoClienteId.nativeElement.value = $evento.apellido;
-    this.id_cliente.nativeElement.value = $evento.id;
+
+
+    this.venta.cliente.id = $evento.id;
+    this.venta.cliente.nombre = $evento.nombre + " " + $evento.apellido;
+    this.venta.cliente.direccion = $evento.direccion;
+
   }
 
 
@@ -83,23 +89,20 @@ export class VentasComponent implements OnInit {
     //alertify.error('Error, falta datos que rellenar');
     let conventa1 = this.conventa;
     let venta = this.venta;
-    let objValorService = this.objValorService;
-    let objTimeEntrega = this.objTimeEntrega;
-    let objDateEntrega = this.objDateEntrega;
     let usuarios = this.usuarios;
-    let checkUser = this.checkUser;
-    let id_cliente = this.id_cliente;
     let serviciosPrd = this.serviciosPrd;
 
     alertify.confirm("¿Desea generar un nuevo servicio?", function (e) {
       if (e) {
 
-        if (objValorService.nativeElement.value == "false") {
+        if (venta.valorservicio == "false") {
 
-          if (objDateEntrega.nativeElement.value == "") {
+         
+
+          if (venta.fechaentrega == undefined) {
             alertify.error("No se ha asignado fecha de entrega para servicio por encargo");
             return;
-          } else if (objTimeEntrega.nativeElement.value == "") {
+          } else if (venta.hora == undefined) {
             alertify.error("No se ha asignado hora de entrega para servicio por encargo");
             return;
           }
@@ -107,27 +110,21 @@ export class VentasComponent implements OnInit {
 
 
 
-        if (checkUser.nativeElement.checked) {
-          if (id_cliente.nativeElement.value == "") {
+        if (venta.checkUser) {
+          console.log(venta.cliente);
+          if (venta.cliente.id == 0 || venta.cliente == undefined || venta.cliente == null || venta.cliente.id == undefined) {
             alertify.error("No se ha seleccionado el cliente");
             return;
           }
+        } else {
+          venta.cliente = undefined;
         }
 
-        venta.fecha = new Date().toLocaleDateString();
-        if (objDateEntrega != undefined) {
-          venta.fechaentrega = objDateEntrega.nativeElement.value;
-        }
-        if (objTimeEntrega != undefined) {
-          venta.hora = objTimeEntrega.nativeElement.value;
-        }
+        venta.fecha = new Date();
 
-        if (id_cliente != undefined) {
-          venta.idcliente = id_cliente.nativeElement.value;
-        }
-
-        venta.tipoServicio = objValorService.nativeElement.value == "true" ? 1 : 2;
+        venta.tipoServicio = venta.valorservicio != "true" ? 1 : 2;
         venta.idempleado = usuarios.id;
+
 
         serviciosPrd.realizarVenta(venta).subscribe(datos => {
           venta.idservicio = datos.idservicio;
@@ -136,29 +133,58 @@ export class VentasComponent implements OnInit {
         }, err => {
           alertify.error("Error al generar el ticket de compra");
         });
-
-
       }
     });
 
   }
 
-  public seleccionar(item,indice){
-    for(let aux of this.arregloVentas)
-    aux.seleccionado = false;
+  public seleccionar(item, indice) {
+    for (let aux of this.arregloVentas)
+      aux.seleccionado = false;
 
-this.arregloVentas[indice].seleccionado = true;
+    this.arregloVentas[indice].seleccionado = true;
     this.desabilitar = false;
     this.indexSeleccionado = indice;
   }
 
 
-  public seleccionarItem(){
+  public seleccionarItem() {
     let item = this.arregloVentas[this.indexSeleccionado];
-    console.log(item);
     $('#myModalVentas').modal('hide');
+    this.venta = item;
+    this.conventa.conventa = true;
+    this.venta.valorservicio = this.venta.tipoServicio != 1 ? "true" : "false";
+    if (this.venta.cliente != null || this.venta.cliente != null) {
+      this.venta.checkUser = true;
+    }    
   }
 
+  public nuevoTicket() {
+    let venta = this.venta;
+    let conventa = this.conventa;
+    alertify.confirm("¿Desea crear un nuevo ticket?", function (e) {
+      if (e) {
+        venta.cliente = {
+          id: undefined,
+          apellido: "",
+          direccion: "",
+          nombre: ""
+        }
+        conventa.conventa = false;
+        venta.idservicio = 0;
+        venta.fechaentrega = undefined;
+        venta.hora = undefined;
+        venta.checkUser = false;
+       
+      }
+    });
+  }
 
+  public cancelarTicket(){
+    alertify.confirm("¿Desea cancelar el ticket?", function (e) {
+      if (e) {
+        alertify.success("Ticket cancelado correctamente");
+      }});
+  }
 
 }

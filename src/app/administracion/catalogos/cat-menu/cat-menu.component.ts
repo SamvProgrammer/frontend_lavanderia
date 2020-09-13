@@ -17,7 +17,6 @@ export class CatMenuComponent implements OnInit {
 
     this.menuPrd.getMenu().subscribe(datos =>{
       this.arreglo = datos;
-      console.log(this.arreglo);
       for(let aux of this.arreglo)
       aux.seleccionado = false;
     });

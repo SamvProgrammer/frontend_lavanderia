@@ -21,7 +21,6 @@ export class ProveedoresComponent implements OnInit {
   ngOnInit() {
     this.proveedoresPrd.getAll().subscribe(datos => {
       this.arreglo = datos;
-      console.log(datos);
     });
 
     this.myForm = this.createMyForm("");
@@ -49,8 +48,6 @@ export class ProveedoresComponent implements OnInit {
 
     $('#myModal').modal('hide');
     if (this.ingresar) {
-      console.log('inserta');
-      console.log(obj);
       this.proveedoresPrd.insert(obj).subscribe(datos => {
         alertify.success('REGISTRO INSERTADO');
         this.ngOnInit();
@@ -100,7 +97,6 @@ export class ProveedoresComponent implements OnInit {
   }
 
   public abrir(obj): any {
-    console.log('modifica');
     $('#myModal').modal('show');
     if (obj == undefined) {
       $("#titulo").text("Ingresar proveedor");

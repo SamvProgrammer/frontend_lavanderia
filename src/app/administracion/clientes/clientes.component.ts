@@ -22,12 +22,10 @@ export class ClientesComponent implements OnInit {
   ngOnInit() {
     this.clientesPrd.getAll().subscribe(datos => {
       this.arreglo = datos;
-      console.log(this.arreglo);
     });
     //let dateFormat = require('dateformat');
     //let now = new Date();
     //dateFormat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT");
-    //console.log(dateFormat);
 
     this.myForm = this.createMyForm("");
   }
@@ -64,8 +62,6 @@ export class ClientesComponent implements OnInit {
 
     $('#myModal').modal('hide');
     if (this.ingresar) {
-      console.log('inserta');
-      console.log(obj);
       this.clientesPrd.insert(obj).subscribe(datos => {
         alertify.success('REGISTRO INSERTADO');
         this.ngOnInit();
@@ -111,7 +107,6 @@ export class ClientesComponent implements OnInit {
   }
 
   public abrir(obj): any {
-    console.log('modifica');
     $('#myModal').modal('show');
     if (obj == undefined) {
       $("#titulo").text("Ingresar Usuario");

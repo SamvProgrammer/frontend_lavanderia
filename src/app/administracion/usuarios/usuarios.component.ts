@@ -37,7 +37,6 @@ export class UsuariosComponent implements OnInit {
   ngOnInit() {
     this.usuarioPrd.obtenerAll().subscribe(datos => {
       this.arreglo = datos;
-      console.log(datos);
     });
 
     
@@ -81,14 +80,9 @@ export class UsuariosComponent implements OnInit {
     obj.roles = {
       id : obj.id_rol
     }
-
-
-    console.log(obj);
    
     $('#myModal').modal('hide');
     if (this.ingresar) {
-      console.log('inserta');
-      console.log(obj);
       this.usuarioPrd.insertar(obj).subscribe(datos => {
         alertify.success('REGISTRO INSERTADO');
         this.ngOnInit();
@@ -122,7 +116,6 @@ export class UsuariosComponent implements OnInit {
   }
 
   public abrir(obj): any {
-    console.log('modifica');
     $('#myModal').modal('show');
     if (obj == undefined) {
       $("#titulo").text("Ingresar Usuario");

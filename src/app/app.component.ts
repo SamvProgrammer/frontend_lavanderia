@@ -13,14 +13,12 @@ export class AppComponent {
 
   constructor(public loginPrd:LoginService,public usuariosPrd:UsuariosService){
     let usuarioStr = localStorage["usuario"];
-    console.log("Esto trae");
-    console.log(usuarioStr);
+  
     if(usuarioStr != undefined){
       let usuarioObj = JSON.parse(usuarioStr);
 
       this.usuariosPrd.setUsuario(usuarioObj);
-      console.log("Aqui termina el usuario");
-      console.log(usuarioObj);
+ 
     }else{
       this.usuariosPrd.setUsuario(undefined);
     }
