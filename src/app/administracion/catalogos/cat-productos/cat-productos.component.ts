@@ -12,11 +12,12 @@ export class CatProductosComponent implements OnInit {
   public arreglo:any = [];
   public desabilitar:boolean = true;
   public indexSeleccionado:number = 0;
+  public numeroPagina:number = 0;
   constructor(public productosPrd:ProductosService) { }
 
   ngOnInit() {
 
-    this.productosPrd.getAll().subscribe(datos =>{
+    this.productosPrd.getAllPagination(this.numeroPagina).subscribe(datos =>{
       this.arreglo = datos;
     });
 
@@ -38,9 +39,28 @@ export class CatProductosComponent implements OnInit {
   public seleccionarItem(){
     let item = this.arreglo[this.indexSeleccionado];
        this.eventoFunciones.emit(item);
+        }
 
-       
 
-  }
+        public antes(){
+          
+          if(this.numeroPagina != 0){
+            this.numeroPagina -= 1;
+            this.productosPrd.getAllPagination(this.numeroPagina).subscribe(datos =>{
+                this.arreglo = datos;
+           });
+          }
+        }
+
+        public siguiente(){
+          this.numeroPagina += 1;
+           this.productosPrd.getAllPagination(this.numeroPagina).subscribe(datos =>{
+              if(datos.length != 0){
+                this.arreglo = datos;
+              }else{
+                this.numeroPagina -= 1;
+              }
+           });
+        }
 
 }
