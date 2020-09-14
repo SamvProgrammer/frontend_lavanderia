@@ -33,7 +33,10 @@ export class VentasComponent implements OnInit {
       direccion: ""
     },
     valorservicio: "false",
-    checkUser: false
+    checkUser: false,
+    checkUserTemp:false,
+    nombreClienteTemp:"",
+    direccionClienteTemp:""
   }
 
   public arregloVentas: any = [];
@@ -48,12 +51,17 @@ export class VentasComponent implements OnInit {
       this.arregloVentas = datos;
       if (this.arregloVentas.length > 1) {
         $('#myModalVentas').modal('show');
+        
       } else if (this.arregloVentas.length == 1) {
         this.venta = this.arregloVentas[0];
         this.venta.valorservicio = this.venta.tipoServicio == 1 ? "true" : "false";
         this.conventa.conventa = true;
         if (this.venta.cliente != null || this.venta.cliente != null) {
           this.venta.checkUser = true;
+        }
+        if(this.venta.nombreClienteTemp != ""){
+           this.venta.checkUser = true;
+           this.venta.checkUserTemp = true;
         }
       }
     });
@@ -108,14 +116,16 @@ export class VentasComponent implements OnInit {
           }
         }
 
-
-
         if (venta.checkUser) {
-          console.log(venta.cliente);
+         if(!venta.checkUserTemp){
           if (venta.cliente.id == 0 || venta.cliente == undefined || venta.cliente == null || venta.cliente.id == undefined) {
             alertify.error("No se ha seleccionado el cliente");
             return;
           }
+         }else{
+           
+           venta.cliente = undefined;
+         }
         } else {
           venta.cliente = undefined;
         }
@@ -156,7 +166,13 @@ export class VentasComponent implements OnInit {
     this.venta.valorservicio = this.venta.tipoServicio != 1 ? "true" : "false";
     if (this.venta.cliente != null || this.venta.cliente != null) {
       this.venta.checkUser = true;
-    }    
+    }
+    
+    
+    if(this.venta.nombreClienteTemp != ""){
+      this.venta.checkUser = true;
+      this.venta.checkUserTemp = true;
+   }
   }
 
   public nuevoTicket() {
@@ -164,6 +180,11 @@ export class VentasComponent implements OnInit {
     let conventa = this.conventa;
     alertify.confirm("¿Desea crear un nuevo ticket?", function (e) {
       if (e) {
+
+        for(let llave in venta){
+          venta[llave] = undefined;
+      }
+
         venta.cliente = {
           id: undefined,
           apellido: "",
@@ -171,10 +192,15 @@ export class VentasComponent implements OnInit {
           nombre: ""
         }
         conventa.conventa = false;
-        venta.idservicio = 0;
         venta.fechaentrega = undefined;
         venta.hora = undefined;
         venta.checkUser = false;
+        venta.checkUserTemp = false;
+        venta.nombreClienteTemp = "";
+        venta.direccionClienteTemp = "";
+        venta.idservicio = 0;
+        venta.fecha = new Date();
+        venta.valorservicio = "true";
        
       }
     });
@@ -185,6 +211,10 @@ export class VentasComponent implements OnInit {
       if (e) {
         alertify.success("Ticket cancelado correctamente");
       }});
+  }
+
+  public visualizarTickets(){
+    $('#myModalVentas').modal('show');
   }
 
 }

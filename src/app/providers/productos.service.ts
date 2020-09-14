@@ -15,6 +15,9 @@ export class ProductosService {
   public getAll(): Observable<any> {
     return this.http.get(this.url);
   }
+  public getAllPagination(pagina:number): Observable<any> {
+    return this.http.get(`${this.url}/paginacion?pagina=${pagina}`);
+  }
 
 
   public get(identificador):Observable<any> {
