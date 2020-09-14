@@ -96,8 +96,6 @@ export class ProductoComponent implements OnInit {
 
   public recibir($evento){
     $('#myModalCategoria').modal('hide');
-    
-    
      this.clasificacionId.nativeElement.value = $evento.id;
      this.clasificacionNombre.nativeElement.value = $evento.nombre;
   }
@@ -135,6 +133,11 @@ export class ProductoComponent implements OnInit {
       }
     });
   }
+
+
+
+
+  
 
 
   public enviarformulario(): any {

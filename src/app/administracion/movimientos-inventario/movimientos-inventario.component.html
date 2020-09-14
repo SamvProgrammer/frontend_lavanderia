@@ -6,7 +6,7 @@
 </div>
 
 <div class="cajaventa">
-    <form  [formGroup]="myForm" (ngSubmit)="enviarformulario()">
+    <form  [formGroup]="myForm">
 
 <div class="row" >
 
@@ -16,9 +16,10 @@
       <span class="input-group-text" id="basic-addon1">Tipo de Movimiento</span>
     </div>
     <select formControlName="movimiento" class="form-control form-control text-uppercase"  type="text">
-      <option value='0'>Entrada </option>
-      <option value='1'>Salida</option>
-      <option value='2'>Traspaso</option>
+      <option value='E'>Entrada </option>
+      <option value='S'>Salida</option>
+      <option value='T'>Traspaso</option>
+      <option value='O'>Orden de Compra</option>
 
     </select>
   </div>
@@ -64,9 +65,7 @@
        
 
           <td style="text-align: center">
-            <button class="btn btn-default" data-toggle="modal" data-target="#myModal" (click)="abrir(item)">
-              <i class="fa fa-refresh"></i>
-            </button>
+           
             <button class="btn btn-danger" (click)="eliminar(item.id);">
               <i class="fa fa-remove"></i>
             </button>
@@ -79,12 +78,19 @@
       <strong></strong> Sin registros en las tablas
     </div>
   </div>
+
+<div class="modal-footer">
+  <button [disabled]="!myForm.valid"  (click)="enviaMovimientos()" class="btn btn-success pull-right">
+    <i class="fa fa-check"></i> Afectar</button>
+</div>
 </div>
 
+
+ 
 <!-- The Modal -->
 <div class="modal fade" id="myModal">
   <div class="modal-dialog modal-lg">
-    <form  [formGroup]="myForm" (ngSubmit)="enviarformulario()">
+    <form  [formGroup]="myForm">
       <div class="modal-content">
 
         <!-- Modal Header -->
