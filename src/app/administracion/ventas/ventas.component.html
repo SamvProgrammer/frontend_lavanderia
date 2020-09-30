@@ -159,34 +159,30 @@
           <th>#</th>
           <th>Código</th>
           <th >Nombre producto</th>
-          <th>Cantidad</th>
+          <th >Cantidad</th>
           <th>Medida</th>
           <th>Precio unitario</th>
           <th>Importe</th>
           <th>Descuento total</th>
           <th>Importe con descuento</th>
-          <th>Importe IEEPS</th>
           <th style="width: 200px;text-align: center">Opciones</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor = "let item of arregloProductos;let indice = index;">
+        <tr *ngFor = "let item of arregloProductos;let indice = index;" [ngClass]="{'nuevo':item.idserviciodetalle == undefined,'cancelado':item.cancelado == true}">
           <td>{{indice+1}}</td>
           <td>{{item.codigo}}</td>
           <td>{{item.nombre}}</td>
-          <td>1</td>
+          <td *ngIf="!item.cambiarTextoCantidadbool || item.cancelado" (dblclick)="item.cambiarTextoCantidadbool = true">{{item.cantidad}}</td>
+          <td *ngIf="item.cambiarTextoCantidadbool && !item.cancelado" ><input (keydown.enter)="cambiandoCantidad(item)" type="number" [(ngModel)]="item.cantidad" class="form-control"></td>
           <td>{{item.unidadmedida.descripcion}}</td>
-          <td>{{item.por_venta}}</td>
-          <td>{{item.por_venta+100}}</td>
-          <td>10%</td>
-          <td>{{item.por_venta}}</td>
-          <td>{{item.ieeps}}</td>
-
+          <td>{{item.p_venta | currency}}</td>
+          <td>{{item.p_venta*item.cantidad | currency}}</td>
+          <td *ngIf="!item.cambiarTextoPorcentajebool || item.cancelado" (dblclick)="item.cambiarTextoPorcentajebool = true">{{item.descuento}}%</td>
+          <td *ngIf="item.cambiarTextoPorcentajebool && !item.cancelado" ><input (keydown.enter)="cambiandoPorcentaje(item)" type="number" class="form-control" [(ngModel)]="item.descuento"></td>
+          <td>{{(item.descuento == 0 ? item.p_venta*item.cantidad :item.p_venta*item.cantidad - ((item.p_venta*item.cantidad) * item.descuento)/100) | currency}}</td>
           <td style="text-align: center">
-            <button  class="btn btn-default" data-toggle="modal" data-target="#myModal" >
-              <i class="fa fa-refresh"></i>
-            </button>
-            <button class="btn btn-danger" >
+            <button *ngIf="!item.cancelado" class="btn btn-danger" (click)="eliminaritem(indice,item)" >
               <i class="fa fa-remove"></i>
             </button>
           </td>
@@ -197,6 +193,14 @@
       </tbody>
     </table>
     
+  </div>
+</div>
+<div class="row" *ngIf="arregloProductos.length != 0">
+  <div class="col text-right">
+    <button type="button" class="btn btn-success" (click)="agregarTicket()">
+      Actualizar servicio
+      <i class="fa fa-cart-arrow-down"></i>
+    </button>
   </div>
 </div>
 
@@ -223,19 +227,19 @@
       <div class="input-group-prepend">
         <span class="input-group-text" id="basic-addon1">Servicio</span>
       </div>
-      <input  type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+      <input [value]="venta.importeTotal" type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
     </div>
     <div class="input-group input-group-sm mb-3 col-12">
       <div class="input-group-prepend">
         <span class="input-group-text" id="basic-addon1">Recepción</span>
       </div>
-      <input  type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+      <input [(ngModel)]="venta.total_recepcion"  type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
     </div>
     <div class="input-group input-group-sm mb-3 col-12">
       <div class="input-group-prepend">
         <span class="input-group-text" id="basic-addon1">Total</span>
       </div>
-      <input  type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+      <input [value]="venta.importeTotal - venta.total_recepcion" type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
     </div>
   </div>
 </div>

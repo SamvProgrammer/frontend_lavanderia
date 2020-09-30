@@ -40,4 +40,13 @@ font-size: medium;
         background: #ff5151!important;
         color: white!important;
     }
+
+    .nuevo{
+      background: #a6f7a6 !important;
+    }
+
+    .cancelado{
+      background: #d33b3b !important;
+      color:white;
+    }
     
