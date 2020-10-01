@@ -27,8 +27,9 @@ export class ProductoComponent implements OnInit {
     por_mediamayoreo:0,
     por_venta:0,
     por_especial:0,
-    iva:0,
+    iva:16,
     ieeps:0,
+    tieneiva:true,
     clasificacion:{id:0},
     unidadmedida:{id:0},
     sucursales:{id:0}

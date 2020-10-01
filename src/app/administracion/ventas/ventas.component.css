@@ -49,4 +49,8 @@ font-size: medium;
       background: #d33b3b !important;
       color:white;
     }
+
+    .seleccionarmetodo:hover{
+      font-size: medium !important;
+    }
     
