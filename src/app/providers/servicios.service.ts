@@ -26,4 +26,33 @@ export class ServiciosService {
   public getVentas(cobrado:boolean):Observable<any>{
    return this.http.get(`${this.url}?cobrado=${cobrado}`);
   }
+
+  public insertarDetalleServicio(obj):Observable<any>{
+     const httpOptions = {
+       headers:new HttpHeaders({
+         'Content-Type':'application/json'
+       })
+     };
+     let json = JSON.stringify(obj);
+     return this.http.post(`${this.url}/detalleservicio`,json,httpOptions)
+  }
+
+  public getDetalleServicio(id_servicio):Observable<any>{
+     return this.http.get(`${this.url}/detalleservicio/${id_servicio}`);
+  }
+
+  public eliminarDetalleServicio(id_detalle):Observable<any>{
+    return this.http.delete(`${this.url}/detalleservicio/${id_detalle}`);
+ }
+
+  public actualizarDetalle(obj){
+    let dire = direcciones.serviciosdetalles;
+    const httpOptions = {
+      headers:new HttpHeaders({
+        'Content-Type':'application/json'
+      })
+    };
+    let json = JSON.stringify(obj);
+    return this.http.put(`${dire}`,json,httpOptions)
+  }
 }

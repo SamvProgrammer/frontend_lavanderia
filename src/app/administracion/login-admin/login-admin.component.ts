@@ -98,7 +98,7 @@ export class LoginAdminComponent implements OnInit {
     this.indexGlobal = indice;
   }
 
-  public btnSeleccionando(nombreusuario) {
+  public btnSeleccionando() {
     this.campoUsuario.nativeElement.value = this.arreglousuarios[this.indexGlobal].usuario;
     $("#myModal").modal('hide');
   }
