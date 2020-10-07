@@ -1,0 +1,118 @@
+
+ <div class="row margenes">
+  <div   *ngFor="let item of arreglocobrados;let indice=index;"
+    [ngClass]="{'sinSeleccionar': !item.seleccionado, 'seleccionado': item.seleccionado}" (click)="seleccionandoitem(item)" (dblclick)="abriritem(item)" class="col-3">
+    <img [src]="item.imagen" alt="" srcset="">
+    <br>
+    <label [ngClass]="{'colornocancelado':!item.cancelado,'colorcancelado':item.cancelado}"><strong>{{(item.cancelado)?'CANCELADO':'COBRADO'}}</strong></label><br>
+    <label style="font-size: unset;
+    font-weight: 700;">{{item.fechaterminado}}</label><br>
+    <label style="font-size: unset;"><span style="
+      font-weight: 600;"> {{item.tipoServicio == 1 ? 'SERVICIO POR ENCARGO':'AUTOSERVICIO'}}</span></label><br>
+    <label style="font-size: unset;"><span style="
+      font-weight: 600;">Total:</span> {{item.importeTotal | currency}}</label>
+  </div>
+</div>
+
+
+
+<div class="modal fade miclase" style="background: #0000006e;" id="modalreview">
+  <div class="modal-dialog modal-lg">
+    <form >
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div  class="modal-header" [ngClass]="{'canceladoticket':venta.cancelado,'cobradoticket':!venta.cancelado}">
+          <h4 class="modal-title"  >{{(venta.cancelado)?'Ticket cancelado':'Ticket cobrado'}}</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+      
+          <div class="row">
+            <div class="col-12 text-center">
+              <i [ngClass]="{'canceladoticketi':venta.cancelado,'cobradoticketi':!venta.cancelado}" style="
+              font-size: 79px;" class="fa fa-check-circle" aria-hidden="true"></i>
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 text-center">
+              <label for="">Total de venta</label>
+              <h5>{{venta.importeTotal | currency}}</h5>
+              <hr/>
+              <div *ngIf="venta.cliente != undefined">
+                <label for="">Cliente</label>
+              <h5>{{venta.cliente.nombre+' '+ venta.cliente.apellido}}</h5>
+              </div>
+
+              <hr/>
+              <label for="">Fecha terminación</label>
+              <h5>{{venta.fechaterminado}}</h5>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="card" style="width: 100%;">
+                <div class="card-header" style="    text-align: center;
+                  color: #717171;">
+                  Productos del ticket
+                </div>
+                <div  class="row" id="c1" style="height: 100%;">
+                  <div class="col-12">
+                    <table class="table table-striped table-hover table-responsive">
+                      <thead id="tablaproductos">
+                        <tr>
+                          <th>#</th>
+                          <th>Código</th>
+                          <th>Nombre producto</th>
+                          <th>Cantidad</th>
+                          <th>Medida</th>
+                          <th>Precio unitario</th>
+                          <th>Importe</th>
+                          <th>Descuento total</th>
+                          <th>Importe con descuento</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let item of venta.detalleServicio;let indice = index;"
+                          [ngClass]="{'cancelado':item.cancelado == true}">
+                          <td>{{indice+1}}</td>
+                          <td>{{item.producto.codigo}}</td>
+                          <td>{{item.producto.nombre}}</td>
+                          <td >{{item.cantficha}}</td>
+                          <td>{{item.producto.unidadmedida.descripcion}}</td>
+                          <td>{{item.producto.p_venta | currency}}</td>
+                          <td>{{item.producto.p_venta*item.cantficha | currency}}</td>
+                          <td >{{item.descuento}}%</td>
+                          <td>
+                            {{(item.descuento == 0 ? item.producto.p_venta*item.cantficha :item.producto.p_venta*item.cantficha - ((item.producto.p_venta*item.cantficha) * item.descuento)/100) | currency}}
+                          </td>
+              
+                        </tr>
+              
+              
+                      </tbody>
+                    </table>
+              
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+             
+      
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button    type="button"  class="btn btn-light pull-right">
+            <i class="fa fa-print"></i>Imprimir ticket</button>
+  
+        </div>
+  
+      </div>
+    </form>
+  </div>
+</div>

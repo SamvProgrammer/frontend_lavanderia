@@ -14,7 +14,8 @@ import { ClientesComponent } from './administracion/clientes/clientes.component'
 import { VentasComponent } from './administracion/ventas/ventas.component';
 import { DetalleFichasComponent } from './administracion/detalle-fichas/detalle-fichas.component';
 import { RolesComponent } from './administracion/roles/roles.component';
-import {MovimientosInventarioComponent} from './administracion/movimientos-inventario/movimientos-inventario.component';
+import { MovimientosInventarioComponent } from './administracion/movimientos-inventario/movimientos-inventario.component';
+import { TabsVentasComponent } from './administracion/tabs-ventas/tabs-ventas.component';
 
 const routes: Routes = [
   { path: 'ingresar', component: LoginAdminComponent },
@@ -27,11 +28,10 @@ const routes: Routes = [
   { path: 'catalogos/lineas', component: LineasComponent, canActivate: [AutenticadoService] },
   { path: 'catalogos/categorias', component: CategoriasComponent, canActivate: [AutenticadoService] },
   { path: 'catalogos/clientes', component: ClientesComponent, canActivate: [AutenticadoService] },
-  { path: 'ventas', component: VentasComponent, canActivate: [AutenticadoService] },
+  { path: 'ventas', component: TabsVentasComponent, canActivate: [AutenticadoService] },
   { path: 'servicio/detalle-fichas', component: DetalleFichasComponent, canActivate: [AutenticadoService] },
-  { path: 'catalogos/roles', component: RolesComponent , canActivate: [AutenticadoService] },
-  { path: 'inventarios/rolesmovimientos-inventario', component: MovimientosInventarioComponent , canActivate: [AutenticadoService] },
-
+  { path: 'catalogos/roles', component: RolesComponent, canActivate: [AutenticadoService] },
+  { path: 'inventarios/rolesmovimientos-inventario', component: MovimientosInventarioComponent, canActivate: [AutenticadoService] },
 
   { path: '**', component: LoginAdminComponent }
 ];

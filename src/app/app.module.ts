@@ -39,6 +39,8 @@ import { CatProductosComponent } from './administracion/catalogos/cat-productos/
 import { RolesComponent } from './administracion/roles/roles.component';
 import { CatMenuComponent } from './administracion/catalogos/cat-menu/cat-menu.component';
 import { MovimientosInventarioComponent } from './administracion/movimientos-inventario/movimientos-inventario.component';
+import { TabsVentasComponent } from './administracion/tabs-ventas/tabs-ventas.component';
+import { TransaccionComponent } from './administracion/transaccion/transaccion.component';
 
 
 @NgModule({
@@ -65,7 +67,9 @@ import { MovimientosInventarioComponent } from './administracion/movimientos-inv
     CatProductosComponent,
     RolesComponent,
     CatMenuComponent,
-    MovimientosInventarioComponent
+    MovimientosInventarioComponent,
+    TabsVentasComponent,
+    TransaccionComponent
 
   ],
   imports: [

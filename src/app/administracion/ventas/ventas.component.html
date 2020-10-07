@@ -9,304 +9,331 @@
 </div>
 
 <div class="cajaventa">
-  
-<div class="row" >
-  <div class="input-group input-group-sm  col-6">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Sucursal actual</span>
-    </div>
-    <input disabled type="text" class="form-control" value="Colonia reforma" aria-label="Username" aria-describedby="basic-addon1">
-  </div>
-  <div class="input-group input-group-sm  col-6">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Empleado</span>
-    </div>
-    <input disabled type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" [value]="usuarios.usuario" >
-  </div>
-</div>
-<hr/>
 
-<div class="row">
-  <div style="margin-left: 3%;" class="input-group form-check form-check-inline col-4">
-    <label class="custom-control custom-checkbox">
-      <input [(ngModel)]="venta.checkUser" type="checkbox" #checkUser class="custom-control-input"  [disabled]="conventa.conventa">
-      <span class="custom-control-indicator"></span>
-      <span class="custom-control-description">Incluir cliente</span>
-</label>
+  <div class="row">
+    <div class="input-group input-group-sm  col-6">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Sucursal actual</span>
+      </div>
+      <input disabled type="text" class="form-control" value="Colonia reforma" aria-label="Username"
+        aria-describedby="basic-addon1">
+    </div>
+    <div class="input-group input-group-sm  col-6">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Empleado</span>
+      </div>
+      <input disabled type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1"
+        [value]="usuarios.usuario">
+    </div>
   </div>
-  <div class="col-3">
+  <hr />
+
+  <div class="row">
+    <div style="margin-left: 3%;" class="input-group form-check form-check-inline col-4">
+      <label class="custom-control custom-checkbox">
+        <input [(ngModel)]="venta.checkUser" type="checkbox" #checkUser class="custom-control-input"
+          [disabled]="conventa.conventa">
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">Incluir cliente</span>
+      </label>
+    </div>
+    <div class="col-3">
+      <label for="" class="col-12 text-center titulomodal">
+        Clientes
+      </label>
+    </div>
+  </div>
+  <div class="form-group  row" *ngIf="venta.checkUser">
+    <div style="margin-left: 3%;" class="input-group form-check form-check-inline col-4">
+      <label class="custom-control custom-checkbox">
+        <input [(ngModel)]="venta.checkUserTemp" type="checkbox" #checkUser class="custom-control-input"
+          [disabled]="conventa.conventa">
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">Cliente temporal</span>
+      </label>
+    </div>
+    <div class="input-group input-group-sm col-12" *ngIf="!venta.checkUserTemp">
+      <div for="buscarclientes" class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Datos del cliente</span>
+      </div>
+      <input type="hidden" #id_cliente>
+      <input disabled [value]="venta.cliente.nombre + ' - '+ venta.cliente.apellido" type="text" class="form-control"
+        placeholder="Nombre y apellido" aria-label="Username" aria-describedby="basic-addon1">
+      <input disabled [value]="venta.cliente.direccion" type="text" class="form-control" placeholder="Dirección"
+        aria-label="Username" aria-describedby="basic-addon1">
+      <span *ngIf="!conventa.conventa" class="input-group-btn">
+        <button #btnBuscar id="buscarclientes" class="btn btn-theme" type="button" (click)="abriClientes();"><i
+            class="fa fa-search"></i></button>
+      </span>
+    </div>
+    <div class="input-group input-group-sm col-12" *ngIf="venta.checkUserTemp">
+      <div for="buscarclientes" class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Datos del cliente temporal</span>
+      </div>
+      <input type="hidden" #id_cliente>
+      <input [disabled]="conventa.conventa" [(ngModel)]="venta.nombreClienteTemp" type="text" class="form-control"
+        placeholder="Nombre y apellido" aria-label="Username" aria-describedby="basic-addon1">
+      <input [disabled]="conventa.conventa" [(ngModel)]="venta.direccionClienteTemp" type="text" class="form-control"
+        placeholder="Dirección" aria-label="Username" aria-describedby="basic-addon1">
+    </div>
+  </div>
+
+  <hr />
+  <div class="row">
     <label for="" class="col-12 text-center titulomodal">
-      Clientes
+      Configuración de venta
     </label>
   </div>
-</div>
-<div class="form-group  row" *ngIf="venta.checkUser">
-  <div style="margin-left: 3%;" class="input-group form-check form-check-inline col-4">
-    <label class="custom-control custom-checkbox">
-      <input [(ngModel)]="venta.checkUserTemp" type="checkbox" #checkUser class="custom-control-input" [disabled]="conventa.conventa">
-      <span class="custom-control-indicator"></span>
-      <span class="custom-control-description">Cliente temporal</span>
-</label>
-  </div>
-  <div class="input-group input-group-sm col-12" *ngIf="!venta.checkUserTemp">
-    <div for="buscarclientes" class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Datos del cliente</span>
-    </div>
-    <input type="hidden" #id_cliente>
-    <input  disabled [value]="venta.cliente.nombre + ' - '+ venta.cliente.apellido"  type="text" class="form-control" placeholder="Nombre y apellido" aria-label="Username" aria-describedby="basic-addon1">
-    <input  disabled [value]="venta.cliente.direccion" type="text" class="form-control" placeholder="Dirección" aria-label="Username" aria-describedby="basic-addon1">
-    <span *ngIf="!conventa.conventa" class="input-group-btn">
-      <button #btnBuscar id="buscarclientes" class="btn btn-theme" type="button" (click)="abriClientes();" ><i class="fa fa-search"></i></button>
-      </span>
-  </div>
-  <div class="input-group input-group-sm col-12" *ngIf="venta.checkUserTemp">
-    <div for="buscarclientes" class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Datos del cliente temporal</span>
-    </div>
-    <input type="hidden" #id_cliente>
-    <input [disabled]="conventa.conventa"  [(ngModel)]="venta.nombreClienteTemp"  type="text" class="form-control" placeholder="Nombre y apellido" aria-label="Username" aria-describedby="basic-addon1">
-    <input [disabled]="conventa.conventa"  [(ngModel)]="venta.direccionClienteTemp" type="text" class="form-control" placeholder="Dirección" aria-label="Username" aria-describedby="basic-addon1">
-  </div>
-</div>
 
-<hr/>
-<div class="row">
-  <label for="" class="col-12 text-center titulomodal">
-    Configuración de venta
-  </label>
-</div>
-
-<div class="form-group row">
-  <div  class="input-group input-group-sm mb-3 col-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">% Descuento</span>
+  <div class="form-group row">
+    <div class="input-group input-group-sm mb-3 col-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">% Descuento</span>
+      </div>
+      <input disabled type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
     </div>
-    <input disabled  type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
-  </div>
-  <div class="input-group input-group-sm mb-3 col-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">No. Servicio</span>
+    <div class="input-group input-group-sm mb-3 col-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">No. Servicio</span>
+      </div>
+      <input [value]="venta.idservicio" disabled type="text" class="form-control" aria-label="Username"
+        aria-describedby="basic-addon1">
     </div>
-    <input [value]="venta.idservicio" disabled type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
-  </div>
-  <div class="input-group input-group-sm mb-3 col-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Fecha</span>
+    <div class="input-group input-group-sm mb-3 col-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Fecha</span>
+      </div>
+      <input disabled [value]="venta.fecha" type="text" class="form-control" aria-label="Username"
+        aria-describedby="basic-addon1">
     </div>
-    <input disabled [value]="venta.fecha" type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
-  </div>
-  <div class="input-group input-group-sm mb-3 col-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Turno</span>
+    <div class="input-group input-group-sm mb-3 col-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Turno</span>
+      </div>
+      <input disabled type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
     </div>
-    <input disabled type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
   </div>
-</div>
-<div class="row form-group">
-  <div class="input-group input-group-sm mb-3 col-4">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Servicio</span>
+  <div class="row form-group">
+    <div class="input-group input-group-sm mb-3 col-4">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Servicio</span>
+      </div>
+      <select [(ngModel)]="venta.valorservicio" class="form-control form-control text-uppercase" type="text"
+        [disabled]="conventa.conventa">
+        <option value="true" selected>Autoservicio</option>
+        <option value="false">Servicio por engargo</option>
+      </select>
     </div>
-    <select [(ngModel)]="venta.valorservicio"  class="form-control form-control text-uppercase"  type="text"  [disabled]="conventa.conventa">
-      <option value="true" selected>Autoservicio</option>
-      <option value="false">Servicio por engargo</option>
-    </select>
-  </div>
-  <div *ngIf="venta.valorservicio != 'true'" class="input-group input-group-sm mb-3 col-4">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Fecha de entrega</span>
+    <div *ngIf="venta.valorservicio != 'true'" class="input-group input-group-sm mb-3 col-4">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Fecha de entrega</span>
+      </div>
+      <input [disabled]="conventa.conventa" [(ngModel)]="venta.fechaentrega" type="date" class="" aria-label="Username"
+        aria-describedby="basic-addon1">
     </div>
-    <input [disabled]="conventa.conventa"   [(ngModel)]="venta.fechaentrega"  type="date" class=""  aria-label="Username" aria-describedby="basic-addon1">
-  </div>
-  <div *ngIf="venta.valorservicio != 'true'" class="input-group input-group-sm mb-3 col-4">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Hora</span>
+    <div *ngIf="venta.valorservicio != 'true'" class="input-group input-group-sm mb-3 col-4">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Hora</span>
+      </div>
+      <input [disabled]="conventa.conventa" type="time" class="" aria-label="Username" aria-describedby="basic-addon1"
+        [(ngModel)]="venta.hora">
     </div>
-    <input [disabled]="conventa.conventa"    type="time" class=""  aria-label="Username" aria-describedby="basic-addon1" [(ngModel)]="venta.hora">
   </div>
-</div>
-<div *ngIf="!conventa.conventa && arregloVentas.length > 1" class="row form-group">
-  <div class="col-12 text-center">
-    <button type="button" (click)="visualizarTickets()" class="btn btn-info">Servicios activos</button>
+  <div *ngIf="!conventa.conventa && arregloVentas.length > 1" class="row form-group">
+    <div class="col-12 text-center">
+      <button type="button" (click)="visualizarTickets()" class="btn btn-info">Servicios activos</button>
+    </div>
   </div>
-</div>
-<div *ngIf="!conventa.conventa" class="row form-group">
-  <div class="col-12 text-center">
-    <button type="button" (click)="generarServicio()" class="btn btn-success">Generar servicio</button>
+  <div *ngIf="!conventa.conventa" class="row form-group">
+    <div class="col-12 text-center">
+      <button type="button" (click)="generarServicio()" class="btn btn-success">Generar servicio</button>
+    </div>
   </div>
-</div>
 
 </div>
 <div *ngIf="conventa.conventa">
-  <hr/>
-<div class="row">
-  <label for="" class="col-12 text-center titulomodal">
-    Productos
-  </label>
-</div>
-<div class="row">
-  <div class="col text-right">
-    <button type="button" class="btn btn-default" (click)="abrir()">
-      <i class="fa fa-search"></i>
-    </button>
+  <hr />
+  <div class="row">
+    <label for="" class="col-12 text-center titulomodal">
+      Productos
+    </label>
   </div>
-</div>
-<div *ngIf="arregloProductos.length != 0" class="row" id="c1" style="height: 100%;">
-  <div class="col-12">
-    <table    class="table table-striped table-hover table-responsive">
-      <thead id="tablaproductos">
-        <tr>
-          <th>#</th>
-          <th>Código</th>
-          <th >Nombre producto</th>
-          <th >Cantidad</th>
-          <th>Medida</th>
-          <th>Precio unitario</th>
-          <th>Importe</th>
-          <th>Descuento total</th>
-          <th>Importe con descuento</th>
-          <th style="width: 200px;text-align: center">Opciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor = "let item of arregloProductos;let indice = index;" [ngClass]="{'nuevo':item.idserviciodetalle == undefined,'cancelado':item.cancelado == true}">
-          <td>{{indice+1}}</td>
-          <td>{{item.codigo}}</td>
-          <td>{{item.nombre}}</td>
-          <td *ngIf="!item.cambiarTextoCantidadbool || item.cancelado" (dblclick)="item.cambiarTextoCantidadbool = true">{{item.cantidad}}</td>
-          <td *ngIf="item.cambiarTextoCantidadbool && !item.cancelado" ><input (keydown.enter)="cambiandoCantidad(item)" type="number" [(ngModel)]="item.cantidad" class="form-control"></td>
-          <td>{{item.unidadmedida.descripcion}}</td>
-          <td>{{item.p_venta | currency}}</td>
-          <td>{{item.p_venta*item.cantidad | currency}}</td>
-          <td *ngIf="!item.cambiarTextoPorcentajebool || item.cancelado" (dblclick)="item.cambiarTextoPorcentajebool = true">{{item.descuento}}%</td>
-          <td *ngIf="item.cambiarTextoPorcentajebool && !item.cancelado" ><input (keydown.enter)="cambiandoPorcentaje(item)" type="number" class="form-control" [(ngModel)]="item.descuento"></td>
-          <td>{{(item.descuento == 0 ? item.p_venta*item.cantidad :item.p_venta*item.cantidad - ((item.p_venta*item.cantidad) * item.descuento)/100) | currency}}</td>
-          <td style="text-align: center">
-            <button *ngIf="!item.cancelado" class="btn btn-danger" (click)="eliminaritem(indice,item)" >
-              <i class="fa fa-remove"></i>
-            </button>
-          </td>
+  <div class="row">
+    <div class="col text-right">
+      <button type="button" class="btn btn-default" (click)="abrir()">
+        <i class="fa fa-search"></i>
+      </button>
+    </div>
+  </div>
+  <div *ngIf="arregloProductos.length != 0" class="row" id="c1" style="height: 100%;">
+    <div class="col-12">
+      <table class="table table-striped table-hover table-responsive">
+        <thead id="tablaproductos">
+          <tr>
+            <th>#</th>
+            <th>Código</th>
+            <th>Nombre producto</th>
+            <th>Cantidad</th>
+            <th>Medida</th>
+            <th>Precio unitario</th>
+            <th>Importe</th>
+            <th>Descuento total</th>
+            <th>Importe con descuento</th>
+            <th style="width: 200px;text-align: center">Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of arregloProductos;let indice = index;"
+            [ngClass]="{'nuevo':item.idserviciodetalle == undefined,'cancelado':item.cancelado == true}">
+            <td>{{indice+1}}</td>
+            <td>{{item.codigo}}</td>
+            <td>{{item.nombre}}</td>
+            <td *ngIf="!item.cambiarTextoCantidadbool || item.cancelado"
+              (dblclick)="item.cambiarTextoCantidadbool = true">{{item.cantidad}}</td>
+            <td *ngIf="item.cambiarTextoCantidadbool && !item.cancelado"><input
+                (keydown.enter)="cambiandoCantidad(item)" type="number" [(ngModel)]="item.cantidad"
+                class="form-control"></td>
+            <td>{{item.unidadmedida.descripcion}}</td>
+            <td>{{item.p_venta | currency}}</td>
+            <td>{{item.p_venta*item.cantidad | currency}}</td>
+            <td *ngIf="!item.cambiarTextoPorcentajebool || item.cancelado"
+              (dblclick)="item.cambiarTextoPorcentajebool = true">{{item.descuento}}%</td>
+            <td *ngIf="item.cambiarTextoPorcentajebool && !item.cancelado"><input
+                (keydown.enter)="cambiandoPorcentaje(item)" type="number" class="form-control"
+                [(ngModel)]="item.descuento"></td>
+            <td>
+              {{(item.descuento == 0 ? item.p_venta*item.cantidad :item.p_venta*item.cantidad - ((item.p_venta*item.cantidad) * item.descuento)/100) | currency}}
+            </td>
+            <td style="text-align: center">
+              <button *ngIf="!item.cancelado" class="btn btn-danger" (click)="eliminaritem(indice,item)">
+                <i class="fa fa-remove"></i>
+              </button>
+            </td>
 
-        </tr>
-        
-        
-      </tbody>
-    </table>
-    
+          </tr>
+
+
+        </tbody>
+      </table>
+
+    </div>
   </div>
-</div>
-<div class="row" *ngIf="arregloProductos.length == 0">
+  <div class="row" *ngIf="arregloProductos.length == 0">
     <div class="col-12">
       <div class="alert alert-danger text-center" role="alert">
         Sin registro de productos
       </div>
     </div>
-</div>
-<div class="row" *ngIf="arregloProductos.length != 0">
-  <div class="col text-right">
-    <button type="button" class="btn btn-success" (click)="agregarTicket()">
-      Actualizar servicio
-      <i class="fa fa-cart-arrow-down"></i>
-    </button>
   </div>
-</div>
+  <div class="row" *ngIf="arregloProductos.length != 0">
+    <div class="col text-right">
+      <button type="button" class="btn btn-success" (click)="agregarTicket()">
+        Actualizar servicio
+        <i class="fa fa-cart-arrow-down"></i>
+      </button>
+    </div>
+  </div>
 
 
-<div class="row" style="background-color: rgb(37 55 66);color: white;">
-  <label for="" class="col-12 text-center titulomodal">
-    
-  </label>
-  <hr />
-  <div class="col-7">
-     <div class="col-12">
-       <div class="row form-group">
-        <div class="input-group input-group-sm mb-3 col-12">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1">Observaciones</span>
+  <div class="row" style="background-color: rgb(37 55 66);color: white;">
+    <label for="" class="col-12 text-center titulomodal">
+
+    </label>
+    <hr />
+    <div class="col-7">
+      <div class="col-12">
+        <div class="row form-group">
+          <div class="input-group input-group-sm mb-3 col-12">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Observaciones</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
           </div>
-          <input  type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
         </div>
-       </div>
-     </div>
+      </div>
+    </div>
+    <div class="col-5">
+      <div class="input-group input-group-sm mb-3 col-12">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Servicio</span>
+        </div>
+        <input [value]="venta.importeTotal" type="text" class="form-control" aria-label="Username"
+          aria-describedby="basic-addon1">
+      </div>
+      <div class="input-group input-group-sm mb-3 col-12">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Recepción</span>
+        </div>
+        <input [(ngModel)]="venta.total_recepcion" type="text" class="form-control" aria-label="Username"
+          aria-describedby="basic-addon1">
+      </div>
+      <div class="input-group input-group-sm mb-3 col-12">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Total</span>
+        </div>
+        <input [value]="venta.importeTotal - venta.total_recepcion" type="text" class="form-control"
+          aria-label="Username" aria-describedby="basic-addon1">
+      </div>
+    </div>
   </div>
-  <div class="col-5">
-    <div class="input-group input-group-sm mb-3 col-12">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="basic-addon1">Servicio</span>
-      </div>
-      <input [value]="venta.importeTotal" type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
-    </div>
-    <div class="input-group input-group-sm mb-3 col-12">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="basic-addon1">Recepción</span>
-      </div>
-      <input [(ngModel)]="venta.total_recepcion"  type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
-    </div>
-    <div class="input-group input-group-sm mb-3 col-12">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="basic-addon1">Total</span>
-      </div>
-      <input [value]="venta.importeTotal - venta.total_recepcion" type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
-    </div>
-  </div>
-</div>
 
- <div class="row" style="    position: fixed;
+  <div class="row" style="    position: fixed;
  bottom: 0;
  width: 62%;
  
  z-index: 100;
  left: 20%;">
 
-<button (click)="nuevoTicket()"  style="margin:auto ;    color: #ffffff;
+    <button (click)="nuevoTicket()" style="margin:auto ;    color: #ffffff;
 background-color: #00903ab8;
 border-color: #f8f9fa;" type="button" class="btn btn-light "><i class="fa fa-plus"></i>Nuevo</button>
-<button style="margin:auto ;    color: #ffffff;
+    <button style="margin:auto ;    color: #ffffff;
 background-color: #686868b8;
 border-color: #f8f9fa;" type="button" class="btn btn-light "><i class="fa fa-print"></i>Imprimir</button>
-<button  (click)="cancelarTicket()" style="margin:auto ;    color: #ffffff;
+    <button (click)="cancelarTicket()" style="margin:auto ;    color: #ffffff;
 background-color: #e80c0cb8;
 border-color: #f8f9fa;" type="button" class="btn btn-light "><i class="fa fa-close"></i>Cancelar</button>
-<button style="margin:auto ;    color: #ffffff;
+    <button style="margin:auto ;    color: #ffffff;
 background-color: #00903ab8;
-border-color: #f8f9fa;" type="button" class="btn btn-light " (click)="finalizar()"><i class="fa fa-check"></i>Finalizar servicio</button>
-<button style="margin:auto ;    color: #ffffff;
+border-color: #f8f9fa;" type="button" class="btn btn-light " (click)="finalizar()"><i class="fa fa-check"></i>Finalizar
+      servicio</button>
+    <button style="margin:auto ;    color: #ffffff;
 background-color: #b19a36;
 border-color: #f8f9fa;" type="button" class="btn btn-light "><i class="fa fa-align-justify"></i>Fichas</button>
-<button style="margin:auto ;    color: #ffffff;
+    <button style="margin:auto ;    color: #ffffff;
 background-color: #686868b8;
 border-color: #f8f9fa;" type="button" class="btn btn-light "><i class="fa fa-cog"></i>Opciones</button>
- </div>
+  </div>
 
 </div>
 
 
 <div class="modal fade miclase" style="background: #0000006e;" id="myModalclientees">
-  <app-cat-clientes  (eventoFunciones)="recibir($event)"></app-cat-clientes>  
+  <app-cat-clientes (eventoFunciones)="recibir($event)"></app-cat-clientes>
 </div>
 
 
 
 <div class="modal fade miclase" style="background: #0000006e;" id="myModalProductos">
-  <app-cat-productos  (eventoFunciones)="recibirProducto($event)"></app-cat-productos>  
+  <app-cat-productos (eventoFunciones)="recibirProducto($event)"></app-cat-productos>
 </div>
 
 <div class="modal fade miclase" style="background: #0000006e;" id="myModalVentas">
   <div class="modal-dialog  modal-dialog-scrollable">
-    <form >
+    <form>
       <div class="modal-content">
-  
+
         <!-- Modal Header -->
-        <div  class="modal-header cabecera">
-          <h4 class="modal-title" >Ventas activas</h4>
+        <div class="modal-header cabecera">
+          <h4 class="modal-title">Ventas activas</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
-  
+
         <!-- Modal body -->
         <div class="modal-body">
           <div class="row" style="height: 100%;">
             <div class="col-12">
-              <table  *ngIf="arregloVentas.length != 0"   class="table table-striped table-hover">
+              <table *ngIf="arregloVentas.length != 0" class="table table-striped table-hover">
                 <thead>
                   <tr>
                     <th>#</th>
@@ -316,14 +343,15 @@ border-color: #f8f9fa;" type="button" class="btn btn-light "><i class="fa fa-cog
                   </tr>
                 </thead>
                 <tbody>
-          
-                  <tr style="cursor: pointer;" *ngFor="let item of arregloVentas;let indice = index;" (click)="seleccionar(item,indice)" [ngClass]="{'seleccionado' : item.seleccionado}">
+
+                  <tr style="cursor: pointer;" *ngFor="let item of arregloVentas;let indice = index;"
+                    (click)="seleccionar(item,indice)" [ngClass]="{'seleccionado' : item.seleccionado}">
                     <td scope="row">{{indice+1}}</td>
                     <td>{{item.idservicio}}</td>
                     <td>{{item.fecha}}</td>
                     <td>{{(item.tipoServicio == 1) ? 'SERVICIO POR ENCARGO':'AUTOSERVICIO' }}</td>
                   </tr>
-          
+
                 </tbody>
               </table>
               <div *ngIf="arregloVentas.length == 0" class="alert alert-danger text-center" role="alert">
@@ -331,19 +359,19 @@ border-color: #f8f9fa;" type="button" class="btn btn-light "><i class="fa fa-cog
               </div>
             </div>
           </div>
-          
-      
+
+
         </div>
-  
+
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button [disabled]="desabilitar" (click)="seleccionarItem()"  type="submit"  class="btn btn-success pull-right">
+          <button [disabled]="desabilitar" (click)="seleccionarItem()" type="submit" class="btn btn-success pull-right">
             <i class="fa fa-check"></i> Seleccionar</button>
           <button type="button" class="btn" data-dismiss="modal">
             <i class="fa fa-close"></i>Cerrar</button>
-  
+
         </div>
-  
+
       </div>
     </form>
   </div>
@@ -353,63 +381,67 @@ border-color: #f8f9fa;" type="button" class="btn btn-light "><i class="fa fa-cog
 
 <div class="modal fade miclase" style="background: #0000006e;" id="mymodalfinalizar">
   <div class="modal-dialog  modal-dialog-scrollable modal-sm">
-    <form >
+    <form>
       <div class="modal-content">
-  
+
         <!-- Modal Header -->
-        <div  class="modal-header cabecera">
-          <h4 class="modal-title" >Finalizar el ticket</h4>
+        <div class="modal-header cabecera">
+          <h4 class="modal-title">Finalizar el ticket</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
-  
+
         <!-- Modal body -->
         <div class="modal-body">
-      
-            <div class="row">
-              <div class="col-12">
-                  <label for="">Total a pagar</label>
-                  <h5>{{venta.importeTotal | currency}}</h5>
-              </div>
-            </div>
 
-            <div class="row" style="margin-bottom: 23px;">
-              <div class="input-group input-group-sm  col-12">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="basic-addon1">Monto</span>
-                </div>
-                <input [disabled]="desactivarmetodopago" [(ngModel)]="montoefectivo" type="number" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="Monto a pagar" aria-label="Username" aria-describedby="basic-addon1">
-              </div>
+          <div class="row">
+            <div class="col-12">
+              <label for="">Total a pagar</label>
+              <h5>{{venta.importeTotal | currency}}</h5>
             </div>
-            <div class="row">
-              <div class="col-12">
-                <div class="card" style="width: 100%;">
-                  <div class="card-header" style="    text-align: center;
+          </div>
+
+          <div class="row" style="margin-bottom: 23px;">
+            <div class="input-group input-group-sm  col-12">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Monto</span>
+              </div>
+              <input [disabled]="desactivarmetodopago" [(ngModel)]="montoefectivo" type="number"
+                [ngModelOptions]="{standalone: true}" class="form-control" placeholder="Monto a pagar"
+                aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="card" style="width: 100%;">
+                <div class="card-header" style="    text-align: center;
                   color: #c13131;">
-                    Formas de pago
-                  </div>
-                  <ul class="list-group list-group-flush">
-                    <li  style="cursor: pointer;" (click)="seleccionarForma(item)" *ngFor="let item of metodos" class="list-group-item seleccionarmetodo"><i [className]="item.clase"></i>{{item.nombre}}<i *ngIf="item.seleccionado" style="    color: rgb(18, 150, 78);
+                  Formas de pago
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li style="cursor: pointer;" (click)="seleccionarForma(item)" *ngFor="let item of metodos"
+                    class="list-group-item seleccionarmetodo"><i [className]="item.clase"></i>{{item.nombre}}<i
+                      *ngIf="item.seleccionado" style="    color: rgb(18, 150, 78);
                       position: absolute;
                       right: 0;
                       margin-right: 16px;
                       font-size: large;" class="fa fa-check-square"></i></li>
-                  </ul>
-                </div>
+                </ul>
               </div>
             </div>
-             
-      
+          </div>
+
+
         </div>
-  
+
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button [disabled]="desabilitar" (click)="cobrar()"  type="submit"  class="btn btn-success pull-right">
+          <button [disabled]="desabilitar" (click)="cobrar()" type="submit" class="btn btn-success pull-right">
             <i class="fa fa-check"></i>Cobrar</button>
           <button type="button" class="btn" data-dismiss="modal">
             <i class="fa fa-close"></i>Cerrar</button>
-  
+
         </div>
-  
+
       </div>
     </form>
   </div>
@@ -420,18 +452,18 @@ border-color: #f8f9fa;" type="button" class="btn btn-light "><i class="fa fa-cog
 
 <div class="modal fade miclase" style="background: #0000006e;" id="modalfinalizado">
   <div class="modal-dialog  modal-dialog-scrollable modal-sm">
-    <form >
+    <form>
       <div class="modal-content">
-  
+
         <!-- Modal Header -->
-        <div  class="modal-header" style="background-color: #00c52a;color:white;">
-          <h4 class="modal-title"  >Ticket cobrado</h4>
+        <div class="modal-header" style="background-color: #00c52a;color:white;">
+          <h4 class="modal-title">Ticket cobrado</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
-  
+
         <!-- Modal body -->
         <div class="modal-body">
-      
+
           <div class="row">
             <div class="col-12 text-center">
               <i style="color: #00c52a;
@@ -439,46 +471,47 @@ border-color: #f8f9fa;" type="button" class="btn btn-light "><i class="fa fa-cog
 
             </div>
           </div>
-            <div class="row">
-              <div class="col-12 text-center">
-                  <label for="">Total de venta</label>
-                  <h5>{{objfinalizado.importeTotal | currency}}</h5>
-                  <label for="">Monto recibido</label>
-                  <h5>{{objfinalizado.montorecibido | currency}}</h5>
-                  <hr/>
-                  <label for="">Cambio</label>
-                  <h5>{{objfinalizado.montorecibido - objfinalizado.importeTotal | currency}}</h5>
-                  <hr/>
-              </div>
+          <div class="row">
+            <div class="col-12 text-center">
+              <label for="">Total de venta</label>
+              <h5>{{objfinalizado.importeTotal | currency}}</h5>
+              <label for="">Monto recibido</label>
+              <h5>{{objfinalizado.montorecibido | currency}}</h5>
+              <hr />
+              <label for="">Cambio</label>
+              <h5>{{objfinalizado.montorecibido - objfinalizado.importeTotal | currency}}</h5>
+              <hr />
             </div>
-            <div class="row">
-              <div class="col-12">
-                <div class="card" style="width: 100%;">
-                  <div class="card-header" style="    text-align: center;
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="card" style="width: 100%;">
+                <div class="card-header" style="    text-align: center;
                   color: #717171;">
-                    Forma de pago recibida
-                  </div>
-                  <ul class="list-group list-group-flush">
-                    <li  style="cursor: pointer;"  class="list-group-item"><i [className]="objfinalizado.metodo.clase"></i>{{objfinalizado.metodo.nombre}}<i  style="    color: rgb(18, 150, 78);
+                  Forma de pago recibida
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li style="cursor: pointer;" class="list-group-item"><i
+                      [className]="objfinalizado.metodo.clase"></i>{{objfinalizado.metodo.nombre}}<i style="    color: rgb(18, 150, 78);
                       position: absolute;
                       right: 0;
                       margin-right: 16px;
                       font-size: large;" class="fa fa-check-square"></i></li>
-                  </ul>
-                </div>
+                </ul>
               </div>
             </div>
-             
-      
+          </div>
+
+
         </div>
-  
+
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button  (click)="reimprimir()"  type="button"  class="btn btn-light pull-right">
+          <button (click)="reimprimir()" type="button" class="btn btn-light pull-right">
             <i class="fa fa-print"></i>Imprimir ticket</button>
-  
+
         </div>
-  
+
       </div>
     </form>
   </div>
