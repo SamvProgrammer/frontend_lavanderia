@@ -2,6 +2,7 @@
 
   <div class="col">
     <p style="font-size: 30px">Entradas y Salidas de Productos</p>
+    
   </div>
 </div>
 
@@ -18,8 +19,6 @@
     <select formControlName="movimiento" class="form-control form-control text-uppercase"  type="text">
       <option value='E'>Entrada </option>
       <option value='S'>Salida</option>
-      <option value='T'>Traspaso</option>
-      <option value='O'>Orden de Compra</option>
 
     </select>
   </div>
@@ -74,16 +73,20 @@
 
       </tbody>
     </table>
-    <div *ngIf="arreglo.length == 0" class="alert alert-danger text-center" role="alert">
+    <div *ngIf="arregloTablas.length == 0" class="alert alert-danger text-center" role="alert">
       <strong></strong> Sin registros en las tablas
     </div>
   </div>
 
 <div class="modal-footer">
   <button [disabled]="!myForm.valid"  (click)="enviaMovimientos()" class="btn btn-success pull-right">
-    <i class="fa fa-check"></i> Afectar</button>
+    <i class="fa fa-check"></i>Guardar</button>
 </div>
+
 </div>
+
+
+
 
 
  
@@ -129,13 +132,15 @@
         <!-- Modal footer -->
         <div class="modal-footer">
           <button [disabled]="!myForm.valid"  (click)="enviaObjeto()" class="btn btn-success pull-right">
-            <i class="fa fa-check"></i> Guardar</button>
+            <i class="fa fa-check"></i> Seleccionar Producto</button>
           <button type="button" class="btn" data-dismiss="modal">
             <i class="fa fa-close"></i>Cerrar</button>
 
         </div>
 
       </div>
+
+    
     </form>
   </div>
 

@@ -25,15 +25,16 @@ export class MovimientosInventarioComponent implements OnInit {
   public arregloSucursales: any = [];
   public arregloTablas: any = [];
   public id_usuario;
+  public sucursalGblobal ;
 
-  constructor(public formBuilder: FormBuilder, public usariosPrd: UsuariosService, public susrsalesPrd: SucursalesService , public controlPrd : ControlmovimientoService) { }
+  constructor(public formBuilder: FormBuilder, public usariosPrd: UsuariosService, public susrsalesPrd: SucursalesService, public controlPrd: ControlmovimientoService) { }
 
   ngOnInit() {
     this.myForm = this.createMyForm("");
 
-  let v =this.usariosPrd.getUsuario();
-  this.id_usuario = v["id"];
-  console.log(this.id_usuario);
+    let v = this.usariosPrd.getUsuario();
+    this.id_usuario = v["id"];
+    console.log(this.id_usuario);
 
     this.susrsalesPrd.getAll().subscribe(datos1 => {
       this.arregloSucursales = datos1;
@@ -48,7 +49,7 @@ export class MovimientosInventarioComponent implements OnInit {
     if (obj == undefined) {
       $("#titulo").text("Ingresar productoS");
 
-  
+
       this.ingresar = true;
     }
   }
@@ -93,16 +94,25 @@ export class MovimientosInventarioComponent implements OnInit {
 
   public enviaMovimientos(): any {
 
-  
+
     var myJsonString = JSON.stringify(this.arregloTablas);
     console.log(myJsonString);
 
+    
+let sucursal = this.sucursalGblobal;
+let id_user= this.id_usuario;
 
-
-this.controlPrd.insert(myJsonString).subscribe(datos => {
-  alertify.success("Producto agregado correctamente");
+this.controlPrd.insertCortePrimero(sucursal,id_user).subscribe(datos => {
+  this.controlPrd.insert(myJsonString).subscribe(datos => {
+    alertify.success("Producto agregado correctamente");
 
   });
+
+});
+    
+
+    this.myForm = this.createMyForm("");
+    this.arregloTablas.length = 0;
 
 
   }
@@ -117,15 +127,61 @@ this.controlPrd.insert(myJsonString).subscribe(datos => {
     let cantidad = forma.cantidad;
     let mov = forma.movimiento;
     let bo = forma.bodega;
+    this.sucursalGblobal=bo;
+
+    if (mov=="S")
+    {
+cantidad = "-"+cantidad;
+    }
+
+
+
+    
+
+    var f = new Date();
+   let mes = f.getMonth();
+   console.log(mes);
+   let mesObtenido = mes +1;
+
+   var Mesactual;
+    if (mesObtenido <= 9)
+    {
+      Mesactual= "0" + mesObtenido;
+    }
+    else
+    {
+   Mesactual= mesObtenido
+    }
+    let dia = f.getDate();
+
+    var DiaA;
+    if (dia <=9)
+    {
+      DiaA = "0"+dia;
+    }
+    else
+    {
+      DiaA=dia;
+    }
+
+    console.log(DiaA);
+    console.log();
+    var fecha = (  f.getFullYear() + "-" + Mesactual + "-" + DiaA);
+    var hora = (f.getHours() + ":" + f.getMinutes());
+ 
+
+
 
     let obj = {
       "id_producto": id,
       "nombre": nombre,
       "unidadmedida": unidadmedida,
-      "cantidad": cantidad ,
+      "cantidad": cantidad,
       "tipo_mov": mov,
       "id_sucursal": bo,
-      "id_usuario" : this.id_usuario
+      "id_usuario": this.id_usuario,
+      "fecha" : fecha,
+      "hora" : hora
     };
 
     this.arregloTablas.push(obj);

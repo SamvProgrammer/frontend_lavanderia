@@ -41,6 +41,7 @@ import { CatMenuComponent } from './administracion/catalogos/cat-menu/cat-menu.c
 import { MovimientosInventarioComponent } from './administracion/movimientos-inventario/movimientos-inventario.component';
 import { TabsVentasComponent } from './administracion/tabs-ventas/tabs-ventas.component';
 import { TransaccionComponent } from './administracion/transaccion/transaccion.component';
+import { CorteComponent } from './administracion/corte/corte.component';
 
 
 @NgModule({
@@ -69,7 +70,8 @@ import { TransaccionComponent } from './administracion/transaccion/transaccion.c
     CatMenuComponent,
     MovimientosInventarioComponent,
     TabsVentasComponent,
-    TransaccionComponent
+    TransaccionComponent,
+    CorteComponent
 
   ],
   imports: [

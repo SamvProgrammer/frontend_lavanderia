@@ -1,0 +1,22 @@
+<div class="cajaventa">
+  <form  [formGroup]="myForm">
+
+<div class="row" >
+
+  <h1 class="cover-heading">Corte de Inventario</h1>
+  <div class=" input-group-sm mb-3 col-6">
+  <p class="lead">Genera el corte de productos , seleccionando la sucursal</p>
+  <select formControlName="bodega"  class="form-control form-control text-uppercase"  type="text">
+    <option  *ngFor ="let item of arregloSucursales" value= {{item.id}}>{{item.nombre}}</option>    
+  </select>
+  </div>
+  <div class="modal-footer">
+    <button [disabled]="!myForm.valid"  (click)="enviaMovimientos()" class="btn btn-success pull-right">
+      <i class="fa fa-check"></i>Generar</button>
+  </div>
+
+
+</div>
+  
+</form>
+</div>
