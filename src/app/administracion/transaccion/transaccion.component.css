@@ -1,0 +1,64 @@
+img{
+    width: 64px !important;
+ }
+
+ .sinSeleccionar{
+   text-align: center !important;
+   background: #efefef !important;
+   border-radius: 19px !important;
+   margin: 5px !important;
+   cursor: pointer !important;
+   overflow:auto !important;
+   margin-left: 16px !important;
+ }
+
+ .seleccionado{
+   text-align: center !important;
+   background: #f0e691 !important;
+   border-radius: 19px !important;
+   margin: 5px !important;
+   cursor: pointer !important;
+   border:1px solid white !important;
+   overflow:auto !important;
+   margin-left: 16px !important;
+ }
+
+
+ .margenes{
+    margin: 5% !important;
+    padding: 10px;
+    
+ }
+
+ .colorcancelado{
+    font-size: medium !important;
+    color: #b11919 !important;
+ }
+
+ .colornocancelado{
+    font-size: medium !important;
+    color: #19b151 !important; 
+ }
+
+
+ .cancelado{
+    background: #d33b3b !important;
+    color:white;
+  }
+
+
+  .cobradoticket{
+    background-color: #00c52a;color:white;
+  }
+
+  .canceladoticket{
+    background-color: #c50000;color:white;
+  }
+
+  .cobradoticketi{
+    color: #00c52a;
+  }
+
+  .canceladoticketi{
+    color: #c50000;
+  }

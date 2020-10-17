@@ -45,7 +45,7 @@ export class ServiciosService {
     return this.http.delete(`${this.url}/detalleservicio/${id_detalle}`);
  }
 
-  public actualizarDetalle(obj){
+  public actualizarDetalle(obj):Observable<any>{
     let dire = direcciones.serviciosdetalles;
     const httpOptions = {
       headers:new HttpHeaders({
@@ -54,5 +54,10 @@ export class ServiciosService {
     };
     let json = JSON.stringify(obj);
     return this.http.put(`${dire}`,json,httpOptions)
+  }
+
+  public getCobradosFecha(obj):Observable<any>{
+    let dire = `${this.url}//cobrados?cobrado=${obj.cobrado}&fecha=${obj.fecha}`;
+    return this.http.get(dire);
   }
 }
