@@ -14,11 +14,8 @@ export const direcciones: any = {
     "fichas": `${ip}/api/serviciodetalles`,
     "ventas":`${ip}/api/servicios/ventas`,
     "inventario":`${ip}/api/inventario`,
-<<<<<<< HEAD
     "reportes":`${ip}/reportes`,
-=======
     "serviciosdetalles":`${ip}/api/servicio_detalles`
->>>>>>> bf84aa6fd9180cff68e4b8b8d2f20fca7296ac80
 
 
 }
