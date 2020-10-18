@@ -89,6 +89,10 @@ export class DetalleFichasComponent implements OnInit {
         document.location.href = (`https://docs.google.com/viewer?url=${direcciones.reportes}/servicio/nosucursal/${desde}/${hasta}/pdf`);
       }
 
+      if (idsucursal == 0 && tipo_servicio == 0 && empleado == 0) {
+        document.location.href = (`https://docs.google.com/viewer?url=${direcciones.reportes}/servicio/todos/${desde}/${hasta}/pdf`);
+      }
+
     }
 
 
