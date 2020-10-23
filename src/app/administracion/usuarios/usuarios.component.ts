@@ -106,6 +106,14 @@ export class UsuariosComponent implements OnInit {
         clientePrdVar.eliminar(id).subscribe(respu => {
           alertify.success('REGISTRO ELIMINADO');
     arregloaux.splice(indice,1);
+        },err =>{
+          let mensaje:string = err.error.message;
+          if(mensaje.includes("ConstraintViolationException")){
+            alertify.error("No se puede eliminar el registro porque contiene elementos asociados.");
+
+          }else{
+            alertify.error(mensaje);
+          }
         });
       }
     });

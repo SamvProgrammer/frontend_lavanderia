@@ -130,6 +130,14 @@ export class ProductoComponent implements OnInit {
         auxSucursales.delete(id).subscribe(respu => {
           arregloAux.splice(index,1);
           alertify.success(respu.resultado);
+        },err =>{
+          let mensaje:string = err.error.message;
+          if(mensaje.includes("ConstraintViolationException")){
+            alertify.error("No se puede eliminar el registro porque contiene elementos asociados.");
+
+          }else{
+            alertify.error(mensaje);
+          }
         });
       }
     });
