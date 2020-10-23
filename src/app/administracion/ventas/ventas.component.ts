@@ -98,7 +98,7 @@ export class VentasComponent implements OnInit {
       } else if (this.arregloVentas.length == 1) {
         this.venta = this.arregloVentas[0];
 
-        this.venta.valorservicio = this.venta.tipoServicio == 1 ? "true" : "false";
+        this.venta.valorservicio = this.venta.tipoServicio != 1 ? "true" : "false";
         this.conventa.conventa = true;
         if (this.venta.cliente != null || this.venta.cliente != null) {
           this.venta.checkUser = true;
