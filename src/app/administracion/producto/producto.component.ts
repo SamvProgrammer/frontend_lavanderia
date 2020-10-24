@@ -3,6 +3,7 @@ import { FormBuilder,FormGroup,Validator, Validators} from '@angular/forms';
 import { UnidadesMedidasService } from '../../providers/unidades-medidas.service';
 import { ProductosService } from '../../providers/productos.service';
 import { SucursalesService } from '../../providers/sucursales.service';
+import { DISABLED } from '@angular/forms/src/model';
 declare var $;
 declare var alertify: any;
 
@@ -59,9 +60,10 @@ export class ProductoComponent implements OnInit {
   }
 
   public createMyForm(obj){
+    
     return this.formBuilder.group({
        codigo:[obj.codigo,Validators.required],
-       id:{value: obj.id, disabled: true},
+       id:[obj.id],
        nombre:[obj.nombre,Validators.required],
        id_categoria:obj.clasificacion.id,
        nombre_categoria:{value:obj.clasificacion.nombre,disabled:true},
