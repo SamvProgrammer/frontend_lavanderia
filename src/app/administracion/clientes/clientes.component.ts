@@ -117,12 +117,12 @@ export class ClientesComponent implements OnInit {
   public abrir(obj): any {
     $('#myModal').modal('show');
     if (obj == undefined) {
-      $("#titulo").text("Ingresar Usuario");
+      $("#titulo").text("Ingresar Cliente");
 
       this.myForm = this.createMyForm("");
       this.ingresar = true;
     } else {
-      $("#titulo").text("Actualizar cliente");
+      $("#titulo").text("Actualizar Cliente");
       this.myForm = this.createMyForm(obj);
       this.ingresar = false;
     }

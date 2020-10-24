@@ -110,11 +110,11 @@ export class ProductoComponent implements OnInit {
   public abrir(obj,index): any {
     $('#myModal').modal('show');
     if (obj == undefined) {
-      $("#titulo").text("Ingresar Sucursal");
+      $("#titulo").text("Ingresar Producto");
       this.myForm = this.createMyForm(this.objDefault);
       this.ingresar = true;
     } else {
-      $("#titulo").text("Actualizar Sucursal");
+      $("#titulo").text("Actualizar Producto");
       this.myForm = this.createMyForm(obj);
       this.ingresar = false;
       this.indice = index;
