@@ -11,7 +11,11 @@ declare var $;
 export class TransaccionComponent implements OnInit {
   public arreglocobrados:any = []; 
   public venta = {
-    cliente:undefined
+    cliente:undefined,
+    cancelado:false,
+    importeTotal:0,
+    fechaterminado:undefined,
+    detalleServicio:[]
   };
 
   constructor(private serviciosPrd:ServiciosService) { }

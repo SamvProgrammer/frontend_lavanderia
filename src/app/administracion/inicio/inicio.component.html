@@ -9,7 +9,10 @@
       </div>
       <div class="panel-body">
         <div class="row">
-          <div class="col-md-3 col-lg-3"> <img alt="User Pic" src="../../../assets/img/logo.PNG"   class="imgCss"> </div>
+          <div class="col-md-12 col-lg-12"> <img alt="User Pic" src="../../../assets/img/logo.PNG"   class="imgCss"> </div>
+        </div>
+        <div class="row">
+         
           
           <!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
             <dl>
@@ -27,20 +30,13 @@
             <table class="table table-user-information">
               <tbody>
                 <tr>
-                  <td>CODIGO:</td>
-                  <td>Programming</td>
+                  <td>Usuario:</td>
+                  <td>{{usuario.usuario}}</td>
                 </tr>
                 <tr>
-                  <td>NOMBRE:</td>
-                  <td>06/23/2013</td>
-                </tr>
-                <tr>
-                  <td>DOCUMENTO:</td>
-                  <td>01/24/1988</td>
-                </tr>
-                
-                 
-               
+                  <td>Nombre:</td>
+                  <td>{{usuario.nombre}} {{usuario.apellido}}</td>
+                </tr>            
               </tbody>
             </table>
             
@@ -48,12 +44,12 @@
         </div>
       </div>
       <div class="panel-heading">
-        <h3 class="panel-title">DOCUMENTACION</h3>
+        <!-- <h3 class="panel-title">DOCUMENTACION</h3> -->
       </div>
       <div class="panel-body">
-        <div class="row">
+        <!-- <div class="row">
           
-          <!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
+          <div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
             <dl>
               <dt>DEPARTMENT:</dt>
               <dd>Administrator</dd>
@@ -64,7 +60,7 @@
               <dt>GENDER</dt>
               <dd>Male</dd>
             </dl>
-          </div>-->
+          </div>
           <div class=" col-md-9 col-lg-9 "> 
             <table class="table table-user-information">
               <tbody>
@@ -91,7 +87,7 @@
             
             <a href="#" class="btn btn-primary">Actualizar</a>
             </div>
-        </div>
+        </div> -->
       </div>
        <div class="panel-heading">
         <h3 class="panel-title">CAMBIO CONTRASEÑA</h3>
@@ -115,22 +111,22 @@
             <table class="table table-user-information">
               <tbody>
                 <tr>
-                  <td>Contraseña:</td>
-                  <td>Programming</td>
+                  <td>Contraseña anterior:</td>
+                  <td> <input #contra type="password" name="" class="form-control" id=""> </td>
                 </tr>
                 <tr>
                   <td>Nueva Contraseña:</td>
-                  <td>06/23/2013</td>
+                  <td> <input #nuevo type="password" name="" class="form-control" id=""> </td>
                 </tr>
                 <tr>
                   <td>Confirmar Nueva Contraseña:</td>
-                  <td>01/24/1988</td>
+                  <td> <input #nuevo2 type="password" name="" class="form-control" id=""> </td>
                 </tr>
                
               </tbody>
             </table>
             
-            <a href="#" class="btn btn-primary">Cambiar Contraseña</a>
+            <a href="#" style="    width: 100%;" class="btn btn-primary"  (click)="cambiarContrase(contra,nuevo,nuevo2)">Cambiar Contraseña</a>
             </div>
         </div>
       </div>

@@ -24,7 +24,7 @@
 <body>
 
   <div class="page-wrapper chiller-theme toggled">
-    <a style="color: white;" id="show-sidebar" class="btn btn-sm btn-dark" (click)="mostrar();">
+    <a style="color: white; z-index: 1;" id="show-sidebar" class="btn btn-sm btn-dark" (click)="mostrar();">
       <i class="fas fa-bars" (click)="mostrar();"></i>
     </a>
     <nav id="sidebar" class="sidebar-wrapper">
@@ -54,7 +54,7 @@
           </div>
         </div>
         <!-- sidebar-header  -->
-        <div class="sidebar-search">
+        <!-- <div class="sidebar-search">
           <div>
             <div class="input-group">
               <input type="text" class="form-control search-menu" placeholder="Buscar...">
@@ -65,7 +65,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
         <!-- sidebar-search  -->
         <div class="sidebar-menu">
           <ul>
@@ -156,23 +156,29 @@
                       <!--<span class="badge badge-pill badge-success">Pro</span>-->
                     </a>
                   </li>
+<<<<<<< HEAD
                 </ul>
               </div>
             </li>
           
-            <li class="sidebar-dropdown ">
-              <a>
-                <i class="fa fa-building"></i>
-                <span>Servicios</span>
-                <!-- <span class="badge badge-pill badge-warning">New</span>-->
-              </a>
-              <div class="sidebar-submenu">
-                <ul>
+=======
                   <li>
                     <a routerLink="/servicio/detalle-fichas">Detalle de Fichas
                       <!--<span class="badge badge-pill badge-success">Pro</span>-->
                     </a>
                   </li>
+                </ul>
+              </div>
+            </li>
+>>>>>>> 19edf7b0d74453585777552d776bb52cbb88d284
+            <li class="sidebar-dropdown ">
+              <a>
+                <i class="fa fa-building"></i>
+                <span>Inventarios</span>
+                <!-- <span class="badge badge-pill badge-warning">New</span>-->
+              </a>
+              <div class="sidebar-submenu">
+                <ul>
                   <li>
                     <a routerLink="/inventarios/rolesmovimientos-inventario">Control de Movimientos
                       <!--<span class="badge badge-pill badge-success">Pro</span>-->
@@ -186,6 +192,7 @@
                 </ul>
               </div>
             </li>
+        
        
             <!--
                  <li class="sidebar-dropdown">

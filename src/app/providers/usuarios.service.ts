@@ -47,6 +47,13 @@ export class UsuariosService {
       return this.http.delete(direccion);
   }
 
+  public validarPs(id,password,nuevo):Observable<any>{
+   let validar =  `${ this.url}/${id}/${password}/${nuevo}`;
+    
+   return this.http.get(validar);
+
+  }
+
   public getUsuario(){
     return this.usuario;
   }
