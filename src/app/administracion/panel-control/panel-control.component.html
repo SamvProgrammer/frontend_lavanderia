@@ -143,7 +143,7 @@
                 </ul>
               </div>
             </li>
-            <li *ngIf="habilitado('servicios')" class="sidebar-dropdown ">
+            <li *ngIf="habilitado('servicios') || habilitado('detallefichas')" class="sidebar-dropdown ">
               <a>
                 <i class="fa fa-building"></i>
                 <span>Ventas</span>
@@ -156,7 +156,7 @@
                       <!--<span class="badge badge-pill badge-success">Pro</span>-->
                     </a>
                   </li>
-                  <li>
+                  <li   *ngIf="habilitado('detallefichas')">
                     <a routerLink="/servicio/detalle-fichas">Detalle de Fichas
                       <!--<span class="badge badge-pill badge-success">Pro</span>-->
                     </a>
@@ -165,7 +165,7 @@
               </div>
             </li>
           
-            <li class="sidebar-dropdown ">
+            <li *ngIf="habilitado('controlmovimientos') || habilitado('corteinventarios')" class="sidebar-dropdown ">
               <a>
                 <i class="fa fa-building"></i>
                 <span>Inventarios</span>
@@ -173,12 +173,12 @@
               </a>
               <div class="sidebar-submenu">
                 <ul>
-                  <li>
+                  <li *ngIf="habilitado('controlmovimientos')">
                     <a routerLink="/inventarios/rolesmovimientos-inventario">Control de Movimientos
                       <!--<span class="badge badge-pill badge-success">Pro</span>-->
                     </a>
                   </li>
-                  <li>
+                  <li *ngIf="habilitado('corteinventarios')">
                     <a routerLink="inventarios/corte">Corte de Inventarios
                       <!--<span class="badge badge-pill badge-success">Pro</span>-->
                     </a>

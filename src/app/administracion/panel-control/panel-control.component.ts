@@ -98,6 +98,7 @@ export class PanelControlComponent implements OnInit {
 
   public habilitado(opcion):boolean{
     let habilitar:boolean = false;  
+    
     if(this.listamenu != undefined){
 
       for(let item of this.listamenu){

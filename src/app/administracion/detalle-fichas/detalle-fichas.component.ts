@@ -64,7 +64,8 @@ export class DetalleFichasComponent implements OnInit {
     let hasta = obj.hasta;
 
 
-    if (this.tipoboton === false) {
+    console.log(this.tipoboton);
+    if (this.tipoboton == false) {
       this.detallefichaServ.getDetalle(idsucursal, tipo_servicio, empleado, desde, hasta).subscribe(detalle => {
         this.arregloDetalleGrid = detalle;
 
