@@ -18,7 +18,7 @@ export class DetalleFichasComponent implements OnInit {
   public arregloSucursales: any = [];
   public arregloDetalleGrid: any = [];
 
-  public arregloSuma: any = [];
+  public arregloSuma: any = [];                                                          
   public parametro;
 
 
@@ -64,14 +64,49 @@ export class DetalleFichasComponent implements OnInit {
     let hasta = obj.hasta;
 
 
-    console.log(this.tipoboton);
-    if (this.tipoboton == false) {
+    if (this.tipoboton === false) {
       this.detallefichaServ.getDetalle(idsucursal, tipo_servicio, empleado, desde, hasta).subscribe(detalle => {
         this.arregloDetalleGrid = detalle;
 
       });
       this.detallefichaServ.SumaDetalle(idsucursal, tipo_servicio, empleado, desde, hasta).subscribe(suma => {
         this.arregloSuma = suma;
+
+
+        let totalserv = this.arregloSuma["totalserv"];
+        let ficha4kg = this.arregloSuma["ficha4kg"];
+        let ficha8kg = this.arregloSuma["ficha8kg"];
+        let secadora = this.arregloSuma["secadora"];
+
+if (totalserv== undefined){
+        if (totalserv ==undefined)
+        {
+          totalserv = 0;
+        }
+        if (ficha4kg ==undefined)
+        {
+          ficha4kg = 0;
+        }
+        if (ficha8kg ==undefined)
+        {
+          ficha8kg = 0;
+        }
+        if (secadora ==undefined)
+        {
+          secadora = 0;
+        }
+
+        let obj ={
+          "totalserv" : totalserv , 
+          "ficha4kg" : ficha4kg,
+          "ficha8kg" : ficha8kg,
+          "secadora" : secadora
+
+        }
+
+        this.arregloSuma.push(obj);
+      }
+
       });
     }
 

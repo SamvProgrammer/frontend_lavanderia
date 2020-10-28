@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiciosService } from '../../providers/servicios.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 declare var $;
 
@@ -10,6 +11,11 @@ declare var $;
 })
 export class TransaccionComponent implements OnInit {
   public arreglocobrados:any = []; 
+  public ingresar;
+  public getareegloProduc: any[];
+  public myForm: FormGroup;
+
+
   public venta = {
     cliente:undefined,
     cancelado:false,
@@ -18,10 +24,22 @@ export class TransaccionComponent implements OnInit {
     detalleServicio:[]
   };
 
-  constructor(private serviciosPrd:ServiciosService) { }
+  constructor(public formBuilder: FormBuilder,private serviciosPrd:ServiciosService) { }
 
   ngOnInit() {
     this.traerCobrados();
+    this.myForm = this.createMyForm("");
+
+  }
+
+
+  public createMyForm(obj) {
+    return this.formBuilder.group({
+      cantidad: [obj.cantidad],
+      bodega: [obj.bodega],
+      movimiento: [obj.movimiento],
+      id: obj.id
+    });
   }
 
   public traerCobrados() {
@@ -62,5 +80,30 @@ export class TransaccionComponent implements OnInit {
     this.venta = item;
     console.log(this.venta);
   }
+
+
+
+
+  public abrir(obj): any {
+    $('#myModal').modal('show');
+    if (obj == undefined) {
+      $("#titulo").text("Ingresar productoS");
+
+
+      this.ingresar = true;
+    }
+  }
+
+
+  
+  public abrirProductos() {
+    $("#modalreview").modal('show');
+  }
+
+  public recibirProducto(producto) {
+    this.getareegloProduc = producto;
+    console.log(this.getareegloProduc);
+  }
+
 
 }
