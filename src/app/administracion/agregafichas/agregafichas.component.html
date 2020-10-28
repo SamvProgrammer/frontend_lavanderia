@@ -1,0 +1,49 @@
+
+<div class="row text-center">
+
+  <div class="col">
+    <p style="font-size: 30px">Administrador de fichas</p>
+  </div>
+</div>
+<div class="row">
+  <div class="input-group input-group-sm mb-3 col-4">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">Fecha elegir</span>
+    </div>
+    <input [(ngModel)]="fechaa" type="date" class="" aria-label="Username"
+      aria-describedby="basic-addon1">
+  </div>
+  <div class="input-group input-group-sm mb-3 col-5">
+    <button    class="btn btn-light pull-right" (click)="buscar()">
+      <i class="fa fa-check" ></i> Buscar</button>
+    </div>
+</div>
+<div class="row">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Fecha servicio</th>
+        <th scope="col">Tipo de servicio</th>
+        <th scope="col">Total</th>
+        <th scope="col">Opciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of arreglo;let indice=index;">
+        <td scope="row" >{{item.idservicio}}</td>
+        <td>{{item.fechaterminado}}</td>
+        <td>{{item.importeTotal | currency}}</td>
+        <td>{{(item.tipoServicio==1)?'AUTOSERVICIO':'POR ENCARGO'}}</td>
+        <td style="text-align: center">
+          <button class="btn btn-default" data-toggle="modal" data-target="#myModal" (click)="abrir(item,indice)">
+            <i class="fa fa-refresh"></i>
+          </button>
+          <button class="btn btn-danger" (click)="eliminar(item.id,indice);">
+            <i class="fa fa-remove"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

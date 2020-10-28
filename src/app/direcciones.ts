@@ -1,5 +1,5 @@
-//const ip: string = "http://localhost:8080";
-const ip:string = "https://lavamax.herokuapp.com";
+const ip: string = "http://localhost:8080";
+//const ip:string = "https://lavamax.herokuapp.com";
 export const direcciones: any = {
     "usuarios": ip + "/api/usuarios",
     "login": ip + "/api/ingresar",

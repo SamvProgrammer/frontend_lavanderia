@@ -42,6 +42,7 @@ import { MovimientosInventarioComponent } from './administracion/movimientos-inv
 import { TabsVentasComponent } from './administracion/tabs-ventas/tabs-ventas.component';
 import { TransaccionComponent } from './administracion/transaccion/transaccion.component';
 import { CorteComponent } from './administracion/corte/corte.component';
+import { AgregafichasComponent } from './administracion/agregafichas/agregafichas.component';
 
 
 @NgModule({
@@ -71,7 +72,8 @@ import { CorteComponent } from './administracion/corte/corte.component';
     MovimientosInventarioComponent,
     TabsVentasComponent,
     TransaccionComponent,
-    CorteComponent
+    CorteComponent,
+    AgregafichasComponent
 
   ],
   imports: [

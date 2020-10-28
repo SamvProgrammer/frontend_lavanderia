@@ -11,12 +11,12 @@ import { ProductoComponent } from './administracion/producto/producto.component'
 import { LineasComponent } from './administracion/lineas/lineas.component';
 import { CategoriasComponent } from './administracion/categorias/categorias.component';
 import { ClientesComponent } from './administracion/clientes/clientes.component';
-import { VentasComponent } from './administracion/ventas/ventas.component';
 import { DetalleFichasComponent } from './administracion/detalle-fichas/detalle-fichas.component';
 import { RolesComponent } from './administracion/roles/roles.component';
 import { MovimientosInventarioComponent } from './administracion/movimientos-inventario/movimientos-inventario.component';
 import { TabsVentasComponent } from './administracion/tabs-ventas/tabs-ventas.component';
 import {CorteComponent} from './administracion/corte/corte.component';
+import { AgregafichasComponent } from './administracion/agregafichas/agregafichas.component';
 
 const routes: Routes = [
   { path: 'ingresar', component: LoginAdminComponent },
@@ -36,10 +36,7 @@ const routes: Routes = [
   { path: 'catalogos/roles', component: RolesComponent , canActivate: [AutenticadoService] },
   { path: 'inventarios/rolesmovimientos-inventario', component: MovimientosInventarioComponent , canActivate: [AutenticadoService] },
   { path: 'inventarios/corte', component: CorteComponent , canActivate: [AutenticadoService] },
-
-
-
-
+  { path: 'servicio/administrador_fichas', component: AgregafichasComponent , canActivate: [AutenticadoService] },
   { path: '**', component: LoginAdminComponent }
 ];
 

@@ -57,7 +57,7 @@ export class ServiciosService {
   }
 
   public getCobradosFecha(obj):Observable<any>{
-    let dire = `${this.url}//cobrados?cobrado=${obj.cobrado}&fecha=${obj.fecha}`;
+    let dire = `${this.url}/cobrados?cobrado=${obj.cobrado}&fecha=${obj.fecha}`;
     return this.http.get(dire);
   }
 }
