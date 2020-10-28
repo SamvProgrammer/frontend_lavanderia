@@ -1,7 +1,7 @@
 
  <div class="row margenes">
   <div   *ngFor="let item of arreglocobrados;let indice=index;"
-    [ngClass]="{'sinSeleccionar': !item.seleccionado, 'seleccionado': item.seleccionado}" (click)="seleccionandoitem(item)" (dblclick)="abriritem(item)" class="col-3">
+    [ngClass]="{'sinSeleccionar': !item.seleccionado, 'seleccionado': item.seleccionado}" (click)="seleccionandoitem(item)" (click)="abriritem(item)" class="col-3">
     <img [src]="item.imagen" alt="" srcset="">
     <br>
     <label [ngClass]="{'colornocancelado':!item.cancelado,'colorcancelado':item.cancelado}"><strong>{{(item.cancelado)?'CANCELADO':'COBRADO'}}</strong></label><br>
@@ -95,6 +95,16 @@
               
                       </tbody>
                     </table>
+
+                    <div class="row">
+                      <div class="col text-right">
+                        <button type="button" class="btn btn-default" (click)="abrir(undefined)">
+                          <i class="fa fa-plus"></i>
+                        </button>
+                      </div>
+                    </div>
+
+
               
                   </div>
                 </div>
@@ -111,8 +121,69 @@
             <i class="fa fa-print"></i>Imprimir ticket</button>
   
         </div>
-  
+
+
+
+
+
+        
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog modal-lg">
+    <form  [formGroup]="myForm">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div  class="modal-header cabecera">
+          <h4 class="modal-title" id="titulo"></h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+
+          <div class="row">
+            <label for="" class="col-12 text-center titulomodal">
+              Datos de movimiento
+            </label>
+          </div>
+            <div class="col text-right">
+
+              <app-cat-productos  (eventoFunciones)="recibirProducto($event)"></app-cat-productos>  
+          </div>
+   
+          <div class="form-group row">
+            <div class="input-group input-group-sm mb-3 col-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Cantidad&nbsp;</span>
+              </div>
+              <input formControlName="cantidad" type="number" class="form-control" placeholder="Ingresar Cantidad" aria-label="cantidad" aria-describedby="basic-addon1">
+            </div>
+          </div>
+
+          <button [disabled]="!myForm.valid"  (click)="enviaObjeto()" class="btn btn-success pull-right">
+            <i class="fa fa-check"></i> Ingresar Ficha</button>
+       
+
+        </div>
+
+      
+
       </div>
+
+    
     </form>
   </div>
+
+
+
+
+
+  </div>
 </div>
+
+
+<div class="modal fade miclase" style="background: #0000006e;" id="myModalProductos">
+  <app-cat-productos  (eventoFunciones)="recibirProducto($event)"></app-cat-productos>  
+</div>
+
