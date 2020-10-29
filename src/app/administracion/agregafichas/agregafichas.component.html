@@ -34,16 +34,111 @@
         <td scope="row" >{{item.idservicio}}</td>
         <td>{{item.fechaterminado}}</td>
         <td>{{item.importeTotal | currency}}</td>
-        <td>{{(item.tipoServicio==1)?'AUTOSERVICIO':'POR ENCARGO'}}</td>
+        <td>{{(item.tipoServicio!=1)?'AUTOSERVICIO':'POR ENCARGO'}}</td>
         <td style="text-align: center">
-          <button class="btn btn-default" data-toggle="modal" data-target="#myModal" (click)="abrir(item,indice)">
-            <i class="fa fa-refresh"></i>
-          </button>
-          <button class="btn btn-danger" (click)="eliminar(item.id,indice);">
-            <i class="fa fa-remove"></i>
+          <button class="btn btn-light" (click)="abrir(item,indice)">
+            <i class="fa fa-list"></i>Fichas
           </button>
         </td>
       </tr>
     </tbody>
   </table>
+</div>
+
+
+
+<div class="modal fade miclase" id="myModal">
+  <div class="modal-dialog modal-lg">
+    <form>
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header cabecera">
+          <h4 class="modal-title" id="titulo">Agregar fichas al ticket</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+            <div class="row">
+              <div class="col-12">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Nombre</th>
+                      <th scope="col">Opcion</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of productos;let indice=index;">
+                      <th scope="row">{{indice+1}}</th>
+                      <td>{{item.nombre}}</td>
+                      <td>
+
+                        <button class="btn btn-info" (click)="agregarFicha(item)">
+                          <i class="fa fa-add"></i> Agregar
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+              </div>
+            </div>
+            <hr/>
+            <div style="background: rgb(247, 247, 247)">
+
+              <div style="background: #6ac794;
+        color: white;margin: 0%;" class="row">
+                <label for="" class="col-12 text-center titulomodal">
+                  Productos agregados
+                </label>
+              </div>
+
+              <div class="row">
+                <div class="col-12">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Opción</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of productosAgregados;let indice=index;">
+                        <th scope="row">{{indice+1}}</th>
+                        <td>{{item.nombre}}</td>
+                        <td>{{item.cantficha}}</td>
+                        <td> <button *ngIf="item.ficha_adicional" class="btn btn-danger" (click)="eliminar(indice);">
+                          <i class="fa fa-remove"></i>
+                        </button>
+                      <label *ngIf="!item.ficha_adicional" for=""><div class="alert alert-warning" role="alert">
+                        FICHA REGISTRADA COMO VENTA EN TICKET
+                      </div></label>
+                      </td>
+                      </tr>
+                    </tbody>
+                  </table>
+  
+                </div>
+              </div>
+            </div>
+          
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button  data-dismiss="modal"  class="btn btn-success pull-right" (click)="GuardarFichas()">
+            <i class="fa fa-check"></i> Guardar</button>
+          <button type="button" class="btn" data-dismiss="modal">
+            <i class="fa fa-close"></i>Cerrar</button>
+
+        </div>
+
+      </div>
+    </form>
+  </div>
 </div>

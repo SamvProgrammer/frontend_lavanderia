@@ -60,4 +60,10 @@ export class ServiciosService {
     let dire = `${this.url}/cobrados?cobrado=${obj.cobrado}&fecha=${obj.fecha}`;
     return this.http.get(dire);
   }
+
+
+  public getFichasServicioDetalle(id_servicio):Observable<any>{
+
+    return this.http.get(`${direcciones.serviciosdetalles}/${id_servicio}/fichas`);
+  }
 }

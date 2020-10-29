@@ -48,4 +48,9 @@ export class ProductosService {
   public delete(identificador):Observable<any> {
      return this.http.delete(`${this.url}/${identificador}`);
   }
+
+
+  public getfichas(id_sucursal):Observable<any>{
+      return this.http.get(`${this.url}/fichas/${id_sucursal}`);
+  }
 }
